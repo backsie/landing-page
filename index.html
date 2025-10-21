@@ -1,0 +1,866 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Backsie — Clarity, not therapy.</title>
+  <meta name="description" content="Backsie is a self‑help tool for clarity and pattern recognition." />
+  <style>
+    /* Font Face Declarations */
+    @font-face {
+      font-family: 'PP Neue Montreal';
+      src: url('fonts/PPNeueMontreal-Thin.otf') format('opentype');
+      font-weight: 100;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'PP Neue Montreal';
+      src: url('fonts/PPNeueMontreal-Book.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'PP Neue Montreal';
+      src: url('fonts/PPNeueMontreal-Italic.otf') format('opentype');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'PP Neue Montreal';
+      src: url('fonts/PPNeueMontreal-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'PP Neue Montreal';
+      src: url('fonts/PPNeueMontreal-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'PP Neue Montreal';
+      src: url('fonts/PPNeueMontreal-SemiBolditalic.otf') format('opentype');
+      font-weight: 600;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root{
+      --bg:#F7F5F1;         /* general page bg */
+      --mast:#FAF7F1;       /* header/hero/footer */
+      --card:#ffffff;
+      --ink:#0f2c26;
+      --ink-2:rgba(31,71,63,.80);
+      --muted:#6a7a75;
+      --brand:#1F473F;
+      --brand-2:#E7F1ED;
+      --accent:#F3EEDC;
+      --cta:#F59E0B;
+      --radius:14px;
+      --max:1120px;
+      --border:#E7ECE9;
+      --rule:#E2E3E6;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:"PP Neue Montreal", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;color:var(--ink);background:var(--bg);line-height:1.5}
+    .container{max-width:var(--max);margin-inline:auto;padding:24px}
+
+    /* Header */
+    .site-header{background:var(--mast);position:sticky;top:0;z-index:10}
+    .nav{display:flex;justify-content:space-between;align-items:center}
+    .brand{display:flex;align-items:center;gap:10px;color:var(--brand);font-weight:700}
+    .logo{width:28px;height:28px;border-radius:8px;display:block}
+    .nav-actions{display:flex;gap:8px}
+    .btn{border:0;border-radius:12px;padding:12px 16px;font-weight:600;cursor:pointer}
+    .btn-primary{background:var(--cta);color:#113d2f}
+    .btn-ghost{background:#fff;color:var(--brand);border:1px solid var(--border)}
+
+    /* Hero */
+    .masthead{background:var(--mast)}
+    .hero{display:grid;gap:28px;align-items:center}
+    .hero-grid{display:grid;gap:28px}
+    .pill{background:#fff;border-radius:999px;border:1px solid var(--border);font-size:12px;color:var(--brand);padding:10px 14px;display:inline-flex;align-items:center;gap:6px}
+    .phone{position:relative;width:min(360px,90%);justify-self:center}
+    .device{border-radius:26px;background:var(--card);overflow:hidden;padding:14px;border:1px solid #E7ECE9}
+    .stack{display:flex;flex-direction:column;gap:8px}
+    .bubble{padding:10px 12px;border-radius:10px;background:#fff;outline:1px rgba(31,71,63,0.08) solid;outline-offset:-1px;box-shadow:0px 1px 1px rgba(31,71,63,0.16) inset;font-size:12px}
+    .bubble.alt{background:#EEF3EF}
+    .hero-meta svg{flex-shrink:0;vertical-align:middle}
+
+    /* Footer */
+    .footer-links a{transition:opacity 0.2s}
+    .footer-links a:hover{opacity:0.7}
+
+    /* Feature highlights (green section) */
+    .features-wrap{background:#EEF3EF}
+    .features{display:grid;gap:20px;grid-template-columns:1fr}
+    .feature{display:flex;align-items:center;gap:14px;background:transparent;border:0}
+    .feature-icon{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--mast);border:1px solid var(--border)}
+
+    /* How it helps */
+    .section{padding-block:32px}
+    .split-3{display:grid;grid-template-columns:1fr;gap:18px}
+    .card{background:#fff;border:1px solid #E7ECE9;border-radius:14px;padding:18px}
+    .chip{padding:10px 12px;background:#f7faf9;border:1px solid #e6efeb;border-radius:10px;font-size:12px}
+
+    /* Patterns */
+    .two-col{display:grid;grid-template-columns:1fr;gap:18px}
+    .tag{font-size:11px;display:inline-block;padding:6px 8px;border-radius:999px;background:var(--brand-2);color:var(--brand)}
+
+    /* FAQ */
+    .faq-surface{background:#fff;overflow:hidden;margin-top:18px}
+    .faq-row{position:relative;padding:28px 56px 28px 30px}
+    .faq-row+.faq-row{border-top:1px solid var(--rule)}
+    .faq-q{font-size:36px;line-height:40px;color:var(--brand);font-weight:500}
+    .faq-a{font-size:20px;line-height:30px;color:rgba(31,71,63,.80);font-weight:500;margin-top:10px;max-width:960px}
+    .faq-toggle{position:absolute;right:30px;top:50%;transform:translateY(-50%);width:34px;height:34px;display:grid;place-items:center;cursor:pointer;border:0;background:transparent}
+    .faq-plus,.faq-minus{display:block}
+    [aria-expanded="true"] .faq-plus{display:none}
+    [aria-expanded="false"] .faq-minus{display:none}
+    .faq-answer{height:0;overflow:hidden;transition:height .28s ease}
+    [aria-expanded="true"] .faq-answer{height:auto}
+
+    /* Footer */
+    footer{background:var(--mast)}
+
+    /* Responsive */
+    @media (min-width:720px){
+      .hero{grid-template-columns:1.05fr .95fr}
+      .features{grid-template-columns:repeat(3,1fr)}
+      .split-3{grid-template-columns:repeat(3,1fr)}
+      .two-col{grid-template-columns:1fr 1fr}
+      .phone{justify-self:end}
+    }
+    /* nav responsive */
+    .hamburger{display:none}
+    @media (max-width:720px){
+      .nav{position:relative}
+      .nav-actions{display:none}
+      .hamburger{display:inline-grid}
+      .mobile-menu{display:none}
+    }
+
+    /* Video Modal */
+    .video-modal{
+      display:none;
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.9);
+      z-index:9999;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+    .video-modal.active{display:flex}
+    .video-modal-content{
+      position:relative;
+      width:100%;
+      max-width:1200px;
+      background:#000;
+      border-radius:12px;
+      overflow:hidden;
+    }
+    .video-modal-close{
+      position:absolute;
+      top:20px;
+      right:20px;
+      width:40px;
+      height:40px;
+      background:rgba(255,255,255,0.9);
+      border:none;
+      border-radius:50%;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:10000;
+      transition:background 0.2s;
+    }
+    .video-modal-close:hover{background:#fff}
+    .video-modal-close::before,
+    .video-modal-close::after{
+      content:'';
+      position:absolute;
+      width:20px;
+      height:2px;
+      background:#1F473F;
+    }
+    .video-modal-close::before{transform:rotate(45deg)}
+    .video-modal-close::after{transform:rotate(-45deg)}
+    .video-modal video{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    @media (max-width:720px){
+      .video-modal-content{max-width:100%}
+      .video-modal-close{top:10px;right:10px;width:36px;height:36px}
+    }
+
+    /* Email Modal */
+    .email-modal{
+      display:none;
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.5);
+      z-index:9998;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+    .email-modal.active{display:flex}
+    .email-modal-content{
+      position:relative;
+      width:100%;
+      max-width:480px;
+      background:#fff;
+      border-radius:20px;
+      padding:40px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.3);
+    }
+    .email-modal-close{
+      position:absolute;
+      top:16px;
+      right:16px;
+      width:32px;
+      height:32px;
+      background:transparent;
+      border:none;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:opacity 0.2s;
+      padding:0;
+    }
+    .email-modal-close:hover{opacity:0.6}
+    .email-modal-close::before,
+    .email-modal-close::after{
+      content:'';
+      position:absolute;
+      width:18px;
+      height:2px;
+      background:#1F473F;
+    }
+    .email-modal-close::before{transform:rotate(45deg)}
+    .email-modal-close::after{transform:rotate(-45deg)}
+    .email-modal h2{
+      font-size:28px;
+      font-weight:500;
+      margin:0 0 8px;
+      color:var(--brand);
+    }
+    .email-modal p{
+      font-size:16px;
+      color:var(--ink-2);
+      margin:0 0 24px;
+    }
+    .email-form{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+    .email-input{
+      width:100%;
+      padding:14px 16px;
+      font-size:16px;
+      font-family:"PP Neue Montreal", sans-serif;
+      border:1px solid var(--border);
+      border-radius:12px;
+      outline:none;
+      transition:border-color 0.2s;
+    }
+    .email-input:focus{
+      border-color:var(--brand);
+    }
+    .email-input.error{
+      border-color:#ef4444;
+    }
+    .error-message{
+      color:#ef4444;
+      font-size:14px;
+      margin-top:-8px;
+      display:none;
+    }
+    .error-message.show{
+      display:block;
+    }
+    .email-submit{
+      padding:14px 24px;
+      font-size:16px;
+      font-weight:500;
+      font-family:"PP Neue Montreal", sans-serif;
+      background:var(--cta);
+      color:#113d2f;
+      border:none;
+      border-radius:12px;
+      cursor:pointer;
+      transition:opacity 0.2s;
+    }
+    .email-submit:hover{
+      opacity:0.9;
+    }
+    .email-submit:disabled{
+      opacity:0.5;
+      cursor:not-allowed;
+    }
+
+    /* Thank You Animation */
+    .thank-you-overlay{
+      display:none;
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.5);
+      z-index:10000;
+      align-items:center;
+      justify-content:center;
+    }
+    .thank-you-overlay.active{
+      display:flex;
+    }
+    .thank-you-message{
+      background:#fff;
+      padding:48px 64px;
+      border-radius:24px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.3);
+      animation:thankYouGrow 3s ease-out forwards;
+    }
+    .thank-you-message h2{
+      font-size:48px;
+      font-weight:500;
+      color:var(--brand);
+      margin:0;
+      text-align:center;
+    }
+    @keyframes thankYouGrow{
+      0%{
+        transform:scale(0.5);
+        opacity:0;
+      }
+      20%{
+        transform:scale(1);
+        opacity:1;
+      }
+      80%{
+        transform:scale(1);
+        opacity:1;
+      }
+      100%{
+        transform:scale(1.1);
+        opacity:0;
+      }
+    }
+
+    @media (max-width:720px){
+      .email-modal-content{
+        padding:32px 24px;
+      }
+      .email-modal h2{
+        font-size:24px;
+      }
+      .thank-you-message{
+        padding:32px 48px;
+      }
+      .thank-you-message h2{
+        font-size:36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="masthead">
+    <header class="site-header">
+      <div class="container nav">
+        <div class="brand"><img src="logo.png" alt="Backsie logo" class="logo"/>Backsie</div>
+        <button class="hamburger" aria-label="Open menu" style="gap:4px;background:transparent;border:0;padding:8px">
+          <span style="display:block;width:22px;height:2px;background:#1F473F"></span>
+          <span style="display:block;width:22px;height:2px;background:#1F473F"></span>
+          <span style="display:block;width:22px;height:2px;background:#1F473F"></span>
+        </button>
+        <div class="nav-actions">
+          <button class="btn btn-primary">Get early access</button>
+        </div>
+        <div class="mobile-menu" role="menu" aria-hidden="true" style="display:none;position:absolute;right:24px;top:64px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:8px;min-width:220px">
+          <button class="btn btn-primary cta" role="menuitem" style="display:block;width:100%;text-align:left;padding:10px 12px;border:0;border-radius:10px;background:var(--cta);color:#113d2f">Get early access</button>
+        </div>
+        </div>
+    </header>
+
+    <!-- Hero on #FAF7F1 -->
+    <section class="container hero">
+      <div class="hero-grid">
+        <span class="pill" style="background:#FFFFFF;border:1px solid #E2E3E6;color:#1F473F;font-size:14px;font-weight:500;letter-spacing:0">Join Backsie as a beta user and get one year completely free. No obligation.</span>
+        <h1 style="font-size:64px;line-height:70px;letter-spacing:-.02em;font-weight:500;margin:0 0 12px;color:#1F473F">Clarity, not<br/>therapy.</h1>
+        <p class="lede" style="font-size:16px;color:rgba(31,71,63,.80);margin:0">Type what’s stuck → Backsie tests assumptions so you get a reframe and one doable next step.</p>
+        <div class="actions" style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-primary">Get early access for free</button>
+          <button class="btn btn-ghost" style="background:transparent;border:1px solid #E2E3E6;color:#1F473F">View founder’s story</button>
+        </div>
+        <div class="hero-meta" style="font-size:14px;display:flex;gap:20px;align-items:center;flex-wrap:wrap;color:rgba(31,71,63,.80);margin-top:6px">
+          <span style="display:flex;align-items:center;gap:6px">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.5005 7.74927C15.4998 7.08697 15.3116 6.43841 14.9577 5.87862C14.6037 5.31884 14.0985 4.87072 13.5005 4.58614V4.49927C13.4999 3.85503 13.2919 3.22809 12.9074 2.71121C12.5228 2.19434 11.9821 1.81498 11.3652 1.62928C10.7483 1.44358 10.088 1.46141 9.48205 1.68011C8.87607 1.89881 8.35659 2.30678 8.00047 2.84364C7.64435 2.30678 7.12487 1.89881 6.51889 1.68011C5.91291 1.46141 5.25262 1.44358 4.63573 1.62928C4.01883 1.81498 3.47811 2.19434 3.09355 2.71121C2.709 3.22809 2.50105 3.85503 2.50047 4.49927V4.58614C1.90193 4.86995 1.39622 5.31778 1.0421 5.87759C0.687981 6.43741 0.5 7.08623 0.5 7.74864C0.5 8.41106 0.687981 9.05987 1.0421 9.61969C1.39622 10.1795 1.90193 10.6273 2.50047 10.9111V10.9993C2.50105 11.6435 2.709 12.2704 3.09355 12.7873C3.47811 13.3042 4.01883 13.6836 4.63573 13.8693C5.25262 14.055 5.91291 14.0371 6.51889 13.8184C7.12487 13.5997 7.64435 13.1918 8.00047 12.6549C8.35659 13.1918 8.87607 13.5997 9.48205 13.8184C10.088 14.0371 10.7483 14.055 11.3652 13.8693C11.9821 13.6836 12.5228 13.3042 12.9074 12.7873C13.2919 12.2704 13.4999 11.6435 13.5005 10.9993V10.9111C14.0984 10.6268 14.6036 10.1789 14.9575 9.61931C15.3115 9.05975 15.4997 8.41138 15.5005 7.74927ZM5.50047 12.9993C5.00731 12.9992 4.53157 12.8169 4.16461 12.4875C3.79765 12.158 3.56536 11.7046 3.51234 11.2143C3.67403 11.2373 3.83714 11.249 4.00047 11.2493H4.50047C4.63308 11.2493 4.76025 11.1966 4.85402 11.1028C4.94779 11.0091 5.00047 10.8819 5.00047 10.7493C5.00047 10.6167 4.94779 10.4895 4.85402 10.3957C4.76025 10.3019 4.63308 10.2493 4.50047 10.2493H4.00047C3.41019 10.25 2.83871 10.0418 2.38721 9.66154C1.9357 9.28133 1.63329 8.75361 1.53352 8.17183C1.43375 7.59005 1.54305 6.99172 1.84208 6.4828C2.14111 5.97387 2.61057 5.58716 3.16734 5.39114C3.26476 5.35665 3.3491 5.29282 3.40876 5.20843C3.46841 5.12404 3.50045 5.02324 3.50047 4.91989V4.49927C3.50047 3.96883 3.71118 3.46013 4.08626 3.08505C4.46133 2.70998 4.97004 2.49927 5.50047 2.49927C6.0309 2.49927 6.53961 2.70998 6.91468 3.08505C7.28976 3.46013 7.50047 3.96883 7.50047 4.49927V8.76552C6.95142 8.2717 6.23893 7.99872 5.50047 7.99927C5.36786 7.99927 5.24068 8.05195 5.14692 8.14571C5.05315 8.23948 5.00047 8.36666 5.00047 8.49927C5.00047 8.63188 5.05315 8.75905 5.14692 8.85282C5.24068 8.94659 5.36786 8.99927 5.50047 8.99927C6.0309 8.99927 6.53961 9.20998 6.91468 9.58505C7.28976 9.96013 7.50047 10.4688 7.50047 10.9993C7.50047 11.5297 7.28976 12.0384 6.91468 12.4135C6.53961 12.7886 6.0309 12.9993 5.50047 12.9993ZM12.0005 10.2493H11.5005C11.3679 10.2493 11.2407 10.3019 11.1469 10.3957C11.0531 10.4895 11.0005 10.6167 11.0005 10.7493C11.0005 10.8819 11.0531 11.0091 11.1469 11.1028C11.2407 11.1966 11.3679 11.2493 11.5005 11.2493H12.0005C12.1638 11.249 12.3269 11.2373 12.4886 11.2143C12.4471 11.5984 12.2951 11.9623 12.0512 12.262C11.8072 12.5616 11.4817 12.7842 11.1139 12.9028C10.7461 13.0214 10.3519 13.0308 9.97884 12.9301C9.60579 12.8294 9.26991 12.6228 9.0118 12.3352C8.7537 12.0476 8.58442 11.6915 8.52443 11.3097C8.46445 10.928 8.51632 10.5371 8.67379 10.1842C8.83126 9.83137 9.08757 9.53167 9.41174 9.32138C9.73592 9.11109 10.1141 8.99921 10.5005 8.99927C10.6331 8.99927 10.7603 8.94659 10.854 8.85282C10.9478 8.75905 11.0005 8.63188 11.0005 8.49927C11.0005 8.36666 10.9478 8.23948 10.854 8.14571C10.7603 8.05195 10.6331 7.99927 10.5005 7.99927C9.76201 7.99872 9.04952 8.2717 8.50047 8.76552V4.49927C8.50047 3.96883 8.71118 3.46013 9.08626 3.08505C9.46133 2.70998 9.97004 2.49927 10.5005 2.49927C11.0309 2.49927 11.5396 2.70998 11.9147 3.08505C12.2898 3.46013 12.5005 3.96883 12.5005 4.49927V4.91989C12.5005 5.02324 12.5325 5.12404 12.5922 5.20843C12.6518 5.29282 12.7362 5.35665 12.8336 5.39114C13.3904 5.58716 13.8598 5.97387 14.1589 6.4828C14.4579 6.99172 14.5672 7.59005 14.4674 8.17183C14.3677 8.75361 14.0652 9.28133 13.6137 9.66154C13.1622 10.0418 12.5907 10.25 12.0005 10.2493ZM13.0005 6.99927C13.0005 7.13188 12.9478 7.25905 12.854 7.35282C12.7603 7.44659 12.6331 7.49927 12.5005 7.49927H12.2505C11.6537 7.49927 11.0814 7.26221 10.6595 6.84026C10.2375 6.4183 10.0005 5.846 10.0005 5.24927V4.99927C10.0005 4.86666 10.0531 4.73948 10.1469 4.64571C10.2407 4.55195 10.3679 4.49927 10.5005 4.49927C10.6331 4.49927 10.7603 4.55195 10.854 4.64571C10.9478 4.73948 11.0005 4.86666 11.0005 4.99927V5.24927C11.0005 5.58079 11.1322 5.89873 11.3666 6.13315C11.601 6.36757 11.919 6.49927 12.2505 6.49927H12.5005C12.6331 6.49927 12.7603 6.55195 12.854 6.64571C12.9478 6.73948 13.0005 6.86666 13.0005 6.99927ZM3.75047 7.49927H3.50047C3.36786 7.49927 3.24068 7.44659 3.14692 7.35282C3.05315 7.25905 3.00047 7.13188 3.00047 6.99927C3.00047 6.86666 3.05315 6.73948 3.14692 6.64571C3.24068 6.55195 3.36786 6.49927 3.50047 6.49927H3.75047C4.08199 6.49927 4.39993 6.36757 4.63435 6.13315C4.86877 5.89873 5.00047 5.58079 5.00047 5.24927V4.99927C5.00047 4.86666 5.05315 4.73948 5.14692 4.64571C5.24068 4.55195 5.36786 4.49927 5.50047 4.49927C5.63308 4.49927 5.76025 4.55195 5.85402 4.64571C5.94779 4.73948 6.00047 4.86666 6.00047 4.99927V5.24927C6.00047 5.846 5.76342 6.4183 5.34146 6.84026C4.9195 7.26221 4.34721 7.49927 3.75047 7.49927Z" fill="#1F473F" fill-opacity="0.8"/>
+            </svg>
+            Logic first
+          </span>
+          <span style="display:flex;align-items:center;gap:6px">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 2.5H3C2.73478 2.5 2.48043 2.60536 2.29289 2.79289C2.10536 2.98043 2 3.23478 2 3.5V7C2 10.295 3.595 12.2919 4.93313 13.3869C6.37437 14.5656 7.80813 14.9656 7.87063 14.9825C7.95656 15.0059 8.04719 15.0059 8.13313 14.9825C8.19563 14.9656 9.6275 14.5656 11.0706 13.3869C12.405 12.2919 14 10.295 14 7V3.5C14 3.23478 13.8946 2.98043 13.7071 2.79289C13.5196 2.60536 13.2652 2.5 13 2.5ZM13 7C13 9.31687 12.1462 11.1975 10.4625 12.5887C9.72955 13.1923 8.89597 13.662 8 13.9762C7.11576 13.6675 6.29247 13.2061 5.5675 12.6131C3.86375 11.2194 3 9.33125 3 7V3.5H13V7ZM5.14625 8.85375C5.05243 8.75993 4.99972 8.63268 4.99972 8.5C4.99972 8.36732 5.05243 8.24007 5.14625 8.14625C5.24007 8.05243 5.36732 7.99972 5.5 7.99972C5.63268 7.99972 5.75993 8.05243 5.85375 8.14625L7 9.29313L10.1462 6.14625C10.1927 6.09979 10.2479 6.06294 10.3086 6.0378C10.3692 6.01266 10.4343 5.99972 10.5 5.99972C10.5657 5.99972 10.6308 6.01266 10.6914 6.0378C10.7521 6.06294 10.8073 6.09979 10.8538 6.14625C10.9002 6.1927 10.9371 6.24786 10.9622 6.30855C10.9873 6.36925 11.0003 6.4343 11.0003 6.5C11.0003 6.5657 10.9873 6.63075 10.9622 6.69145C10.9371 6.75214 10.9002 6.8073 10.8538 6.85375L7.35375 10.3538C7.30731 10.4002 7.25217 10.4371 7.19147 10.4623C7.13077 10.4874 7.06571 10.5004 7 10.5004C6.93429 10.5004 6.86923 10.4874 6.80853 10.4623C6.74783 10.4371 6.69269 10.4002 6.64625 10.3538L5.14625 8.85375Z" fill="#1F473F" fill-opacity="0.8"/>
+            </svg>
+            Private by default
+          </span>
+          <span style="display:flex;align-items:center;gap:6px">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 1.5C6.71442 1.5 5.45772 1.88122 4.3888 2.59545C3.31988 3.30968 2.48676 4.32484 1.99479 5.51256C1.50282 6.70028 1.37409 8.00721 1.6249 9.26809C1.8757 10.529 2.49477 11.6872 3.40381 12.5962C4.31285 13.5052 5.47104 14.1243 6.73192 14.3751C7.99279 14.6259 9.29973 14.4972 10.4874 14.0052C11.6752 13.5132 12.6903 12.6801 13.4046 11.6112C14.1188 10.5423 14.5 9.28558 14.5 8C14.4982 6.27665 13.8128 4.62441 12.5942 3.40582C11.3756 2.18722 9.72335 1.50182 8 1.5ZM13.5 8C13.5013 9.28596 13.0497 10.5313 12.2244 11.5175L4.4825 3.775C5.28563 3.10686 6.26243 2.68128 7.29861 2.54805C8.33479 2.41482 9.38749 2.57946 10.3335 3.0227C11.2795 3.46595 12.0797 4.16946 12.6405 5.05091C13.2013 5.93236 13.4994 6.95529 13.5 8ZM2.5 8C2.49872 6.71404 2.95035 5.46871 3.77563 4.4825L11.5175 12.225C10.7144 12.8931 9.73757 13.3187 8.70139 13.452C7.66521 13.5852 6.61252 13.4205 5.6665 12.9773C4.72048 12.5341 3.92026 11.8305 3.3595 10.9491C2.79873 10.0676 2.5006 9.04471 2.5 8Z" fill="#1F473F" fill-opacity="0.8"/>
+            </svg>
+            Not therapy
+          </span>
+        </div>
+      </div>
+
+      <aside class="phone">
+        <video autoplay loop muted playsinline style="width:100%;height:auto;border-radius:26px;border:1px solid #E7ECE9">
+          <source src="hero.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </aside>
+    </section>
+
+    <!-- Features on green background -->
+    <section class="features-wrap">
+      <div class="container features">
+        <!-- Mental Checkpoints -->
+        <div class="feature">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M26 3H9C7.93913 3 6.92172 3.42143 6.17157 4.17157C5.42143 4.92172 5 5.93913 5 7V28C5 28.2652 5.10536 28.5196 5.29289 28.7071C5.48043 28.8946 5.73478 29 6 29H24C24.2652 29 24.5196 28.8946 24.7071 28.7071C24.8946 28.5196 25 28.2652 25 28C25 27.7348 24.8946 27.4804 24.7071 27.2929C24.5196 27.1054 24.2652 27 24 27H7C7 26.4696 7.21071 25.9609 7.58579 25.5858C7.96086 25.2107 8.46957 25 9 25H26C26.2652 25 26.5196 24.8946 26.7071 24.7071C26.8946 24.5196 27 24.2652 27 24V4C27 3.73478 26.8946 3.48043 26.7071 3.29289C26.5196 3.10536 26.2652 3 26 3ZM15 5H21V14L18.5987 12.2C18.4257 12.0702 18.2151 12 17.9988 12C17.7824 12 17.5718 12.0702 17.3988 12.2L15 14V5ZM25 23H9C8.29768 22.999 7.60763 23.1841 7 23.5362V7C7 6.46957 7.21071 5.96086 7.58579 5.58579C7.96086 5.21071 8.46957 5 9 5H13V16C13 16.1857 13.0517 16.3678 13.1493 16.5257C13.247 16.6837 13.3867 16.8114 13.5528 16.8944C13.7189 16.9775 13.9048 17.0126 14.0898 16.996C14.2748 16.9793 14.4514 16.9114 14.6 16.8L18 14.25L21.4013 16.8C21.574 16.9296 21.7841 16.9997 22 17C22.2652 17 22.5196 16.8946 22.7071 16.7071C22.8946 16.5196 23 16.2652 23 16V5H25V23Z" fill="#1F473F"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Mental Checkpoints</h3>
+            <p class="muted">Quick summaries of what mattered today.</p>
+          </div>
+        </div>
+        <!-- Insight Cards -->
+        <div class="feature">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M26 11H6C5.46957 11 4.96086 11.2107 4.58579 11.5858C4.21071 11.9609 4 12.4696 4 13V25C4 25.5304 4.21071 26.0391 4.58579 26.4142C4.96086 26.7893 5.46957 27 6 27H26C26.5304 27 27.0391 26.7893 27.4142 26.4142C27.7893 26.0391 28 25.5304 28 25V13C28 12.4696 27.7893 11.9609 27.4142 11.5858C27.0391 11.2107 26.5304 11 26 11ZM26 25H6V13H26V25ZM6 8C6 7.73478 6.10536 7.48043 6.29289 7.29289C6.48043 7.10536 6.73478 7 7 7H25C25.2652 7 25.5196 7.10536 25.7071 7.29289C25.8946 7.48043 26 7.73478 26 8C26 8.26522 25.8946 8.51957 25.7071 8.70711C25.5196 8.89464 25.2652 9 25 9H7C6.73478 9 6.48043 8.89464 6.29289 8.70711C6.10536 8.51957 6 8.26522 6 8ZM8 4C8 3.73478 8.10536 3.48043 8.29289 3.29289C8.48043 3.10536 8.73478 3 9 3H23C23.2652 3 23.5196 3.10536 23.7071 3.29289C23.8946 3.48043 24 3.73478 24 4C24 4.26522 23.8946 4.51957 23.7071 4.70711C23.5196 4.89464 23.2652 5 23 5H9C8.73478 5 8.48043 4.89464 8.29289 4.70711C8.10536 4.51957 8 4.26522 8 4Z" fill="#1F473F"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Insight Cards</h3>
+            <p class="muted">Reflections—one tiny idea at a time.</p>
+          </div>
+        </div>
+        <!-- Patterns -->
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#1F473F" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+          </div>
+          <div>
+            <h3>Patterns</h3>
+            <p class="muted">See thinking loops; break small bits.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div><!-- /masthead group (same color in footer) -->
+
+  <!-- Everything after here is white background -->
+  <main style="background:#fff">
+    <!-- How it helps -->
+<!--    <section class="container section">-->
+<!--      <h2>How Backsie helps</h2>-->
+<!--      <div class="split-3">-->
+<!--        <article class="card">-->
+<!--          <h3>1. Talk</h3>-->
+<!--          <p class="muted">Vent by typing, speaking, or pasting screenshots. Backsie listens for the stuck part.</p>-->
+<!--          <div class="chip">"I fear her silence means rejection."</div>-->
+<!--        </article>-->
+<!--        <article class="card">-->
+<!--          <h3>2. See it Clearly</h3>-->
+<!--          <p class="muted">We help you look deeper into assumptions that keep things foggy.</p>-->
+<!--          <div class="chip">Assumption â†’ "Silence = verdict on my worth."</div>-->
+<!--        </article>-->
+<!--        <article class="card">-->
+<!--          <h3>3. Gain Agency</h3>-->
+<!--          <p class="muted">We coâ€‘create small, achievable steps that improve the situation.</p>-->
+<!--          <div class="chip">Doable next step â†’ "Draft two calm texts; pick one."</div>-->
+<!--        </article>-->
+<!--      </div>-->
+<!--    </section>-->
+
+    <!-- Patterns & Reframes -->
+    <!-- section class="container section">
+      <div class="two-col">
+        <div class="card">
+          <h2>Identify Patterns.</h2>
+          <p class="muted">Spot similarities across areas of life so you can reuse what works elsewhere.</p>
+          <div class="pattern-list" style="display:flex;flex-direction:column;gap:10px">
+            <span class="tag">Patterns</span>
+            <div class="chip">Everyone on LinkedIn is ahead â†’ I'm failing.</div>
+            <div class="chip">One B ruins my greatâ€‘school chances.</div>
+            <div class="chip">Rent is late â†’ so I avoid the convo.</div>
+          </div>
+        </div>
+        <div class="card" style="display:grid;place-items:center;min-height:260px">
+          <div>
+            <div class="tag" style="justify-self:center">Coming soon</div>
+            <h2 style="margin-top:8px;text-align:center">A quiet feed of reframes.</h2>
+            <p class="muted" style="text-align:center;max-width:42ch">Short, anonymous insights from people in similar
+              situations. No likes, no commentsâ€”just clarity you can use.</p>
+          </div>
+        </div>
+      </div>
+    </section-->
+
+    <!-- FAQ -->
+    <section class="container section" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <div class="faq-surface" role="region" aria-label="FAQ">
+        <div class="faq-row" data-faq-item aria-expanded="true">
+          <div class="faq-q">How is this different from therapy?</div>
+          <button class="faq-toggle" type="button" aria-label="Toggle question">
+            <svg class="faq-plus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.9163 18.4173H18.4163V26.9173H15.583V18.4173H7.08301V15.584H15.583V7.08398H18.4163V15.584H26.9163V18.4173Z" fill="#1F473F"/></svg>
+            <svg class="faq-minus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="34" height="34" fill="white"/><path d="M26.416 16.084V17.917H7.58301V16.084H26.416Z" fill="#1F473F" stroke="#1F473F"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-a">Backsie is a self-help tool focused on clarity and pattern recognition. It's not therapy, counseling, or medical treatment. We help you notice thinking patterns and suggest small steps, but we don't provide diagnosis, treatment, or professional mental health services. Think of it as a clarity coach, not a therapist.</div>
+          </div>
+        </div>
+        <div class="faq-row" data-faq-item aria-expanded="false">
+          <div class="faq-q">What happens to my data?</div>
+          <button class="faq-toggle" type="button" aria-label="Toggle question">
+            <svg class="faq-plus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.9163 18.4173H18.4163V26.9173H15.583V18.4173H7.08301V15.584H15.583V7.08398H18.4163V15.584H26.9163V18.4173Z" fill="#1F473F"/></svg>
+            <svg class="faq-minus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="34" height="34" fill="white"/><path d="M26.416 16.084V17.917H7.58301V16.084H26.416Z" fill="#1F473F" stroke="#1F473F"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-a">Your data is not used by general-purpose AI models and is kept private and secure. Backsie will not sell your data to third parties nor share it with anyone without your express permission. We maintain the highest standards of data security to keep your data safe from misuse.</div>
+          </div>
+        </div>
+        <div class="faq-row" data-faq-item aria-expanded="false">
+          <div class="faq-q">What's a Pattern To Watch?</div>
+          <button class="faq-toggle" type="button" aria-label="Toggle question">
+            <svg class="faq-plus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.9163 18.4173H18.4163V26.9173H15.583V18.4173H7.08301V15.584H15.583V7.08398H18.4163V15.584H26.9163V18.4173Z" fill="#1F473F"/></svg>
+            <svg class="faq-minus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="34" height="34" fill="white"/><path d="M26.416 16.084V17.917H7.58301V16.084H26.416Z" fill="#1F473F" stroke="#1F473F"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-a">Often we unconsciously repeat certain patterns of thought or of behavior that keep us confined in a way that prevents us from reaching our goals. Backsie helps you see these patterns and can suggest realistic ways for you to surmount them in the daily challenges you face.</div>
+          </div>
+        </div>
+        <div class="faq-row" data-faq-item aria-expanded="false">
+          <div class="faq-q">Sharing With The Backsie Community</div>
+          <button class="faq-toggle" type="button" aria-label="Toggle question">
+            <svg class="faq-plus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.9163 18.4173H18.4163V26.9173H15.583V18.4173H7.08301V15.584H15.583V7.08398H18.4163V15.584H26.9163V18.4173Z" fill="#1F473F"/></svg>
+            <svg class="faq-minus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="34" height="34" fill="white"/><path d="M26.416 16.084V17.917H7.58301V16.084H26.416Z" fill="#1F473F" stroke="#1F473F"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-a">If you choose to share an insight you think may help others, or share other elements of your interaction with Backsie, you'll be able to do so anonymously. This way you can help others in the Backsie community without revealing your identity.</div>
+          </div>
+        </div>
+        <div class="faq-row" data-faq-item aria-expanded="false">
+          <div class="faq-q">How Does Backsie Work?</div>
+          <button class="faq-toggle" type="button" aria-label="Toggle question">
+            <svg class="faq-plus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.9163 18.4173H18.4163V26.9173H15.583V18.4173H7.08301V15.584H15.583V7.08398H18.4163V15.584H26.9163V18.4173Z" fill="#1F473F"/></svg>
+            <svg class="faq-minus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="34" height="34" fill="white"/><path d="M26.416 16.084V17.917H7.58301V16.084H26.416Z" fill="#1F473F" stroke="#1F473F"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-a">Backsie uses an approach called Agentic AI. This means Backsie has a number of agents specifically created to perform certain key tasks. Agents prevent Backsie from "hallucinating" like ordinary LLM-based AI and agents have access to the logic Backsie uses to help identify recurring patterns of thought and behavior, as well as to identify whether or not you should seek help beyond Backsie's ability to support you.</div>
+          </div>
+        </div>
+        <div class="faq-row" data-faq-item aria-expanded="false">
+          <div class="faq-q">Who Is Backsie For?</div>
+          <button class="faq-toggle" type="button" aria-label="Toggle question">
+            <svg class="faq-plus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.9163 18.4173H18.4163V26.9173H15.583V18.4173H7.08301V15.584H15.583V7.08398H18.4163V15.584H26.9163V18.4173Z" fill="#1F473F"/></svg>
+            <svg class="faq-minus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="34" height="34" fill="white"/><path d="M26.416 16.084V17.917H7.58301V16.084H26.416Z" fill="#1F473F" stroke="#1F473F"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-a">Backsie is initially aiming to support people aged between around eighteen to thirty, but is able to help anyone of any age and sexual orientation in a judgement-free forward-looking way. Think of Backsie like a wise friend who's always available to you when you need to talk, day or night.</div>
+          </div>
+        </div>
+        <div class="faq-row" data-faq-item aria-expanded="false">
+          <div class="faq-q">Will Backsie Diagnose Me?</div>
+          <button class="faq-toggle" type="button" aria-label="Toggle question">
+            <svg class="faq-plus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.9163 18.4173H18.4163V26.9173H15.583V18.4173H7.08301V15.584H15.583V7.08398H18.4163V15.584H26.9163V18.4173Z" fill="#1F473F"/></svg>
+            <svg class="faq-minus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="34" height="34" fill="white"/><path d="M26.416 16.084V17.917H7.58301V16.084H26.416Z" fill="#1F473F" stroke="#1F473F"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-a">Backsie doesn't rely on therapeutic models and on therapeutic categories. Backsie offers judgement-free, label-free compassionate support with the intention of helping you identify possible new ways of seeing existing challenges and freeing you to try new ways of being in the world.</div>
+          </div>
+        </div>
+        <div class="faq-row" data-faq-item aria-expanded="false">
+          <div class="faq-q">Why Is Backsie Better Than ChatGPT?</div>
+          <button class="faq-toggle" type="button" aria-label="Toggle question">
+            <svg class="faq-plus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.9163 18.4173H18.4163V26.9173H15.583V18.4173H7.08301V15.584H15.583V7.08398H18.4163V15.584H26.9163V18.4173Z" fill="#1F473F"/></svg>
+            <svg class="faq-minus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="34" height="34" fill="white"/><path d="M26.416 16.084V17.917H7.58301V16.084H26.416Z" fill="#1F473F" stroke="#1F473F"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-a">Generalized Large Language Models like ChatGPT use training data from the Internet to create statistical associations between words and phrases. Much of the time these general models can sound human-like, but the information they provide is sometimes incorrect and they can't be relied on to interpret what you tell them in the way that a wise thoughtful friend would do. Backsie uses the ability of LLMs to draw on a wide range of general knowledge but supplements the LLM with very specific attributes such as identifying patterns of thought and behavior, seeing areas where improvements can realistically be made, and helping you reflect on your experiences in order to learn from them and become more empowered. These specific attributes are what makes Backsie an ideal "wise friend" in a way general LLMs can never be.</div>
+          </div>
+        </div>
+        <div class="faq-row" data-faq-item aria-expanded="false">
+          <div class="faq-q">Will Backsie Always Be Free?</div>
+          <button class="faq-toggle" type="button" aria-label="Toggle question">
+            <svg class="faq-plus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.9163 18.4173H18.4163V26.9173H15.583V18.4173H7.08301V15.584H26.9163V18.4173Z" fill="#1F473F"/></svg>
+            <svg class="faq-minus" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="34" height="34" fill="white"/><path d="M26.416 16.084V17.917H7.58301V16.084H26.416Z" fill="#1F473F" stroke="#1F473F"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-a">Backsie is free for our early beta users and will be free for an entire year from the date you download the app. After the free year is over, you'll have the option to subscribe to continue using Backsie if you want.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:20px">
+      <div class="brand" style="gap:8px"><img src="logo.png" alt="Backsie logo" class="logo"/>Backsie</div>
+      <nav class="footer-links" style="display:flex;gap:40px;opacity:.80;justify-self:center">
+        <a href="terms-of-service.html" style="color:#1F473F;font-size:18px;line-height:26px;font-weight:500;text-decoration:none">Terms of service</a>
+        <a href="privacy-policy.html" style="color:#1F473F;font-size:18px;line-height:26px;font-weight:500;text-decoration:none">Privacy Policy</a>
+      </nav>
+<!--      <div class="footer-social" style="display:flex;gap:14px">-->
+<!--        &lt;!&ndash; Twitter &ndash;&gt;-->
+<!--        <a aria-label="Twitter" href="#" style="padding:8px;border-radius:10px;display:inline-flex">-->
+<!--          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--            <path d="M22.46 6C21.69 6.35 20.86 6.58 20 6.69C20.88 6.16 21.56 5.32 21.88 4.31C21.05 4.81 20.13 5.16 19.16 5.36C18.37 4.5 17.26 4 16 4C13.65 4 11.73 5.92 11.73 8.29C11.73 8.63 11.77 8.96 11.84 9.27C8.28004 9.09 5.11004 7.38 3.00004 4.79C2.63004 5.42 2.42004 6.16 2.42004 6.94C2.42004 8.43 3.17004 9.75 4.33004 10.5C3.62004 10.5 2.96004 10.3 2.38004 10V10.03C2.38004 12.11 3.86004 13.85 5.82004 14.24C5.19077 14.4122 4.53013 14.4362 3.89004 14.31C4.16165 15.1625 4.69358 15.9084 5.41106 16.4429C6.12854 16.9775 6.99549 17.2737 7.89004 17.29C6.37367 18.4904 4.49404 19.1393 2.56004 19.13C2.22004 19.13 1.88004 19.11 1.54004 19.07C3.44004 20.29 5.70004 21 8.12004 21C16 21 20.33 14.46 20.33 8.79C20.33 8.6 20.33 8.42 20.32 8.23C21.16 7.63 21.88 6.87 22.46 6Z" fill="#1F473F"/>-->
+<!--          </svg>-->
+<!--        </a>-->
+<!--        &lt;!&ndash; Instagram &ndash;&gt;-->
+<!--        <a aria-label="Instagram" href="#" style="padding:8px;border-radius:10px;display:inline-flex">-->
+<!--          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--            <path d="M7.8 2H16.2C19.4 2 22 4.6 22 7.8V16.2C22 17.7383 21.3889 19.2135 20.3012 20.3012C19.2135 21.3889 17.7383 22 16.2 22H7.8C4.6 22 2 19.4 2 16.2V7.8C2 6.26174 2.61107 4.78649 3.69878 3.69878C4.78649 2.61107 6.26174 2 7.8 2ZM7.6 4C6.64522 4 5.72955 4.37928 5.05442 5.05442C4.37928 5.72955 4 6.64522 4 7.6V16.4C4 18.39 5.61 20 7.6 20H16.4C17.3548 20 18.2705 19.6207 18.9456 18.9456C19.6207 18.2705 20 17.3548 20 16.4V7.6C20 5.61 18.39 4 16.4 4H7.6ZM17.25 5.5C17.5815 5.5 17.8995 5.6317 18.1339 5.86612C18.3683 6.10054 18.5 6.41848 18.5 6.75C18.5 7.08152 18.3683 7.39946 18.1339 7.63388C17.8995 7.8683 17.5815 8 17.25 8C16.9185 8 16.6005 7.8683 16.3661 7.63388C16.1317 7.39946 16 7.08152 16 6.75C16 6.41848 16.1317 6.10054 16.3661 5.86612C16.6005 5.6317 16.9185 5.5 17.25 5.5ZM12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C16.4732 9.40215 17 10.6739 17 12C17 13.3261 16.4732 14.5979 15.5355 15.5355C14.5979 16.4732 13.3261 17 12 17C10.6739 17 9.40215 16.4732 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7ZM12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9Z" fill="#1F473F"/>-->
+<!--          </svg>-->
+<!--        </a>-->
+<!--        &lt;!&ndash; Facebook &ndash;&gt;-->
+<!--        <a aria-label="Facebook" href="#" style="padding:8px;border-radius:10px;display:inline-flex">-->
+<!--          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--            <path d="M12 2.03906C6.5 2.03906 2 6.52906 2 12.0591C2 17.0591 5.66 21.2091 10.44 21.9591V14.9591H7.9V12.0591H10.44V9.84906C10.44 7.33906 11.93 5.95906 14.22 5.95906C15.31 5.95906 16.45 6.14906 16.45 6.14906V8.61906H15.19C13.95 8.61906 13.56 9.38906 13.56 10.1791V12.0591H16.34L15.89 14.9591H13.56V21.9591C15.9164 21.5869 18.0622 20.3846 19.6099 18.5691C21.1576 16.7537 22.0054 14.4447 22 12.0591C22 6.52906 17.5 2.03906 12 2.03906Z" fill="#1F473F"/>-->
+<!--          </svg>-->
+<!--        </a>-->
+<!--      </div>-->
+    </div>
+  </footer>
+
+  <!-- Video Modal -->
+  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="video-modal-content">
+      <button class="video-modal-close" id="closeModal" aria-label="Close video"></button>
+      <video id="founderVideo" controls>
+        <source src="public/founder-story.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <!-- Email Modal -->
+  <div class="email-modal" id="emailModal" role="dialog" aria-modal="true">
+    <div class="email-modal-content">
+      <button class="email-modal-close" id="closeEmailModal" aria-label="Close"></button>
+      <h2>Get early access for free</h2>
+      <p>Join Backsie as a beta user and get one year completely free. No obligation.</p>
+      <form class="email-form" id="emailForm">
+        <input
+          type="email"
+          class="email-input"
+          id="emailInput"
+          placeholder="Enter your email address"
+          required
+          autocomplete="email"
+        />
+        <div class="error-message" id="errorMessage">Please enter a valid email address</div>
+        <button type="submit" class="email-submit">Confirm</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Thank You Overlay -->
+  <div class="thank-you-overlay" id="thankYouOverlay">
+    <div class="thank-you-message">
+      <h2>Thank you!</h2>
+    </div>
+  </div>
+
+  <style>
+    /* footer responsive per mobile export */
+    @media (max-width:720px){
+      .footer-grid{grid-template-columns:1fr; row-gap:16px}
+      .footer-links{flex-wrap:wrap; gap:16px}
+      .footer-social{justify-content:flex-start}
+    }
+  </style>
+
+  <script>
+    // FAQ toggle animation
+    document.querySelectorAll('[data-faq-item]').forEach(item=>{
+      const toggle=item.querySelector('.faq-toggle');
+      const answer=item.querySelector('.faq-answer');
+      toggle.addEventListener('click',()=>{
+        const open=item.getAttribute('aria-expanded')==='true';
+        item.setAttribute('aria-expanded',!open);
+        answer.style.height=open?answer.scrollHeight+'px':'auto';
+        requestAnimationFrame(()=>answer.style.height=open?'0px':answer.scrollHeight+'px');
+      });
+      answer.addEventListener('transitionend',()=>{
+        if(item.getAttribute('aria-expanded')==='true') answer.style.height='auto';
+      });
+    });
+  </script>
+  <script>
+    // Mobile nav toggle
+    (function(){
+      const ham=document.querySelector('.hamburger');
+      const menu=document.querySelector('.mobile-menu');
+      if(ham&&menu){
+        ham.addEventListener('click',()=>{
+          const open=menu.style.display==='block';
+          menu.style.display=open?'none':'block';
+          menu.setAttribute('aria-hidden', open?'true':'false');
+        });
+        window.addEventListener('resize',()=>{ if(window.innerWidth>720){ menu.style.display='none'; menu.setAttribute('aria-hidden','true'); }});
+      }
+    })();
+  </script>
+  <script>
+    // Video Modal
+    (function(){
+      const modal = document.getElementById('videoModal');
+      const video = document.getElementById('founderVideo');
+      const closeBtn = document.getElementById('closeModal');
+      const openBtn = document.querySelector('.btn-ghost');
+
+      if(openBtn && modal && video){
+        // Open modal
+        openBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          video.play();
+        });
+
+        // Close modal function
+        const closeModal = () => {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+          video.pause();
+          video.currentTime = 0;
+        };
+
+        // Close on button click
+        closeBtn.addEventListener('click', closeModal);
+
+        // Close on backdrop click
+        modal.addEventListener('click', (e) => {
+          if(e.target === modal) closeModal();
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+          if(e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+        });
+      }
+    })();
+  </script>
+  <script>
+    // Email Modal
+    (function(){
+      const emailModal = document.getElementById('emailModal');
+      const emailForm = document.getElementById('emailForm');
+      const emailInput = document.getElementById('emailInput');
+      const errorMessage = document.getElementById('errorMessage');
+      const closeEmailBtn = document.getElementById('closeEmailModal');
+      const thankYouOverlay = document.getElementById('thankYouOverlay');
+      const openBtns = document.querySelectorAll('.btn-primary');
+
+      // Email validation regex
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if(emailModal && emailForm && emailInput){
+        // Open modal when any "Get early access" button is clicked
+        openBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            emailModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            emailInput.focus();
+          });
+        });
+
+        // Close modal function
+        const closeEmailModal = () => {
+          emailModal.classList.remove('active');
+          document.body.style.overflow = '';
+          emailInput.value = '';
+          emailInput.classList.remove('error');
+          errorMessage.classList.remove('show');
+        };
+
+        // Close on button click
+        closeEmailBtn.addEventListener('click', closeEmailModal);
+
+        // Close on backdrop click
+        emailModal.addEventListener('click', (e) => {
+          if(e.target === emailModal) closeEmailModal();
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+          if(e.key === 'Escape' && emailModal.classList.contains('active')) closeEmailModal();
+        });
+
+        // Handle form submission
+        emailForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const email = emailInput.value.trim();
+
+          // Validate email
+          if(!emailRegex.test(email)){
+            emailInput.classList.add('error');
+            errorMessage.classList.add('show');
+            return;
+          }
+
+          // Email is valid - close modal and show thank you
+          closeEmailModal();
+
+          // Show thank you animation
+          thankYouOverlay.classList.add('active');
+
+          // Hide thank you after 3 seconds
+          setTimeout(() => {
+            thankYouOverlay.classList.remove('active');
+          }, 3000);
+
+          // Here you would typically send the email to your backend
+          console.log('Email submitted:', email);
+        });
+
+        // Remove error state when user starts typing
+        emailInput.addEventListener('input', () => {
+          if(emailInput.classList.contains('error')){
+            emailInput.classList.remove('error');
+            errorMessage.classList.remove('show');
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
+
