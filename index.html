@@ -1624,16 +1624,25 @@
 </script>
 <script>
     // Prevent all videos from being paused
+    const autoplayVideos = [];
+    let allowPause = false; // Flag to allow pause when tab is hidden
+
     document.querySelectorAll('video').forEach(video => {
+        if (video.id !== 'founderVideo') {
+            autoplayVideos.push(video);
+        }
+
         // Prevent pause on click
         video.addEventListener('click', (e) => {
             e.preventDefault();
         });
 
-        // Prevent pause event
+        // Prevent pause event (unless tab is hidden)
         video.addEventListener('pause', () => {
-            if (video.id !== 'founderVideo') { // Allow founder video to be controlled
-                video.play();
+            if (video.id !== 'founderVideo' && !allowPause) {
+                video.play().catch(err => {
+                    console.log('Could not resume video:', err);
+                });
             }
         });
 
@@ -1643,6 +1652,39 @@
                 video.play();
             }
         });
+    });
+
+    // Resume videos when tab becomes visible again
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            allowPause = true; // Allow browser to pause videos when tab is hidden
+        } else {
+            allowPause = false;
+            // Resume all videos when tab becomes visible
+            setTimeout(() => {
+                autoplayVideos.forEach(video => {
+                    if (video.paused) {
+                        video.play().catch(err => {
+                            console.log('Could not resume video:', err);
+                        });
+                    }
+                });
+            }, 100); // Small delay to ensure tab is fully active
+        }
+    });
+
+    // Also check on window focus
+    window.addEventListener('focus', () => {
+        allowPause = false;
+        setTimeout(() => {
+            autoplayVideos.forEach(video => {
+                if (video.paused) {
+                    video.play().catch(err => {
+                        console.log('Could not resume video:', err);
+                    });
+                }
+            });
+        }, 100);
     });
 </script>
 </body>
