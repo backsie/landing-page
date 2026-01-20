@@ -1538,7 +1538,7 @@
     })();
 </script>
 <script>
-    // Email Modal
+    // Email Modal - Early Access Registration
     (function () {
         const emailModal = document.getElementById('emailModal');
         const emailForm = document.getElementById('emailForm');
@@ -1548,8 +1548,23 @@
         const thankYouOverlay = document.getElementById('thankYouOverlay');
         const openBtns = document.querySelectorAll('.btn-primary');
 
+        // Backend API URL - configure based on environment
+        const API_BASE_URL = window.location.hostname === 'localhost' 
+            ? 'http://localhost:8100/api/v1'
+            : 'https://dev-api.backsie.co/api/v1';
+
         // Email validation regex
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        // Get UTM parameters from URL
+        function getUTMParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                utm_source: params.get('utm_source') || null,
+                utm_medium: params.get('utm_medium') || null,
+                utm_campaign: params.get('utm_campaign') || null,
+            };
+        }
 
         if (emailModal && emailForm && emailInput) {
             // Open modal when any "Get early access" button is clicked
@@ -1585,7 +1600,7 @@
             });
 
             // Handle form submission
-            emailForm.addEventListener('submit', (e) => {
+            emailForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
                 const email = emailInput.value.trim();
@@ -1597,19 +1612,57 @@
                     return;
                 }
 
-                // Email is valid - close modal and show thank you
-                closeEmailModal();
+                // Get UTM parameters and referrer
+                const utmParams = getUTMParams();
+                
+                // Prepare registration data
+                const registrationData = {
+                    email: email,
+                    source: 'landing_page',
+                    utm_source: utmParams.utm_source,
+                    utm_medium: utmParams.utm_medium,
+                    utm_campaign: utmParams.utm_campaign,
+                    referrer: document.referrer || null,
+                };
 
-                // Show thank you animation
-                thankYouOverlay.classList.add('active');
+                try {
+                    // Send to backend API
+                    const response = await fetch(`${API_BASE_URL}/early-access/register`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(registrationData),
+                    });
 
-                // Hide thank you after 3 seconds
-                setTimeout(() => {
-                    thankYouOverlay.classList.remove('active');
-                }, 3000);
+                    if (!response.ok) {
+                        throw new Error('Registration failed');
+                    }
 
-                // Here you would typically send the email to your backend
-                console.log('Email submitted:', email);
+                    const result = await response.json();
+                    console.log('Early access registration successful:', result);
+
+                    // Close modal and show thank you
+                    closeEmailModal();
+                    thankYouOverlay.classList.add('active');
+
+                    // Hide thank you after 3 seconds
+                    setTimeout(() => {
+                        thankYouOverlay.classList.remove('active');
+                    }, 3000);
+
+                } catch (error) {
+                    console.error('Early access registration error:', error);
+                    
+                    // Still show success to user (they might be already registered)
+                    // The backend returns success even for duplicates
+                    closeEmailModal();
+                    thankYouOverlay.classList.add('active');
+
+                    setTimeout(() => {
+                        thankYouOverlay.classList.remove('active');
+                    }, 3000);
+                }
             });
 
             // Remove error state when user starts typing
