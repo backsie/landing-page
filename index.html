@@ -11,6 +11,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+    
+    <!-- International Phone Input -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.12/build/css/intlTelInput.css">
 
     <style>
         /* Font Face Declarations */
@@ -634,6 +637,56 @@
         .email-input.error {
             border-color: #ef4444;
         }
+        
+        .phone-input-wrapper {
+            width: 100%;
+        }
+        
+        .phone-input {
+            width: 100%;
+            padding: 14px 16px 14px 52px;
+            font-size: 16px;
+            font-family: "PP Neue Montreal", sans-serif;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        
+        .phone-input:focus {
+            border-color: var(--brand);
+        }
+        
+        .phone-input.error {
+            border-color: #ef4444;
+        }
+        
+        /* Custom styling for intl-tel-input */
+        .iti {
+            width: 100%;
+        }
+        
+        .iti__flag-container {
+            border-radius: 12px 0 0 12px;
+        }
+        
+        .form-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 8px 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+        
+        .form-divider::before,
+        .form-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
 
         .error-message {
             color: #ef4444;
@@ -1420,11 +1473,20 @@
                     type="email"
                     class="email-input"
                     id="emailInput"
-                    placeholder="Enter your email address"
-                    required
+                    placeholder="Enter your email address (optional)"
                     autocomplete="email"
             />
-            <div class="error-message" id="errorMessage">Please enter a valid email address</div>
+            <div class="form-divider">or</div>
+            <div class="phone-input-wrapper">
+                <input
+                        type="tel"
+                        class="phone-input"
+                        id="phoneInput"
+                        placeholder="Enter your phone number (optional)"
+                        autocomplete="tel"
+                />
+            </div>
+            <div class="error-message" id="errorMessage">Please enter a valid email or phone number</div>
             <button type="submit" class="email-submit">Confirm</button>
         </form>
     </div>
@@ -1537,12 +1599,15 @@
         }
     })();
 </script>
+<!-- International Phone Input Library - Load before using it -->
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.12/build/js/intlTelInput.min.js"></script>
 <script>
     // Email Modal - Early Access Registration
     (function () {
         const emailModal = document.getElementById('emailModal');
         const emailForm = document.getElementById('emailForm');
         const emailInput = document.getElementById('emailInput');
+        const phoneInput = document.getElementById('phoneInput');
         const errorMessage = document.getElementById('errorMessage');
         const closeEmailBtn = document.getElementById('closeEmailModal');
         const thankYouOverlay = document.getElementById('thankYouOverlay');
@@ -1555,6 +1620,17 @@
 
         // Email validation regex
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        // Initialize intl-tel-input
+        let iti = null;
+        if (phoneInput) {
+            iti = window.intlTelInput(phoneInput, {
+                initialCountry: "us",
+                preferredCountries: ["us", "ca", "gb"],
+                separateDialCode: true,
+                utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.12/build/js/utils.js"
+            });
+        }
 
         // Get UTM parameters from URL
         function getUTMParams() {
@@ -1582,7 +1658,9 @@
                 emailModal.classList.remove('active');
                 document.body.style.overflow = '';
                 emailInput.value = '';
+                phoneInput.value = '';
                 emailInput.classList.remove('error');
+                phoneInput.classList.remove('error');
                 errorMessage.classList.remove('show');
             };
 
@@ -1604,29 +1682,50 @@
                 e.preventDefault();
 
                 const email = emailInput.value.trim();
+                const phoneNumber = iti ? iti.getNumber() : phoneInput.value.trim();
+                const countryCode = iti ? iti.getSelectedCountryData().iso2.toUpperCase() : 'US';
 
-                // Validate email
-                if (!emailRegex.test(email)) {
-                    emailInput.classList.add('error');
+                // Validate at least one contact method
+                const hasValidEmail = email && emailRegex.test(email);
+                const hasValidPhone = phoneNumber && iti && iti.isValidNumber();
+
+                if (!hasValidEmail && !hasValidPhone) {
+                    if (email && !hasValidEmail) {
+                        emailInput.classList.add('error');
+                    }
+                    if (phoneNumber && !hasValidPhone) {
+                        phoneInput.classList.add('error');
+                    }
+                    if (!email && !phoneNumber) {
+                        emailInput.classList.add('error');
+                        phoneInput.classList.add('error');
+                    }
                     errorMessage.classList.add('show');
                     return;
                 }
-
-                // Get UTM parameters and referrer
-                const utmParams = getUTMParams();
                 
                 // Prepare registration data
                 const registrationData = {
-                    email: email,
                     source: 'landing_page',
-                    utm_source: utmParams.utm_source,
-                    utm_medium: utmParams.utm_medium,
-                    utm_campaign: utmParams.utm_campaign,
                     referrer: document.referrer || null,
                 };
 
+                // Add email if valid
+                if (hasValidEmail) {
+                    registrationData.email = email;
+                }
+
+                // Add phone if valid
+                if (hasValidPhone) {
+                    registrationData.phone_number = phoneNumber;
+                    registrationData.country_code = countryCode;
+                }
+
                 try {
                     // Send to backend API
+                    console.log('Sending registration to:', `${API_BASE_URL}/early-access/register`);
+                    console.log('Registration data:', registrationData);
+                    
                     const response = await fetch(`${API_BASE_URL}/early-access/register`, {
                         method: 'POST',
                         headers: {
@@ -1635,7 +1734,11 @@
                         body: JSON.stringify(registrationData),
                     });
 
+                    console.log('Response status:', response.status);
+                    
                     if (!response.ok) {
+                        const errorText = await response.text();
+                        console.error('Registration failed:', errorText);
                         throw new Error('Registration failed');
                     }
 
@@ -1654,14 +1757,9 @@
                 } catch (error) {
                     console.error('Early access registration error:', error);
                     
-                    // Still show success to user (they might be already registered)
-                    // The backend returns success even for duplicates
-                    closeEmailModal();
-                    thankYouOverlay.classList.add('active');
-
-                    setTimeout(() => {
-                        thankYouOverlay.classList.remove('active');
-                    }, 3000);
+                    // Show error to user instead of fake success
+                    errorMessage.textContent = 'Failed to submit. Please check your internet connection and try again.';
+                    errorMessage.classList.add('show');
                 }
             });
 
@@ -1669,6 +1767,13 @@
             emailInput.addEventListener('input', () => {
                 if (emailInput.classList.contains('error')) {
                     emailInput.classList.remove('error');
+                    errorMessage.classList.remove('show');
+                }
+            });
+
+            phoneInput.addEventListener('input', () => {
+                if (phoneInput.classList.contains('error')) {
+                    phoneInput.classList.remove('error');
                     errorMessage.classList.remove('show');
                 }
             });
