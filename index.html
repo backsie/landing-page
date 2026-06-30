@@ -1613,10 +1613,23 @@
         const thankYouOverlay = document.getElementById('thankYouOverlay');
         const openBtns = document.querySelectorAll('.btn-primary');
 
-        // Backend API URL - configure based on environment
-        const API_BASE_URL = window.location.hostname === 'localhost' 
-            ? 'http://localhost:8100/api/v1'
-            : 'https://dev-api.backsie.co/api/v1';
+        function getApiBaseUrl() {
+            const hostname = window.location.hostname;
+
+            if (hostname === 'localhost' || hostname === '127.0.0.1') {
+                return 'http://localhost:8100/api/v1';
+            }
+
+            if (hostname.includes('dev')) {
+                return 'https://dev-api.backsie.co/api/v1';
+            }
+
+            // Until a true production backend exists, the public landing page
+            // should feed the staging backend/database used by the current app.
+            return 'https://staging-api.backsie.co/api/v1';
+        }
+
+        const API_BASE_URL = getApiBaseUrl();
 
         // Email validation regex
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -1633,12 +1646,39 @@
         }
 
         // Get UTM parameters from URL
+        function getAnonymousId() {
+            const storageKey = 'backsie_landing_anonymous_id';
+            let anonymousId = null;
+
+            try {
+                anonymousId = localStorage.getItem(storageKey);
+            } catch (error) {
+                console.warn('Could not read landing anonymous ID:', error);
+            }
+
+            if (!anonymousId) {
+                anonymousId = window.crypto && window.crypto.randomUUID
+                    ? window.crypto.randomUUID()
+                    : `landing_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+
+                try {
+                    localStorage.setItem(storageKey, anonymousId);
+                } catch (error) {
+                    console.warn('Could not persist landing anonymous ID:', error);
+                }
+            }
+
+            return anonymousId;
+        }
+
         function getUTMParams() {
             const params = new URLSearchParams(window.location.search);
             return {
                 utm_source: params.get('utm_source') || null,
                 utm_medium: params.get('utm_medium') || null,
                 utm_campaign: params.get('utm_campaign') || null,
+                utm_content: params.get('utm_content') || null,
+                utm_term: params.get('utm_term') || null,
             };
         }
 
@@ -1706,8 +1746,10 @@
                 
                 // Prepare registration data
                 const registrationData = {
+                    anonymous_id: getAnonymousId(),
                     source: 'landing_page',
                     referrer: document.referrer || null,
+                    ...getUTMParams(),
                 };
 
                 // Add email if valid
@@ -1847,4 +1889,3 @@
 </script>
 </body>
 </html>
-
