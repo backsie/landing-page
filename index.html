@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Backsie — Clarity, not therapy.</title>
-    <meta name="description" content="Backsie is a self‑help tool for clarity and pattern recognition."/>
+    <title>Backsie — Turn lived experience into Insight Cards.</title>
+    <meta name="description" content="Backsie turns lived experiences into useful Insight Cards and helps people learn from others going through similar situations."/>
 
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="favicon.ico"/>
@@ -422,6 +422,10 @@
             .phone {
                 justify-self: end
             }
+
+            .insight-preview {
+                justify-self: end
+            }
         }
 
         /* nav responsive */
@@ -444,6 +448,15 @@
 
             .mobile-menu {
                 display: none
+            }
+
+            .hero-title {
+                font-size: 44px;
+                line-height: 50px;
+            }
+
+            .insight-card-title {
+                font-size: 24px;
             }
         }
 
@@ -904,6 +917,378 @@
             opacity: 1;
         }
 
+        .insight-preview {
+            width: min(390px, 100%);
+            justify-self: center;
+        }
+
+        .insight-demo {
+            position: relative;
+            min-height: 760px;
+            border-radius: 32px;
+            border: 1px solid #E2E9E6;
+            background: #fff;
+            box-shadow: 0 18px 50px rgba(31, 71, 63, .10);
+            overflow: hidden;
+        }
+
+        .demo-screen {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 18px;
+            background: #fff;
+        }
+
+        .demo-summary-screen {
+            animation: showSummaryCard 8s ease-in-out infinite;
+        }
+
+        .demo-full-screen {
+            opacity: 0;
+            transform: translateX(18px);
+            animation: showFullCard 8s ease-in-out infinite;
+            overflow: hidden;
+        }
+
+        .demo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            color: #1F473F;
+            font-size: 21px;
+            font-weight: 500;
+            line-height: 1.1;
+        }
+
+        .demo-header span:last-child {
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        .demo-card {
+            border: 1px solid #E2E9E6;
+            border-radius: 28px;
+            background: #FAF9EF;
+            padding: 18px;
+        }
+
+        .demo-pill {
+            width: fit-content;
+            max-width: 100%;
+            margin: 0 auto 14px;
+            border: 1px solid #DBE1DD;
+            border-radius: 999px;
+            background: rgba(255,255,255,.48);
+            color: #1F473F;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1.25;
+            padding: 8px 14px;
+            text-align: center;
+        }
+
+        .demo-title {
+            margin: 0 0 14px;
+            color: #1F473F;
+            font-size: 24px;
+            line-height: 1.16;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .demo-panel {
+            border: 1px solid #E2E9E6;
+            border-radius: 20px;
+            background: #fff;
+            padding: 15px;
+            color: #1F473F;
+        }
+
+        .demo-panel-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 12px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .demo-quote {
+            margin: 0;
+            color: #1F473F;
+            font-size: 16px;
+            font-style: italic;
+            line-height: 1.42;
+            font-weight: 500;
+        }
+
+        .demo-next-step {
+            display: grid;
+            grid-template-columns: 34px 1fr;
+            gap: 12px;
+            margin-top: 12px;
+            border-radius: 20px;
+            background: #E4F2EB;
+            border: 1px solid #D1E8DE;
+            padding: 15px;
+            color: #1F473F;
+        }
+
+        .demo-circle-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: #fff;
+            color: #1F473F;
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .demo-block-title {
+            margin: 0 0 5px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .demo-block-copy {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.34;
+            font-weight: 500;
+        }
+
+        .demo-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid #E1E5DE;
+            color: #1F473F;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .demo-view-full {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            animation: viewButtonPulse 8s ease-in-out infinite;
+        }
+
+        .demo-view-icon {
+            width: 16px;
+            height: 16px;
+            display: block;
+            flex: 0 0 auto;
+        }
+
+        .demo-full-hero {
+            text-align: center;
+            padding: 2px 0 0;
+        }
+
+        .demo-spark {
+            width: 46px;
+            height: 46px;
+            margin: 0 auto 8px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: #1F473F;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .demo-full-title {
+            margin: 0;
+            color: #1F473F;
+            font-size: 25px;
+            line-height: 1.05;
+            font-weight: 500;
+        }
+
+        .demo-full-subtitle {
+            margin: 7px auto 0;
+            max-width: 310px;
+            color: rgba(31,71,63,.78);
+            font-size: 13px;
+            line-height: 1.35;
+        }
+
+        .demo-full-scroll {
+            display: grid;
+            gap: 10px;
+            animation: scrollFullCard 8s ease-in-out infinite;
+        }
+
+        .demo-detail-card {
+            border: 1px solid #E2E9E6;
+            border-radius: 24px;
+            background: #FBFCFB;
+            padding: 14px;
+        }
+
+        .demo-stuck {
+            display: grid;
+            grid-template-columns: 32px 1fr;
+            gap: 12px;
+            border: 1px solid #E4E1D4;
+            border-radius: 18px;
+            background: #F8F6E8;
+            padding: 12px;
+        }
+
+        .demo-feedback-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #E1E5DE;
+        }
+
+        .feedback-button {
+            min-height: 58px;
+            display: grid;
+            place-items: center;
+            border: 1px solid #E2E9E6;
+            border-radius: 16px;
+            background: #fff;
+            color: #1F473F;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.25;
+        }
+
+        .feedback-button span {
+            display: block;
+            color: rgba(31,71,63,.74);
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .feedback-input {
+            min-height: 48px;
+            border: 1px solid #E2E9E6;
+            border-radius: 16px;
+            background: #fff;
+            padding: 12px;
+            color: rgba(31,71,63,.42);
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .demo-submit {
+            min-height: 38px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: #96AAA4;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .demo-share {
+            border: 1px solid #E2E9E6;
+            border-radius: 24px;
+            background: #EEF7F1;
+            padding: 13px;
+            color: #1F473F;
+        }
+
+        .demo-share-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 6px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .demo-share p {
+            margin: 0 0 10px;
+            font-size: 13px;
+            line-height: 1.35;
+            font-weight: 500;
+        }
+
+        .demo-share-button {
+            min-height: 38px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: #1F473F;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        @keyframes showSummaryCard {
+            0%, 36% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            43%, 90% {
+                opacity: 0;
+                transform: translateX(-18px);
+            }
+            96%, 100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes showFullCard {
+            0%, 38% {
+                opacity: 0;
+                transform: translateX(18px);
+            }
+            45%, 88% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            96%, 100% {
+                opacity: 0;
+                transform: translateX(18px);
+            }
+        }
+
+        @keyframes viewButtonPulse {
+            0%, 18% {
+                transform: scale(1);
+            }
+            24%, 34% {
+                transform: scale(1.04);
+            }
+            40%, 100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes scrollFullCard {
+            0%, 49% {
+                transform: translateY(0);
+            }
+            58%, 66% {
+                transform: translateY(-145px);
+            }
+            72%, 90% {
+                transform: translateY(-285px);
+            }
+            96%, 100% {
+                transform: translateY(0);
+            }
+        }
+
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -1112,11 +1497,10 @@
     <section class="container hero">
         <div class="hero-grid">
             <img src="logo.png" alt="Backsie logo" class="logo-hero"/>
-            <span class="pill hero-pill">• Join Backsie as a beta user and get one year completely free.</span>
+            <span class="pill hero-pill">Join Backsie as a beta user and get one year completely free.</span>
             <h1 class="hero-title">
-                Clarity, not<br/>therapy.</h1>
-            <p class="lede hero-lede">Type what’s stuck → Backsie tests
-                assumptions so you get a reframe and one doable next step.</p>
+                Turn real experiences into useful Insight Cards.</h1>
+            <p class="lede hero-lede">Backsie helps you make sense of what happened, save the lesson as an Insight Card, and learn from people navigating similar situations.</p>
             <div class="hero-actions">
                 <button class="btn btn-primary">Get early access for free</button>
                 <button class="btn btn-ghost btn-ghost-custom">View
@@ -1129,39 +1513,119 @@
               <path d="M15.5005 7.74927C15.4998 7.08697 15.3116 6.43841 14.9577 5.87862C14.6037 5.31884 14.0985 4.87072 13.5005 4.58614V4.49927C13.4999 3.85503 13.2919 3.22809 12.9074 2.71121C12.5228 2.19434 11.9821 1.81498 11.3652 1.62928C10.7483 1.44358 10.088 1.46141 9.48205 1.68011C8.87607 1.89881 8.35659 2.30678 8.00047 2.84364C7.64435 2.30678 7.12487 1.89881 6.51889 1.68011C5.91291 1.46141 5.25262 1.44358 4.63573 1.62928C4.01883 1.81498 3.47811 2.19434 3.09355 2.71121C2.709 3.22809 2.50105 3.85503 2.50047 4.49927V4.58614C1.90193 4.86995 1.39622 5.31778 1.0421 5.87759C0.687981 6.43741 0.5 7.08623 0.5 7.74864C0.5 8.41106 0.687981 9.05987 1.0421 9.61969C1.39622 10.1795 1.90193 10.6273 2.50047 10.9111V10.9993C2.50105 11.6435 2.709 12.2704 3.09355 12.7873C3.47811 13.3042 4.01883 13.6836 4.63573 13.8693C5.25262 14.055 5.91291 14.0371 6.51889 13.8184C7.12487 13.5997 7.64435 13.1918 8.00047 12.6549C8.35659 13.1918 8.87607 13.5997 9.48205 13.8184C10.088 14.0371 10.7483 14.055 11.3652 13.8693C11.9821 13.6836 12.5228 13.3042 12.9074 12.7873C13.2919 12.2704 13.4999 11.6435 13.5005 10.9993V10.9111C14.0984 10.6268 14.6036 10.1789 14.9575 9.61931C15.3115 9.05975 15.4997 8.41138 15.5005 7.74927ZM5.50047 12.9993C5.00731 12.9992 4.53157 12.8169 4.16461 12.4875C3.79765 12.158 3.56536 11.7046 3.51234 11.2143C3.67403 11.2373 3.83714 11.249 4.00047 11.2493H4.50047C4.63308 11.2493 4.76025 11.1966 4.85402 11.1028C4.94779 11.0091 5.00047 10.8819 5.00047 10.7493C5.00047 10.6167 4.94779 10.4895 4.85402 10.3957C4.76025 10.3019 4.63308 10.2493 4.50047 10.2493H4.00047C3.41019 10.25 2.83871 10.0418 2.38721 9.66154C1.9357 9.28133 1.63329 8.75361 1.53352 8.17183C1.43375 7.59005 1.54305 6.99172 1.84208 6.4828C2.14111 5.97387 2.61057 5.58716 3.16734 5.39114C3.26476 5.35665 3.3491 5.29282 3.40876 5.20843C3.46841 5.12404 3.50045 5.02324 3.50047 4.91989V4.49927C3.50047 3.96883 3.71118 3.46013 4.08626 3.08505C4.46133 2.70998 4.97004 2.49927 5.50047 2.49927C6.0309 2.49927 6.53961 2.70998 6.91468 3.08505C7.28976 3.46013 7.50047 3.96883 7.50047 4.49927V8.76552C6.95142 8.2717 6.23893 7.99872 5.50047 7.99927C5.36786 7.99927 5.24068 8.05195 5.14692 8.14571C5.05315 8.23948 5.00047 8.36666 5.00047 8.49927C5.00047 8.63188 5.05315 8.75905 5.14692 8.85282C5.24068 8.94659 5.36786 8.99927 5.50047 8.99927C6.0309 8.99927 6.53961 9.20998 6.91468 9.58505C7.28976 9.96013 7.50047 10.4688 7.50047 10.9993C7.50047 11.5297 7.28976 12.0384 6.91468 12.4135C6.53961 12.7886 6.0309 12.9993 5.50047 12.9993ZM12.0005 10.2493H11.5005C11.3679 10.2493 11.2407 10.3019 11.1469 10.3957C11.0531 10.4895 11.0005 10.6167 11.0005 10.7493C11.0005 10.8819 11.0531 11.0091 11.1469 11.1028C11.2407 11.1966 11.3679 11.2493 11.5005 11.2493H12.0005C12.1638 11.249 12.3269 11.2373 12.4886 11.2143C12.4471 11.5984 12.2951 11.9623 12.0512 12.262C11.8072 12.5616 11.4817 12.7842 11.1139 12.9028C10.7461 13.0214 10.3519 13.0308 9.97884 12.9301C9.60579 12.8294 9.26991 12.6228 9.0118 12.3352C8.7537 12.0476 8.58442 11.6915 8.52443 11.3097C8.46445 10.928 8.51632 10.5371 8.67379 10.1842C8.83126 9.83137 9.08757 9.53167 9.41174 9.32138C9.73592 9.11109 10.1141 8.99921 10.5005 8.99927C10.6331 8.99927 10.7603 8.94659 10.854 8.85282C10.9478 8.75905 11.0005 8.63188 11.0005 8.49927C11.0005 8.36666 10.9478 8.23948 10.854 8.14571C10.7603 8.05195 10.6331 7.99927 10.5005 7.99927C9.76201 7.99872 9.04952 8.2717 8.50047 8.76552V4.49927C8.50047 3.96883 8.71118 3.46013 9.08626 3.08505C9.46133 2.70998 9.97004 2.49927 10.5005 2.49927C11.0309 2.49927 11.5396 2.70998 11.9147 3.08505C12.2898 3.46013 12.5005 3.96883 12.5005 4.49927V4.91989C12.5005 5.02324 12.5325 5.12404 12.5922 5.20843C12.6518 5.29282 12.7362 5.35665 12.8336 5.39114C13.3904 5.58716 13.8598 5.97387 14.1589 6.4828C14.4579 6.99172 14.5672 7.59005 14.4674 8.17183C14.3677 8.75361 14.0652 9.28133 13.6137 9.66154C13.1622 10.0418 12.5907 10.25 12.0005 10.2493ZM13.0005 6.99927C13.0005 7.13188 12.9478 7.25905 12.854 7.35282C12.7603 7.44659 12.6331 7.49927 12.5005 7.49927H12.2505C11.6537 7.49927 11.0814 7.26221 10.6595 6.84026C10.2375 6.4183 10.0005 5.846 10.0005 5.24927V4.99927C10.0005 4.86666 10.0531 4.73948 10.1469 4.64571C10.2407 4.55195 10.3679 4.49927 10.5005 4.49927C10.6331 4.49927 10.7603 4.55195 10.854 4.64571C10.9478 4.73948 11.0005 4.86666 11.0005 4.99927V5.24927C11.0005 5.58079 11.1322 5.89873 11.3666 6.13315C11.601 6.36757 11.919 6.49927 12.2505 6.49927H12.5005C12.6331 6.49927 12.7603 6.55195 12.854 6.64571C12.9478 6.73948 13.0005 6.86666 13.0005 6.99927ZM3.75047 7.49927H3.50047C3.36786 7.49927 3.24068 7.44659 3.14692 7.35282C3.05315 7.25905 3.00047 7.13188 3.00047 6.99927C3.00047 6.86666 3.05315 6.73948 3.14692 6.64571C3.24068 6.55195 3.36786 6.49927 3.50047 6.49927H3.75047C4.08199 6.49927 4.39993 6.36757 4.63435 6.13315C4.86877 5.89873 5.00047 5.58079 5.00047 5.24927V4.99927C5.00047 4.86666 5.05315 4.73948 5.14692 4.64571C5.24068 4.55195 5.36786 4.49927 5.50047 4.49927C5.63308 4.49927 5.76025 4.55195 5.85402 4.64571C5.94779 4.73948 6.00047 4.86666 6.00047 4.99927V5.24927C6.00047 5.846 5.76342 6.4183 5.34146 6.84026C4.9195 7.26221 4.34721 7.49927 3.75047 7.49927Z"
                     fill="#1F473F" fill-opacity="0.8"/>
             </svg>
-            Logic first
+            Insight Cards
           </span>
                 <span class="hero-meta-item">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M13 2.5H3C2.73478 2.5 2.48043 2.60536 2.29289 2.79289C2.10536 2.98043 2 3.23478 2 3.5V7C2 10.295 3.595 12.2919 4.93313 13.3869C6.37437 14.5656 7.80813 14.9656 7.87063 14.9825C7.95656 15.0059 8.04719 15.0059 8.13313 14.9825C8.19563 14.9656 9.6275 14.5656 11.0706 13.3869C12.405 12.2919 14 10.295 14 7V3.5C14 3.23478 13.8946 2.98043 13.7071 2.79289C13.5196 2.60536 13.2652 2.5 13 2.5ZM13 7C13 9.31687 12.1462 11.1975 10.4625 12.5887C9.72955 13.1923 8.89597 13.662 8 13.9762C7.11576 13.6675 6.29247 13.2061 5.5675 12.6131C3.86375 11.2194 3 9.33125 3 7V3.5H13V7ZM5.14625 8.85375C5.05243 8.75993 4.99972 8.63268 4.99972 8.5C4.99972 8.36732 5.05243 8.24007 5.14625 8.14625C5.24007 8.05243 5.36732 7.99972 5.5 7.99972C5.63268 7.99972 5.75993 8.05243 5.85375 8.14625L7 9.29313L10.1462 6.14625C10.1927 6.09979 10.2479 6.06294 10.3086 6.0378C10.3692 6.01266 10.4343 5.99972 10.5 5.99972C10.5657 5.99972 10.6308 6.01266 10.6914 6.0378C10.7521 6.06294 10.8073 6.09979 10.8538 6.14625C10.9002 6.1927 10.9371 6.24786 10.9622 6.30855C10.9873 6.36925 11.0003 6.4343 11.0003 6.5C11.0003 6.5657 10.9873 6.63075 10.9622 6.69145C10.9371 6.75214 10.9002 6.8073 10.8538 6.85375L7.35375 10.3538C7.30731 10.4002 7.25217 10.4371 7.19147 10.4623C7.13077 10.4874 7.06571 10.5004 7 10.5004C6.93429 10.5004 6.86923 10.4874 6.80853 10.4623C6.74783 10.4371 6.69269 10.4002 6.64625 10.3538L5.14625 8.85375Z"
                     fill="#1F473F" fill-opacity="0.8"/>
             </svg>
-            Private by default
+            Share only if you choose
           </span>
                 <span class="hero-meta-item">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8 1.5C6.71442 1.5 5.45772 1.88122 4.3888 2.59545C3.31988 3.30968 2.48676 4.32484 1.99479 5.51256C1.50282 6.70028 1.37409 8.00721 1.6249 9.26809C1.8757 10.529 2.49477 11.6872 3.40381 12.5962C4.31285 13.5052 5.47104 14.1243 6.73192 14.3751C7.99279 14.6259 9.29973 14.4972 10.4874 14.0052C11.6752 13.5132 12.6903 12.6801 13.4046 11.6112C14.1188 10.5423 14.5 9.28558 14.5 8C14.4982 6.27665 13.8128 4.62441 12.5942 3.40582C11.3756 2.18722 9.72335 1.50182 8 1.5ZM13.5 8C13.5013 9.28596 13.0497 10.5313 12.2244 11.5175L4.4825 3.775C5.28563 3.10686 6.26243 2.68128 7.29861 2.54805C8.33479 2.41482 9.38749 2.57946 10.3335 3.0227C11.2795 3.46595 12.0797 4.16946 12.6405 5.05091C13.2013 5.93236 13.4994 6.95529 13.5 8ZM2.5 8C2.49872 6.71404 2.95035 5.46871 3.77563 4.4825L11.5175 12.225C10.7144 12.8931 9.73757 13.3187 8.70139 13.452C7.66521 13.5852 6.61252 13.4205 5.6665 12.9773C4.72048 12.5341 3.92026 11.8305 3.3595 10.9491C2.79873 10.0676 2.5006 9.04471 2.5 8Z"
                     fill="#1F473F" fill-opacity="0.8"/>
             </svg>
-            Not therapy
+            Learn from similar situations
           </span>
             </div>
         </div>
 
-        <aside class="phone">
-            <div class="hero-video-overlay"></div>
-            <video autoplay loop muted playsinline
-                   class="hero-video">
-                <source src="hero.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        <aside class="insight-preview" aria-label="Insight Card preview">
+            <div class="insight-demo">
+                <div class="demo-screen demo-summary-screen">
+                    <div class="demo-header">
+                        <span>Recent Insight Cards</span>
+                        <span>View all</span>
+                    </div>
+
+                    <div class="demo-card">
+                        <div class="demo-pill">Belonging · Reading The Room</div>
+                        <h2 class="demo-title">Not Every Delay Means Rejection</h2>
+
+                        <div class="demo-panel">
+                            <p class="demo-panel-title">“ Key Reframe</p>
+                            <p class="demo-quote">“When plans change or replies slow down, your brain may fill the gap with a story. Pause before treating uncertainty like proof.”</p>
+                        </div>
+
+                        <div class="demo-next-step">
+                            <div class="demo-circle-icon">→</div>
+                            <div>
+                                <p class="demo-block-title">Next Step</p>
+                                <p class="demo-block-copy">Send one simple check-in instead of replaying the whole conversation alone.</p>
+                            </div>
+                        </div>
+
+                        <div class="demo-card-footer">
+                            <span>Jun 19</span>
+                            <span class="demo-view-full">
+                                <svg class="demo-view-icon" viewBox="0 0 18 18" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.25 2.75H3.75C3.19772 2.75 2.75 3.19772 2.75 3.75V6.25M11.75 2.75H14.25C14.8023 2.75 15.25 3.19772 15.25 3.75V6.25M6.25 15.25H3.75C3.19772 15.25 2.75 14.8023 2.75 14.25V11.75M11.75 15.25H14.25C14.8023 15.25 15.25 14.8023 15.25 14.25V11.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                </svg>
+                                View Full
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="demo-screen demo-full-screen">
+                    <div class="demo-full-hero">
+                        <div class="demo-spark">✦</div>
+                        <h2 class="demo-full-title">Insight Card</h2>
+                        <p class="demo-full-subtitle">Below you can see your generated card. You can also revisit it later and remind yourself.</p>
+                    </div>
+
+                    <div class="demo-full-scroll">
+                        <div class="demo-detail-card">
+                            <div class="demo-pill">Belonging · Reading The Room</div>
+                            <h2 class="demo-title">Not Every Delay Means Rejection</h2>
+
+                            <div class="demo-panel">
+                                <p class="demo-panel-title">“ Key Reframe</p>
+                                <p class="demo-quote">“When replies slow down, your brain may fill the gap with a story. Pause before treating uncertainty like proof.”</p>
+                            </div>
+                        </div>
+
+                        <div class="demo-stuck">
+                            <div class="demo-circle-icon">!</div>
+                            <div>
+                                <p class="demo-block-title">Stuck Moment</p>
+                                <p class="demo-block-copy">“My friends changed plans and I immediately felt like I was being pushed out.”</p>
+                            </div>
+                        </div>
+
+                        <div class="demo-next-step">
+                            <div class="demo-circle-icon">→</div>
+                            <div>
+                                <p class="demo-block-title">Next Step</p>
+                                <p class="demo-block-copy">Ask one direct, low-pressure question before assuming the worst.</p>
+                            </div>
+                        </div>
+
+                        <div class="demo-feedback-grid">
+                            <div class="feedback-button">Helpful<span>This resonates with me</span></div>
+                            <div class="feedback-button">Not quite<span>Something feels off</span></div>
+                        </div>
+
+                        <div class="feedback-input">Tell us what could be improved (optional)</div>
+                        <div class="demo-submit">Submit feedback</div>
+
+                        <div class="demo-share">
+                            <p class="demo-share-title"><span class="demo-circle-icon">♥</span> Help others like you</p>
+                            <p>Share your insight anonymously to help others going through similar experiences.</p>
+                            <div class="demo-share-button">Share anonymously</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </aside>
     </section>
 
     <!-- Features on green background -->
     <section class="features-wrap">
         <div class="container features">
-            <!-- Mental Checkpoints -->
+            <!-- Capture -->
             <div class="feature">
                 <div class="feature-icon">
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1170,8 +1634,8 @@
                     </svg>
                 </div>
                 <div>
-                    <h3>Mental Checkpoints</h3>
-                    <p class="muted">Quick summaries of what mattered today.</p>
+                    <h3>Capture the moment</h3>
+                    <p class="muted">Turn lived experience into something structured.</p>
                 </div>
             </div>
             <!-- Insight Cards -->
@@ -1183,11 +1647,11 @@
                     </svg>
                 </div>
                 <div>
-                    <h3>Insight Cards</h3>
-                    <p class="muted">Reflections—one tiny idea at a time.</p>
+                    <h3>Build Insight Cards</h3>
+                    <p class="muted">Save the summary, pattern, and next step.</p>
                 </div>
             </div>
-            <!-- Patterns -->
+            <!-- Matching -->
             <div class="feature">
                 <div class="feature-icon">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#1F473F" stroke-width="2">
@@ -1196,8 +1660,8 @@
                     </svg>
                 </div>
                 <div>
-                    <h3>Patterns</h3>
-                    <p class="muted">See thinking loops; break small bits.</p>
+                    <h3>Find useful matches</h3>
+                    <p class="muted">Learn from people in similar situations.</p>
                 </div>
             </div>
         </div>
@@ -1209,29 +1673,29 @@
     <!-- How it helps -->
     <section class="container section">
         <div class="section-header">
-            <h2 class="section-title">How Backsie helps</h2>
-            <p class="section-description">A simple three-step process to help you gain clarity and take meaningful action.</p>
+            <h2 class="section-title">How Backsie works</h2>
+            <p class="section-description">Backsie turns a messy real-life moment into a reusable Insight Card, then helps similar experiences become useful to more people.</p>
         </div>
         <div class="split-3">
             <article class="step-card">
                 <img src="public/01_talk.png" alt="Talk - Share what's on your mind" class="step-image" />
                 <div>
-                    <h3 class="step-title">1. Talk</h3>
-                    <p class="step-text">Vent by typing, speaking, or pasting screenshots. Backsie listens for the stuck part.</p>
+                    <h3 class="step-title">1. Capture what happened</h3>
+                    <p class="step-text">Type, speak, or paste the details of an experience you want to understand or remember.</p>
                 </div>
             </article>
             <article class="step-card">
                 <img src="public/02_see.png" alt="See it Clearly - Understand deeper insights" class="step-image" />
                 <div>
-                    <h3 class="step-title">2. See it Clearly</h3>
-                    <p class="step-text">Backsie helps you see deeper into the issues you're facing.</p>
+                    <h3 class="step-title">2. Create an Insight Card</h3>
+                    <p class="step-text">Backsie organizes the situation into a summary, reflection, tags, and a practical takeaway.</p>
                 </div>
             </article>
             <article class="step-card">
                 <img src="public/03_gain.png" alt="Gain Agency - Take meaningful action" class="step-image" />
                 <div>
-                    <h3 class="step-title">3. Gain Agency</h3>
-                    <p class="step-text">Backsie works with you to identify achievable steps you can take to improve the situation.</p>
+                    <h3 class="step-title">3. Learn through the community</h3>
+                    <p class="step-text">Keep cards private, or share anonymously so others facing something similar can learn from it.</p>
                 </div>
             </article>
         </div>
@@ -1245,10 +1709,10 @@
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.7503 4.375V9.375C18.7503 9.54076 18.6845 9.69973 18.5673 9.81694C18.4501 9.93415 18.2911 10 18.1253 10C17.9596 10 17.8006 9.93415 17.6834 9.81694C17.5662 9.69973 17.5003 9.54076 17.5003 9.375V5.88359L11.0675 12.3172C11.0095 12.3753 10.9406 12.4214 10.8647 12.4529C10.7888 12.4843 10.7075 12.5005 10.6253 12.5005C10.5432 12.5005 10.4619 12.4843 10.386 12.4529C10.3101 12.4214 10.2412 12.3753 10.1832 12.3172L7.50035 9.63359L2.31753 14.8172C2.20026 14.9345 2.0412 15.0003 1.87535 15.0003C1.7095 15.0003 1.55044 14.9345 1.43316 14.8172C1.31588 14.6999 1.25 14.5409 1.25 14.375C1.25 14.2091 1.31588 14.0501 1.43316 13.9328L7.05816 8.30781C7.1162 8.2497 7.18514 8.2036 7.26101 8.17215C7.33688 8.1407 7.41821 8.12451 7.50035 8.12451C7.58248 8.12451 7.66381 8.1407 7.73968 8.17215C7.81556 8.2036 7.88449 8.2497 7.94253 8.30781L10.6253 10.9914L16.6168 5H13.1253C12.9596 5 12.8006 4.93415 12.6834 4.81694C12.5662 4.69973 12.5003 4.54076 12.5003 4.375C12.5003 4.20924 12.5662 4.05027 12.6834 3.93306C12.8006 3.81585 12.9596 3.75 13.1253 3.75H18.1253C18.2911 3.75 18.4501 3.81585 18.5673 3.93306C18.6845 4.05027 18.7503 4.20924 18.7503 4.375Z" fill="#1F473F"/>
                     </svg>
-                    <span class="badge-text">Patterns</span>
+                    <span class="badge-text">Insight Cards</span>
                 </div>
-                <h2 class="feature-heading">Identify Patterns.</h2>
-                <p class="feature-description">Backsie helps you see similarities across different areas of your life so you can apply changes in one area to other aspects of your life as well.</p>
+                <h2 class="feature-heading">A reusable record of what you learned.</h2>
+                <p class="feature-description">Each card can hold the situation, emotional pattern, takeaway, and tags that make the experience easier to revisit, share, or match with related stories later.</p>
             </div>
             <div class="card card-video"><video autoplay loop muted playsinline ><source src="public/patterns.mp4" type="video/mp4">Your browser does not support the video tag.</video></div>
         </div>
@@ -1262,8 +1726,8 @@
                 <div class="badge">
                     <span class="badge-text">Coming soon</span>
                 </div>
-                <h2 class="feature-heading">A quiet feed of reframes.</h2>
-                <p class="feature-description">Browse short, anonymous insight cards from people working on similar situations. No likes, no comments &mdash; just clarity you can use.</p>
+                <h2 class="feature-heading">A quieter way to learn from each other.</h2>
+                <p class="feature-description">Backsie is moving toward anonymous, moderated cards from people going through similar situations. No performative posting &mdash; just useful lived experience.</p>
             </div>
         </div>
     </section>
@@ -1284,124 +1748,111 @@
         <h2 id="faq-heading">Frequently Asked Questions</h2>
         <div class="faq-surface" role="region" aria-label="FAQ">
             <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">How is this different from therapy?</div>
+                <div class="faq-q">What is an Insight Card?</div>
                 <button class="faq-toggle" type="button" aria-label="Toggle question">
                     <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
                     <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
                 </button>
                 <div class="faq-answer">
-                    <div class="faq-a">Backsie is a self-help tool focused on clarity and pattern recognition. It's not
-                        therapy, counseling, or medical treatment. We help you notice thinking patterns and suggest
-                        small steps, but we don't provide diagnosis, treatment, or professional mental health services.
-                        Think of it as a clarity coach, not a therapist.
+                    <div class="faq-a">An Insight Card is a short, structured version of a real experience. It captures
+                        what happened, what it revealed, the patterns around it, and one useful takeaway you can keep
+                        for yourself or share anonymously with others.
                     </div>
                 </div>
             </div>
             <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">What happens to my data?</div>
+                <div class="faq-q">Do I have to share my cards?</div>
                 <button class="faq-toggle" type="button" aria-label="Toggle question">
                     <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
                     <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
                 </button>
                 <div class="faq-answer">
-                    <div class="faq-a">Your data is not used by general-purpose AI models and is kept private and
-                        secure. Backsie will not sell your data to third parties nor share it with anyone without your
-                        express permission. We maintain the highest standards of data security to keep your data safe
-                        from misuse.
+                    <div class="faq-a">No. Cards are private by default. If you choose to share a card, Backsie is being
+                        designed so you can share it anonymously and only in ways that help other people learn from a
+                        similar situation.
                     </div>
                 </div>
             </div>
             <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">What's a Pattern To Watch?</div>
+                <div class="faq-q">How does matching work?</div>
                 <button class="faq-toggle" type="button" aria-label="Toggle question">
                     <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
                     <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
                 </button>
                 <div class="faq-answer">
-                    <div class="faq-a">Often we unconsciously repeat certain patterns of thought or of behavior that
-                        keep us confined in a way that prevents us from reaching our goals. Backsie helps you see these
-                        patterns and can suggest realistic ways for you to surmount them in the daily challenges you
-                        face.
+                    <div class="faq-a">Backsie uses tags, situation types, emotional patterns, and card context to find
+                        related experiences. The goal is not to compare lives, but to make the right card useful to the
+                        right person at the right time.
                     </div>
                 </div>
             </div>
             <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">Sharing With The Backsie Community</div>
+                <div class="faq-q">What does the community feel like?</div>
                 <button class="faq-toggle" type="button" aria-label="Toggle question">
                     <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
                     <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
                 </button>
                 <div class="faq-answer">
-                    <div class="faq-a">If you choose to share an insight you think may help others, or share other
-                        elements of your interaction with Backsie, you'll be able to do so anonymously. This way you can
-                        help others in the Backsie community without revealing your identity.
+                    <div class="faq-a">Backsie is not trying to be another social feed. The community direction is
+                        quieter: anonymous shared cards, moderated contribution, and useful matches instead of likes,
+                        comments, or public performance.
                     </div>
                 </div>
             </div>
             <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">How Does Backsie Work?</div>
+                <div class="faq-q">What can I use Backsie for?</div>
                 <button class="faq-toggle" type="button" aria-label="Toggle question">
                     <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
                     <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
                 </button>
                 <div class="faq-answer">
-                    <div class="faq-a">Backsie uses an approach called Agentic AI. This means Backsie has a number of
-                        agents specifically created to perform certain key tasks. Agents prevent Backsie from
-                        "hallucinating" like ordinary LLM-based AI and agents have access to the logic Backsie uses to
-                        help identify recurring patterns of thought and behavior, as well as to identify whether or not
-                        you should seek help beyond Backsie's ability to support you.
+                    <div class="faq-a">Use Backsie for moments you want to make sense of: conflict, transitions,
+                        confusing conversations, school or work stress, family dynamics, dating, friendship, identity,
+                        or everyday situations you do not want to lose.
                     </div>
                 </div>
             </div>
             <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">Who Is Backsie For?</div>
+                <div class="faq-q">Who is Backsie for?</div>
                 <button class="faq-toggle" type="button" aria-label="Toggle question">
                     <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
                     <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
                 </button>
                 <div class="faq-answer">
-                    <div class="faq-a">Backsie is initially aiming to support people aged between around eighteen to
-                        thirty, but is able to help anyone of any age and sexual orientation in a judgement-free
-                        forward-looking way. Think of Backsie like a wise friend who's always available to you when you
-                        need to talk, day or night.
+                    <div class="faq-a">Backsie is for people who want to learn from real experiences instead of letting
+                        them disappear. Early users will help shape how Insight Cards, anonymous sharing, and matching
+                        should work.
                     </div>
                 </div>
             </div>
             <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">Will Backsie Diagnose Me?</div>
+                <div class="faq-q">Is Backsie a clinical product?</div>
                 <button class="faq-toggle" type="button" aria-label="Toggle question">
                     <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
                     <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
                 </button>
                 <div class="faq-answer">
-                    <div class="faq-a">Backsie doesn't rely on therapeutic models and on therapeutic categories. Backsie
-                        offers judgement-free, label-free compassionate support with the intention of helping you
-                        identify possible new ways of seeing existing challenges and freeing you to try new ways of
-                        being in the world.
+                    <div class="faq-a">No. Backsie is not a diagnosis, treatment, crisis, or medical product. It is a
+                        reflective platform for turning experiences into useful cards and learning from similar lived
+                        situations.
                     </div>
                 </div>
             </div>
             <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">Why Is Backsie Better Than ChatGPT?</div>
+                <div class="faq-q">Why not just use a notes app?</div>
                 <button class="faq-toggle" type="button" aria-label="Toggle question">
                     <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
                     <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
                 </button>
                 <div class="faq-answer">
-                    <div class="faq-a">Generalized Large Language Models like ChatGPT use training data from the
-                        Internet to create statistical associations between words and phrases. Much of the time these
-                        general models can sound human-like, but the information they provide is sometimes incorrect and
-                        they can't be relied on to interpret what you tell them in the way that a wise thoughtful friend
-                        would do. Backsie uses the ability of LLMs to draw on a wide range of general knowledge but
-                        supplements the LLM with very specific attributes such as identifying patterns of thought and
-                        behavior, seeing areas where improvements can realistically be made, and helping you reflect on
-                        your experiences in order to learn from them and become more empowered. These specific
-                        attributes are what makes Backsie an ideal "wise friend" in a way general LLMs can never be.
+                    <div class="faq-a">Notes preserve the raw memory. Backsie helps structure the experience so it can
+                        become searchable, matchable, and useful later: a card with context, tags, reflection, and a
+                        takeaway.
                     </div>
                 </div>
             </div>
             <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">Will Backsie Always Be Free?</div>
+                <div class="faq-q">Will Backsie always be free?</div>
                 <button class="faq-toggle" type="button" aria-label="Toggle question">
                     <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
                     <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
@@ -1467,7 +1918,7 @@
     <div class="email-modal-content">
         <button class="email-modal-close" id="closeEmailModal" aria-label="Close"></button>
         <h2>Get early access for free</h2>
-        <p>Join Backsie as a beta user and get one year completely free. No obligation.</p>
+        <p>Join the beta and help shape how Insight Cards, anonymous sharing, and matching should work.</p>
         <form class="email-form" id="emailForm">
             <input
                     type="email"
