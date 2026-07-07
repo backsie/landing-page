@@ -673,6 +673,34 @@
         .phone-input.error {
             border-color: #ef4444;
         }
+
+        .sms-consent {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: -4px;
+            color: var(--ink-2);
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .sms-consent input {
+            width: 16px;
+            height: 16px;
+            margin-top: 2px;
+            flex: 0 0 auto;
+            accent-color: var(--brand);
+        }
+
+        .sms-consent a {
+            color: var(--brand);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .sms-consent.error {
+            color: #ef4444;
+        }
         
         /* Custom styling for intl-tel-input */
         .iti {
@@ -1936,6 +1964,12 @@
                         autocomplete="tel"
                 />
             </div>
+            <label class="sms-consent" for="smsConsentInput">
+                <input type="checkbox" id="smsConsentInput" name="sms_consent" />
+                <span>
+                    I agree to receive SMS messages from Backsie with beta access instructions, product updates, and support or feedback replies. Message frequency varies. Message and data rates may apply. Reply HELP for help or STOP to unsubscribe. Consent is not required to use Backsie. View our <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="terms-of-service.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>.
+                </span>
+            </label>
             <div class="error-message" id="errorMessage">Please enter a valid email or phone number</div>
             <button type="submit" class="email-submit">Confirm</button>
         </form>
@@ -2058,6 +2092,7 @@
         const emailForm = document.getElementById('emailForm');
         const emailInput = document.getElementById('emailInput');
         const phoneInput = document.getElementById('phoneInput');
+        const smsConsentInput = document.getElementById('smsConsentInput');
         const errorMessage = document.getElementById('errorMessage');
         const closeEmailBtn = document.getElementById('closeEmailModal');
         const thankYouOverlay = document.getElementById('thankYouOverlay');
@@ -2149,8 +2184,11 @@
                 document.body.style.overflow = '';
                 emailInput.value = '';
                 phoneInput.value = '';
+                smsConsentInput.checked = false;
                 emailInput.classList.remove('error');
                 phoneInput.classList.remove('error');
+                smsConsentInput.closest('.sms-consent').classList.remove('error');
+                errorMessage.textContent = 'Please enter a valid email or phone number';
                 errorMessage.classList.remove('show');
             };
 
@@ -2174,17 +2212,25 @@
                 const email = emailInput.value.trim();
                 const phoneNumber = iti ? iti.getNumber() : phoneInput.value.trim();
                 const countryCode = iti ? iti.getSelectedCountryData().iso2.toUpperCase() : 'US';
+                const hasSmsConsent = smsConsentInput.checked;
 
                 // Validate at least one contact method
                 const hasValidEmail = email && emailRegex.test(email);
                 const hasValidPhone = phoneNumber && iti && iti.isValidNumber();
+                const canUsePhone = hasValidPhone && hasSmsConsent;
 
-                if (!hasValidEmail && !hasValidPhone) {
+                if (!hasValidEmail && !canUsePhone) {
                     if (email && !hasValidEmail) {
                         emailInput.classList.add('error');
                     }
                     if (phoneNumber && !hasValidPhone) {
                         phoneInput.classList.add('error');
+                    }
+                    if (phoneNumber && hasValidPhone && !hasSmsConsent) {
+                        smsConsentInput.closest('.sms-consent').classList.add('error');
+                        errorMessage.textContent = 'Please enter a valid email or agree to receive SMS messages for phone updates.';
+                    } else {
+                        errorMessage.textContent = 'Please enter a valid email or phone number';
                     }
                     if (!email && !phoneNumber) {
                         emailInput.classList.add('error');
@@ -2199,6 +2245,7 @@
                     anonymous_id: getAnonymousId(),
                     source: 'landing_page',
                     referrer: document.referrer || null,
+                    sms_consent: hasSmsConsent,
                     ...getUTMParams(),
                 };
 
@@ -2208,7 +2255,7 @@
                 }
 
                 // Add phone if valid
-                if (hasValidPhone) {
+                if (canUsePhone) {
                     registrationData.phone_number = phoneNumber;
                     registrationData.country_code = countryCode;
                 }
@@ -2259,6 +2306,7 @@
             emailInput.addEventListener('input', () => {
                 if (emailInput.classList.contains('error')) {
                     emailInput.classList.remove('error');
+                    errorMessage.textContent = 'Please enter a valid email or phone number';
                     errorMessage.classList.remove('show');
                 }
             });
@@ -2266,8 +2314,15 @@
             phoneInput.addEventListener('input', () => {
                 if (phoneInput.classList.contains('error')) {
                     phoneInput.classList.remove('error');
+                    errorMessage.textContent = 'Please enter a valid email or phone number';
                     errorMessage.classList.remove('show');
                 }
+            });
+
+            smsConsentInput.addEventListener('change', () => {
+                smsConsentInput.closest('.sms-consent').classList.remove('error');
+                errorMessage.textContent = 'Please enter a valid email or phone number';
+                errorMessage.classList.remove('show');
             });
         }
     })();
