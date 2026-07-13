@@ -704,6 +704,34 @@
         .phone-input.error {
             border-color: #ef4444;
         }
+
+        .sms-consent {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: -4px;
+            color: var(--ink-2);
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .sms-consent input {
+            width: 16px;
+            height: 16px;
+            margin-top: 2px;
+            flex: 0 0 auto;
+            accent-color: var(--brand);
+        }
+
+        .sms-consent a {
+            color: var(--brand);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .sms-consent.error {
+            color: #ef4444;
+        }
         
         /* Custom styling for intl-tel-input */
         .iti {
@@ -1541,9 +1569,11 @@
             <p class="lede hero-lede">Backsie helps you make sense of what happened, save the lesson as an Insight Card, and learn from people navigating similar situations.</p>
             <div class="hero-actions">
                 <button class="btn btn-primary">Get early access for free</button>
+                <!--
                 <button class="btn btn-ghost btn-ghost-custom">View
                     founder’s story
                 </button>
+                -->
             </div>
             <div class="hero-meta">
           <span class="hero-meta-item">
@@ -1940,7 +1970,8 @@
     </div>
 </footer>
 
-<!-- Video Modal -->
+<!--
+Video Modal
 <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="video-modal-content">
         <button class="video-modal-close" id="closeModal" aria-label="Close video"></button>
@@ -1950,6 +1981,7 @@
         </video>
     </div>
 </div>
+-->
 
 <!-- Email Modal -->
 <div class="email-modal" id="emailModal" role="dialog" aria-modal="true">
@@ -1994,7 +2026,9 @@
             </label>
             <label class="sms-consent" for="smsConsentInput">
                 <input type="checkbox" id="smsConsentInput" name="sms_consent" />
-                <span>I agree to receive SMS updates from Backsie about early access and launch updates. Message frequency varies. Msg &amp; data rates may apply. Reply HELP for help or STOP to unsubscribe.</span>
+                <span>
+                    I agree to receive SMS updates from Backsie about early access and launch updates. Message frequency varies. Msg &amp; data rates may apply. Reply HELP for help or STOP to unsubscribe. View our <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="terms-of-service.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>.
+                </span>
             </label>
             <p class="form-helper">We'll email you to confirm we received your info, and again as soon as Backsie launches on the App Store. Phone number is optional and only used if you'd like SMS updates.</p>
             <div class="error-message" id="errorMessage">Please enter your name and a valid email address</div>
@@ -2244,13 +2278,13 @@
                 const rawPhoneNumber = phoneInput.value.trim();
                 const phoneNumber = iti ? iti.getNumber() : rawPhoneNumber;
                 const countryCode = iti ? iti.getSelectedCountryData().iso2.toUpperCase() : 'US';
+                const hasSmsConsent = smsConsentInput.checked;
 
                 // Validate required fields and optional phone.
                 const hasName = name.length > 0;
                 const hasValidEmail = email && emailRegex.test(email);
                 const hasPhone = rawPhoneNumber.length > 0;
                 const hasValidPhone = hasPhone && iti && iti.isValidNumber();
-                const hasSmsConsent = smsConsentInput.checked;
 
                 nameInput.classList.remove('error');
                 emailInput.classList.remove('error');
@@ -2344,6 +2378,7 @@
             emailInput.addEventListener('input', () => {
                 if (emailInput.classList.contains('error')) {
                     emailInput.classList.remove('error');
+                    errorMessage.textContent = 'Please enter your name and a valid email address';
                     errorMessage.classList.remove('show');
                 }
             });
@@ -2351,12 +2386,14 @@
             phoneInput.addEventListener('input', () => {
                 if (phoneInput.classList.contains('error')) {
                     phoneInput.classList.remove('error');
+                    errorMessage.textContent = 'Please enter your name and a valid email address';
                     errorMessage.classList.remove('show');
                 }
             });
 
             smsConsentInput.addEventListener('change', () => {
                 smsConsentInput.closest('.sms-consent').classList.remove('error');
+                errorMessage.textContent = 'Please enter your name and a valid email address';
                 errorMessage.classList.remove('show');
             });
         }
