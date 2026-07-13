@@ -632,6 +632,18 @@
             gap: 16px;
         }
 
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .field-label {
+            color: var(--brand);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
         .email-input {
             width: 100%;
             padding: 14px 16px;
@@ -648,6 +660,25 @@
         }
 
         .email-input.error {
+            border-color: #ef4444;
+        }
+
+        .name-input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 16px;
+            font-family: "PP Neue Montreal", sans-serif;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .name-input:focus {
+            border-color: var(--brand);
+        }
+
+        .name-input.error {
             border-color: #ef4444;
         }
         
@@ -711,21 +742,29 @@
             border-radius: 12px 0 0 12px;
         }
         
-        .form-divider {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 8px 0;
-            color: var(--muted);
+        .form-helper {
+            color: var(--ink-2);
             font-size: 14px;
+            line-height: 1.45;
+            margin: 0;
         }
-        
-        .form-divider::before,
-        .form-divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
+
+        .sms-consent {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: var(--ink-2);
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .sms-consent input {
+            margin-top: 3px;
+            accent-color: var(--brand);
+        }
+
+        .sms-consent.error {
+            color: #ef4444;
         }
 
 
@@ -1951,31 +1990,49 @@ Video Modal
         <h2>Get early access for free</h2>
         <p>Join the beta and help shape how Insight Cards, anonymous sharing, and matching should work.</p>
         <form class="email-form" id="emailForm">
-            <input
-                    type="email"
-                    class="email-input"
-                    id="emailInput"
-                    placeholder="Enter your email address (optional)"
-                    autocomplete="email"
-            />
-            <div class="form-divider">or</div>
-            <div class="phone-input-wrapper">
+            <label class="form-field" for="nameInput">
+                <span class="field-label">Name (required)</span>
                 <input
-                        type="tel"
-                        class="phone-input"
-                        id="phoneInput"
-                        placeholder="Enter your phone number (optional)"
-                        autocomplete="tel"
+                        type="text"
+                        class="name-input"
+                        id="nameInput"
+                        placeholder="Enter your name"
+                        autocomplete="name"
+                        required
                 />
-            </div>
+            </label>
+            <label class="form-field" for="emailInput">
+                <span class="field-label">Email (required)</span>
+                <input
+                        type="email"
+                        class="email-input"
+                        id="emailInput"
+                        placeholder="Enter your email address"
+                        autocomplete="email"
+                        required
+                />
+            </label>
+            <label class="form-field" for="phoneInput">
+                <span class="field-label">Phone number (optional)</span>
+                <div class="phone-input-wrapper">
+                    <input
+                            type="tel"
+                            class="phone-input"
+                            id="phoneInput"
+                            placeholder="Enter your phone number"
+                            autocomplete="tel"
+                    />
+                </div>
+            </label>
             <label class="sms-consent" for="smsConsentInput">
                 <input type="checkbox" id="smsConsentInput" name="sms_consent" />
                 <span>
-                    I agree to receive SMS messages from Backsie with beta access instructions, product updates, and support or feedback replies. Message frequency varies. Message and data rates may apply. Reply HELP for help or STOP to unsubscribe. Consent is not required to use Backsie. View our <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="terms-of-service.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>.
+                    I agree to receive SMS updates from Backsie about early access and launch updates. Message frequency varies. Msg &amp; data rates may apply. Reply HELP for help or STOP to unsubscribe. View our <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="terms-of-service.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>.
                 </span>
             </label>
-            <div class="error-message" id="errorMessage">Please enter a valid email or phone number</div>
-            <button type="submit" class="email-submit">Confirm</button>
+            <p class="form-helper">We'll email you to confirm we received your info, and again as soon as Backsie launches on the App Store. Phone number is optional and only used if you'd like SMS updates.</p>
+            <div class="error-message" id="errorMessage">Please enter your name and a valid email address</div>
+            <button type="submit" class="email-submit">Join Early Access</button>
         </form>
     </div>
 </div>
@@ -2094,6 +2151,7 @@ Video Modal
     (function () {
         const emailModal = document.getElementById('emailModal');
         const emailForm = document.getElementById('emailForm');
+        const nameInput = document.getElementById('nameInput');
         const emailInput = document.getElementById('emailInput');
         const phoneInput = document.getElementById('phoneInput');
         const smsConsentInput = document.getElementById('smsConsentInput');
@@ -2171,14 +2229,14 @@ Video Modal
             };
         }
 
-        if (emailModal && emailForm && emailInput) {
+        if (emailModal && emailForm && nameInput && emailInput && phoneInput && smsConsentInput) {
             // Open modal when any "Get early access" button is clicked
             openBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
                     emailModal.classList.add('active');
                     document.body.style.overflow = 'hidden';
-                    emailInput.focus();
+                    nameInput.focus();
                 });
             });
 
@@ -2186,13 +2244,15 @@ Video Modal
             const closeEmailModal = () => {
                 emailModal.classList.remove('active');
                 document.body.style.overflow = '';
+                nameInput.value = '';
                 emailInput.value = '';
                 phoneInput.value = '';
                 smsConsentInput.checked = false;
+                nameInput.classList.remove('error');
                 emailInput.classList.remove('error');
                 phoneInput.classList.remove('error');
                 smsConsentInput.closest('.sms-consent').classList.remove('error');
-                errorMessage.textContent = 'Please enter a valid email or phone number';
+                errorMessage.textContent = 'Please enter your name and a valid email address';
                 errorMessage.classList.remove('show');
             };
 
@@ -2213,32 +2273,35 @@ Video Modal
             emailForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
+                const name = nameInput.value.trim();
                 const email = emailInput.value.trim();
-                const phoneNumber = iti ? iti.getNumber() : phoneInput.value.trim();
+                const rawPhoneNumber = phoneInput.value.trim();
+                const phoneNumber = iti ? iti.getNumber() : rawPhoneNumber;
                 const countryCode = iti ? iti.getSelectedCountryData().iso2.toUpperCase() : 'US';
                 const hasSmsConsent = smsConsentInput.checked;
 
-                // Validate at least one contact method
+                // Validate required fields and optional phone.
+                const hasName = name.length > 0;
                 const hasValidEmail = email && emailRegex.test(email);
-                const hasValidPhone = phoneNumber && iti && iti.isValidNumber();
-                const canUsePhone = hasValidPhone && hasSmsConsent;
+                const hasPhone = rawPhoneNumber.length > 0;
+                const hasValidPhone = hasPhone && iti && iti.isValidNumber();
 
-                if (!hasValidEmail && !canUsePhone) {
-                    if (email && !hasValidEmail) {
-                        emailInput.classList.add('error');
-                    }
-                    if (phoneNumber && !hasValidPhone) {
+                nameInput.classList.remove('error');
+                emailInput.classList.remove('error');
+                phoneInput.classList.remove('error');
+                smsConsentInput.closest('.sms-consent').classList.remove('error');
+                errorMessage.textContent = 'Please enter your name and a valid email address';
+
+                if (!hasName || !hasValidEmail || (hasPhone && (!hasValidPhone || !hasSmsConsent))) {
+                    if (!hasName) nameInput.classList.add('error');
+                    if (!hasValidEmail) emailInput.classList.add('error');
+                    if (hasPhone && !hasValidPhone) {
                         phoneInput.classList.add('error');
+                        errorMessage.textContent = 'Please enter your name, a valid email, and a valid phone number.';
                     }
-                    if (phoneNumber && hasValidPhone && !hasSmsConsent) {
+                    if (hasPhone && hasValidPhone && !hasSmsConsent) {
                         smsConsentInput.closest('.sms-consent').classList.add('error');
-                        errorMessage.textContent = 'Please enter a valid email or agree to receive SMS messages for phone updates.';
-                    } else {
-                        errorMessage.textContent = 'Please enter a valid email or phone number';
-                    }
-                    if (!email && !phoneNumber) {
-                        emailInput.classList.add('error');
-                        phoneInput.classList.add('error');
+                        errorMessage.textContent = 'Please agree to receive SMS updates or leave phone number blank.';
                     }
                     errorMessage.classList.add('show');
                     return;
@@ -2246,22 +2309,20 @@ Video Modal
                 
                 // Prepare registration data
                 const registrationData = {
+                    name,
                     anonymous_id: getAnonymousId(),
                     source: 'landing_page',
                     referrer: document.referrer || null,
-                    sms_consent: hasSmsConsent,
                     ...getUTMParams(),
                 };
 
-                // Add email if valid
-                if (hasValidEmail) {
-                    registrationData.email = email;
-                }
+                registrationData.email = email;
 
                 // Add phone if valid
-                if (canUsePhone) {
+                if (hasValidPhone) {
                     registrationData.phone_number = phoneNumber;
                     registrationData.country_code = countryCode;
+                    registrationData.sms_consent = hasSmsConsent;
                 }
 
                 try {
@@ -2307,10 +2368,17 @@ Video Modal
             });
 
             // Remove error state when user starts typing
+            nameInput.addEventListener('input', () => {
+                if (nameInput.classList.contains('error')) {
+                    nameInput.classList.remove('error');
+                    errorMessage.classList.remove('show');
+                }
+            });
+
             emailInput.addEventListener('input', () => {
                 if (emailInput.classList.contains('error')) {
                     emailInput.classList.remove('error');
-                    errorMessage.textContent = 'Please enter a valid email or phone number';
+                    errorMessage.textContent = 'Please enter your name and a valid email address';
                     errorMessage.classList.remove('show');
                 }
             });
@@ -2318,14 +2386,14 @@ Video Modal
             phoneInput.addEventListener('input', () => {
                 if (phoneInput.classList.contains('error')) {
                     phoneInput.classList.remove('error');
-                    errorMessage.textContent = 'Please enter a valid email or phone number';
+                    errorMessage.textContent = 'Please enter your name and a valid email address';
                     errorMessage.classList.remove('show');
                 }
             });
 
             smsConsentInput.addEventListener('change', () => {
                 smsConsentInput.closest('.sms-consent').classList.remove('error');
-                errorMessage.textContent = 'Please enter a valid email or phone number';
+                errorMessage.textContent = 'Please enter your name and a valid email address';
                 errorMessage.classList.remove('show');
             });
         }
