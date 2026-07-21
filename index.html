@@ -2218,22 +2218,130 @@ Video Modal
             return anonymousId;
         }
 
-        function getUTMParams() {
+        const attributionStorageKey = 'backsie_launch_attribution';
+        const attributionParamNames = [
+            'utm_source',
+            'utm_medium',
+            'utm_campaign',
+            'utm_content',
+            'utm_term',
+            'referral_code',
+            'ref',
+            'partner_id',
+            'creator_id',
+            'campus',
+            'landing_page_variant',
+            'referral_campaign_id',
+            'campaign_id',
+        ];
+
+        function getStoredAttributionParams() {
+            try {
+                const raw = localStorage.getItem(attributionStorageKey);
+                if (!raw) return {};
+
+                const parsed = JSON.parse(raw);
+                return Object.fromEntries(
+                    Object.entries(parsed).filter(([, value]) => typeof value === 'string' && value.length > 0)
+                );
+            } catch (error) {
+                console.warn('Could not read launch attribution:', error);
+                return {};
+            }
+        }
+
+        function getLaunchAttributionParams() {
             const params = new URLSearchParams(window.location.search);
+            const attribution = {};
+
+            attributionParamNames.forEach((name) => {
+                const value = params.get(name);
+                if (!value) return;
+
+                if (name === 'ref') {
+                    attribution.referral_code = attribution.referral_code || value;
+                    return;
+                }
+
+                attribution[name] = value;
+            });
+
+            if (!attribution.referral_campaign_id && attribution.campaign_id) {
+                attribution.referral_campaign_id = attribution.campaign_id;
+            }
+            if (!attribution.campaign_id && attribution.referral_campaign_id) {
+                attribution.campaign_id = attribution.referral_campaign_id;
+            }
+
+            if (Object.keys(attribution).length === 0) {
+                return getStoredAttributionParams();
+            }
+
+            try {
+                localStorage.setItem(attributionStorageKey, JSON.stringify(attribution));
+            } catch (error) {
+                console.warn('Could not persist launch attribution:', error);
+            }
+
+            return attribution;
+        }
+
+        function getUTMParams() {
+            const attribution = getLaunchAttributionParams();
             return {
-                utm_source: params.get('utm_source') || null,
-                utm_medium: params.get('utm_medium') || null,
-                utm_campaign: params.get('utm_campaign') || null,
-                utm_content: params.get('utm_content') || null,
-                utm_term: params.get('utm_term') || null,
+                utm_source: attribution.utm_source || null,
+                utm_medium: attribution.utm_medium || null,
+                utm_campaign: attribution.utm_campaign || null,
+                utm_content: attribution.utm_content || null,
+                utm_term: attribution.utm_term || null,
             };
         }
+
+        function getLaunchMetricContext(metadata = {}) {
+            const attribution = getLaunchAttributionParams();
+            return {
+                anonymous_id: getAnonymousId(),
+                source: 'landing_page',
+                referrer: document.referrer || null,
+                ...attribution,
+                locale: navigator.language || null,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+                metadata: {
+                    path: window.location.pathname,
+                    ...attribution,
+                    ...metadata,
+                },
+            };
+        }
+
+        function trackLaunchMetric(eventType, metadata = {}) {
+            const payload = {
+                event_type: eventType,
+                ...getLaunchMetricContext(metadata),
+            };
+
+            fetch(`${API_BASE_URL}/metrics/public`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                keepalive: true,
+                body: JSON.stringify(payload),
+            }).catch((error) => {
+                console.warn('Failed to track launch metric:', eventType, error);
+            });
+        }
+
+        trackLaunchMetric('landing_page_viewed');
 
         if (emailModal && emailForm && nameInput && emailInput && phoneInput && smsConsentInput) {
             // Open modal when any "Get early access" button is clicked
             openBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
+                    trackLaunchMetric('early_access_modal_opened', {
+                        button_text: (btn.textContent || '').trim(),
+                    });
                     emailModal.classList.add('active');
                     document.body.style.overflow = 'hidden';
                     nameInput.focus();
@@ -2286,6 +2394,12 @@ Video Modal
                 const hasPhone = rawPhoneNumber.length > 0;
                 const hasValidPhone = hasPhone && iti && iti.isValidNumber();
 
+                trackLaunchMetric('early_access_submit_started', {
+                    has_phone: hasPhone,
+                    has_sms_consent: hasSmsConsent,
+                    country_code: countryCode,
+                });
+
                 nameInput.classList.remove('error');
                 emailInput.classList.remove('error');
                 phoneInput.classList.remove('error');
@@ -2304,6 +2418,14 @@ Video Modal
                         errorMessage.textContent = 'Please agree to receive SMS updates or leave phone number blank.';
                     }
                     errorMessage.classList.add('show');
+                    trackLaunchMetric('waitlist_signup_failed', {
+                        reason: 'client_validation',
+                        missing_name: !hasName,
+                        invalid_email: !hasValidEmail,
+                        invalid_phone: hasPhone && !hasValidPhone,
+                        missing_sms_consent: hasPhone && hasValidPhone && !hasSmsConsent,
+                        has_phone: hasPhone,
+                    });
                     return;
                 }
                 
@@ -2313,7 +2435,7 @@ Video Modal
                     anonymous_id: getAnonymousId(),
                     source: 'landing_page',
                     referrer: document.referrer || null,
-                    ...getUTMParams(),
+                    ...getLaunchAttributionParams(),
                 };
 
                 registrationData.email = email;
@@ -2360,6 +2482,10 @@ Video Modal
 
                 } catch (error) {
                     console.error('Early access registration error:', error);
+                    trackLaunchMetric('waitlist_signup_failed', {
+                        reason: 'network_or_backend_error',
+                        has_phone: hasPhone,
+                    });
                     
                     // Show error to user instead of fake success
                     errorMessage.textContent = 'Failed to submit. Please check your internet connection and try again.';
