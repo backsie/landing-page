@@ -73,8 +73,11 @@
     ul, ol{margin:0 0 16px;padding-left:24px;color:var(--ink-2)}
     li{margin-bottom:8px}
     strong{color:var(--ink);font-weight:500}
+    a{color:var(--brand);text-underline-offset:2px}
     .company-info{background:var(--brand-2);padding:24px;border-radius:12px;margin:32px 0;border-left:4px solid var(--brand)}
     .company-info p{margin:4px 0;color:var(--ink)}
+    .notice{background:var(--accent);padding:20px 22px;border-radius:12px;margin:24px 0}
+    .notice p:last-child{margin-bottom:0}
 
     @media (max-width:720px){
       .legal-content{padding:32px 24px}
@@ -97,7 +100,7 @@
   <div class="container">
     <div class="legal-content">
       <h1>Privacy Policy</h1>
-      <p class="last-updated">Last updated: July 2026</p>
+      <p class="last-updated">Effective and last updated: July 30, 2026</p>
 
       <div class="company-info">
         <p><strong>Backsie Inc.</strong></p>
@@ -106,124 +109,154 @@
         <p>County of New Castle</p>
       </div>
 
-      <h2>1. Introduction</h2>
-      <p>Backsie Inc. ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service ("Backsie" or "the Service").</p>
-      <p>Please read this Privacy Policy carefully. By using the Service, you agree to the collection and use of information in accordance with this policy.</p>
+      <h2>1. Scope and who we are</h2>
+      <p>Backsie Inc. ("Backsie," "we," "us," or "our") provides the Backsie mobile and web applications, websites, community features, communications, and related services (collectively, the "Service"). This Privacy Policy explains what information we collect, why we use it, when we disclose it, how long we keep it, and the choices available to you.</p>
+      <p>This policy applies to people who use the Service, create an account, join an early-access list, contact support, receive permitted communications, or visit our websites. It does not apply to third-party products governed by their own privacy notices.</p>
 
-      <h2>2. Information We Collect</h2>
-      
-      <h3>2.1 Personal Information</h3>
-      <p>We may collect personal information that you voluntarily provide to us when you:</p>
+      <div class="notice">
+        <p><strong>Important:</strong> Backsie is a self-reflection and clarity tool, not therapy, medical care, diagnosis, treatment, or an emergency service. Backsie is not a health-care provider or a service covered by HIPAA. Please do not use Backsie as a substitute for professional care.</p>
+        <p>Because users may discuss wellbeing, emotions, sleep, relationships, or health, please also read our <a href="consumer-health-data-privacy-policy.html">Consumer Health Data Privacy Policy</a>.</p>
+      </div>
+
+      <h2>2. Information we collect</h2>
+
+      <h3>2.1 Account and identity information</h3>
       <ul>
-        <li>Register for an account</li>
-        <li>Use the Service</li>
-        <li>Contact us for support</li>
-        <li>Subscribe to our newsletter or communications</li>
-      </ul>
-      <p>This information may include:</p>
-      <ul>
-        <li>Name and email address</li>
-        <li>Account credentials</li>
-        <li>Profile information</li>
-        <li>Communication preferences</li>
+        <li>Name, email address, account identifier, verification status, and authentication provider.</li>
+        <li>Phone number when you choose to provide it for SMS, support, or early-access communications.</li>
+        <li>Information received from Sign in with Apple or Google, such as provider subject identifiers, name, email address, and verification status, according to your provider settings.</li>
+        <li>Authentication and account-control records needed to sign you in, secure your account, link identities, or process account deletion. Passwords are managed through Amazon Cognito; Backsie does not store plaintext passwords in its application database.</li>
       </ul>
 
-      <h3>2.2 Usage Data</h3>
-      <p>We automatically collect certain information when you use the Service, including:</p>
+      <h3>2.2 Profile information</h3>
+      <p>Profile information may include your display name, date of birth, gender, age range, relationship status, profile photo, school, community, and community type. Some fields are required during onboarding and others are optional or may not be available in every version of the Service.</p>
+
+      <h3>2.3 Conversations and generated reflection content</h3>
       <ul>
-        <li>Device information (type, operating system, browser type)</li>
-        <li>IP address and general location data</li>
-        <li>Usage patterns and interactions with the Service</li>
-        <li>Log data and analytics</li>
+        <li>Your chat messages and conversation history.</li>
+        <li>Mental Checkpoints, Insight Cards, patterns, summaries, suggested next steps, conversation-memory summaries, and other content generated from your conversations.</li>
+        <li>Conversation status, safety classifications, and technical state used to continue or recover a conversation.</li>
+        <li>Feedback you provide about generated content, including "Helpful," "I relate," reports, saves, and optional written feedback.</li>
+      </ul>
+      <p>Your private conversations and generated reflection content are private by default. They are not posted to the community unless you take an explicit sharing action.</p>
+
+      <h3>2.4 Screenshots, images, speech, and audio</h3>
+      <ul>
+        <li><strong>Text screenshots:</strong> When you attach a screenshot or text image, the image is transmitted to Backsie and an AI service to extract visible text. Backsie returns the extracted text for you to review and confirm. The submitted image is processed for that request; the extracted text may become part of your conversation if you send it.</li>
+        <li><strong>Profile photos:</strong> A profile photo you choose is compressed on your device and stored with your profile.</li>
+        <li><strong>Speech to text:</strong> Microphone audio is handled by the speech-recognition technology provided by your device or browser. Backsie receives the resulting transcript. Backsie's application servers do not store the raw microphone recording used for speech-to-text, but Apple, Google, your browser provider, or operating-system provider may process it under their own terms.</li>
+        <li><strong>Read aloud:</strong> When you request neural read-aloud, the selected text is sent to Backsie and OpenAI to create audio. Backsie may cache the generated audio, a short text preview, a text hash, model and voice settings, and usage totals so playback is faster and quotas can be enforced.</li>
       </ul>
 
-      <h3>2.3 Content You Provide</h3>
-      <p>When you use Backsie, you may provide content such as:</p>
-      <ul>
-        <li>Text inputs and conversations</li>
-        <li>Screenshots or images you upload</li>
-        <li>Voice recordings (if you use voice input features)</li>
-      </ul>
-      <p><strong>Privacy by Default:</strong> Your conversations and personal content are private by default and are not shared with other users unless you explicitly choose to do so.</p>
+      <h3>2.5 Community and sharing information</h3>
+      <p>If you choose to publish or share an Insight Card, we collect the card content and category, posting and moderation status, public-share link, saves, reactions, reports, opens, views, and share events. "Anonymous" means your identity is not displayed to other users; while your account is active, Backsie still maintains an internal account association for ownership, safety, moderation, and deletion.</p>
+      <p>Public share links can be opened by anyone who receives the link. Information copied or reshared outside Backsie may remain outside our control even after you remove it from the Service.</p>
 
-      <h2>3. How We Use Your Information</h2>
-      <p>We use the information we collect to:</p>
+      <h3>2.6 Support, feedback, early access, and SMS</h3>
       <ul>
-        <li>Provide, maintain, and improve the Service</li>
-        <li>Process your requests and provide customer support</li>
-        <li>Personalize your experience</li>
-        <li>Analyze usage patterns to improve our Service</li>
-        <li>Send you updates, security alerts, and administrative messages</li>
-        <li>Detect, prevent, and address technical issues and security threats</li>
-        <li>Comply with legal obligations</li>
+        <li>Support subject, message, email address, optional phone number, status, and internal support notes.</li>
+        <li>Feedback, bug reports, feature requests, and related session or card references.</li>
+        <li>Early-access name, email, optional phone number, SMS consent records, campaign/referral information, and conversion status.</li>
+        <li>Inbound and outbound SMS/MMS content, delivery status, carrier identifiers, opt-in/opt-out history, and media metadata when you communicate with us by text.</li>
       </ul>
 
-      <h2>4. Data Storage and Security</h2>
-      <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet or electronic storage is 100% secure.</p>
-      <p>Your data is stored securely and encrypted both in transit and at rest. We retain your information only for as long as necessary to provide the Service and fulfill the purposes outlined in this Privacy Policy.</p>
-
-      <h2>5. Data Sharing and Disclosure</h2>
-      <p>We do not sell your personal information. We may share your information only in the following circumstances:</p>
-      
-      <h3>5.1 With Your Consent</h3>
-      <p>We may share your information when you explicitly consent to such sharing.</p>
-
-      <h3>5.2 Service Providers</h3>
-      <p>We may share information with third-party service providers who perform services on our behalf, such as:</p>
+      <h3>2.7 Usage, device, network, and attribution information</h3>
+      <p>We collect product and operational events such as account and onboarding completion, session and message activity, feature use, Insight Card and community interactions, notification scheduling and opens, notification-to-chat conversion, response performance, failures, and token or quota usage. Depending on the event, records may include:</p>
       <ul>
-        <li>Cloud hosting providers</li>
-        <li>Analytics services</li>
-        <li>Customer support tools</li>
-      </ul>
-      <p>These providers are contractually obligated to protect your information and use it only for the purposes we specify.</p>
-
-      <h3>5.3 Legal Requirements</h3>
-      <p>We may disclose your information if required by law or in response to valid legal requests, such as:</p>
-      <ul>
-        <li>Compliance with legal obligations</li>
-        <li>Protection of our rights and property</li>
-        <li>Prevention of fraud or security issues</li>
-        <li>Protection of user safety</li>
+        <li>User, session, card, lead, anonymous, and device identifiers.</li>
+        <li>IP address, user agent, browser, device type, operating system, platform, app version, locale, and time zone.</li>
+        <li>Referrer, source, referral code, campaign, partner, creator, campus, landing-page variant, and UTM parameters.</li>
+        <li>Event time and limited event metadata, such as message length or reminder-copy variant. Product analytics are designed not to include full private chat text unless the event or feature itself requires that content.</li>
       </ul>
 
-      <h3>5.4 Business Transfers</h3>
-      <p>In the event of a merger, acquisition, or sale of assets, your information may be transferred to the acquiring entity.</p>
+      <h3>2.8 Information stored on your device</h3>
+      <p>Backsie stores information locally for authentication, preferences, offline recovery, pending-message retry, cached conversations, notification inbox state, reminder schedules, anonymous analytics identifiers, and feature continuity. Operating-system controls determine access to notifications, microphone, photos, and local storage.</p>
 
-      <h2>6. Your Rights and Choices</h2>
-      <p>You have the following rights regarding your personal information:</p>
+      <h2>3. How we collect information</h2>
+      <p>We collect information directly from you; automatically from your browser, device, and interactions; from Apple, Google, and Amazon Cognito when you authenticate; from people who view or interact with shared cards; and from service providers that help deliver, secure, measure, or support the Service.</p>
+
+      <h2>4. How we use information</h2>
       <ul>
-        <li><strong>Access:</strong> Request access to the personal information we hold about you</li>
-        <li><strong>Correction:</strong> Request correction of inaccurate or incomplete information</li>
-        <li><strong>Deletion:</strong> Request deletion of your personal information</li>
-        <li><strong>Data Portability:</strong> Request a copy of your data in a portable format</li>
-        <li><strong>Opt-out:</strong> Unsubscribe from marketing communications</li>
-        <li><strong>Withdraw Consent:</strong> Withdraw consent for data processing where applicable</li>
+        <li>Provide conversations, reflection features, memory continuity, Mental Checkpoints, Insight Cards, patterns, read-aloud, screenshot text extraction, PDF export, community, and sharing.</li>
+        <li>Personalize responses and retrieve relevant prior context when needed.</li>
+        <li>Classify safety-related language and provide safety questions or resources. This processing is automated and is not a guarantee that Backsie will identify every risk.</li>
+        <li>Create and operate accounts, authenticate users, synchronize devices, recover interrupted messages, and process account deletion.</li>
+        <li>Schedule local reminders, maintain the notification inbox, and measure whether reminders are useful.</li>
+        <li>Moderate community content, investigate reports, prevent abuse, and enforce our Terms.</li>
+        <li>Respond to support, feedback, SMS, and early-access requests.</li>
+        <li>Measure performance, reliability, engagement, retention, and feature quality; debug errors; prevent fraud; and protect the Service.</li>
+        <li>Comply with law, respond to valid legal process, and establish or defend legal claims.</li>
       </ul>
-      <p>To exercise these rights, please contact us using the information provided below.</p>
+      <p>We do not use solely automated processing to make decisions that produce legal or similarly significant effects about you.</p>
 
-      <h2>7. Cookies and Tracking Technologies</h2>
-      <p>We use cookies and similar tracking technologies to collect usage information and improve the Service. You can control cookies through your browser settings, but disabling cookies may affect your ability to use certain features of the Service.</p>
+      <h2>5. AI processing</h2>
+      <p>Backsie uses automated systems to generate responses, detect possible safety concerns, organize conversation memory, extract text from screenshots, create Mental Checkpoints and Insight Cards, and produce read-aloud audio. Depending on the feature, relevant content and context may be processed by Anthropic, OpenAI, and LangChain's LangGraph/LangSmith services.</p>
+      <p>Backsie submits content through business/API services and authorizes providers to process it only to deliver and secure the contracted service, subject to our agreements and configured account settings. AI output can be incomplete, inaccurate, or inappropriate. Safety checks and generated content do not replace professional judgment or human care.</p>
 
-      <h2>8. SMS Messaging Privacy</h2>
-      <p>If you provide your mobile phone number and opt in to receive SMS messages from Backsie, we may use your number to send beta access instructions, TestFlight installation guidance, product updates, support responses, bug-report follow-ups, feature-request follow-ups, and feedback-related messages.</p>
-      <p>Message frequency varies. Message and data rates may apply. You may opt out at any time by replying STOP. You may receive assistance by replying HELP.</p>
-      <p>We do not share, sell, rent, or otherwise provide your mobile phone number or SMS messaging consent information to third parties or affiliates for their marketing or promotional purposes.</p>
+      <h2>6. When we disclose information</h2>
+      <p>We do not sell personal information or consumer health data. We do not share personal information for cross-context behavioral advertising, and we do not run third-party advertising in the Service.</p>
+      <p>We may disclose information in the following circumstances:</p>
+      <ul>
+        <li><strong>At your direction:</strong> when you publish a card, create or use a public share link, use your device's share sheet, or otherwise ask us to disclose content.</li>
+        <li><strong>Service providers:</strong> Amazon Web Services (hosting, storage, databases, authentication, and email); LangChain/LangGraph/LangSmith (AI orchestration, thread state, and tracing); Anthropic and OpenAI (AI inference, image-text extraction, and/or audio generation); Twilio (SMS/MMS); and Apple, Google, browser, and operating-system providers for authentication, speech recognition, distribution, and device services.</li>
+        <li><strong>Authorized personnel:</strong> staff and contractors with a need to support users, operate the Service, review reports, administer security, or analyze product performance, subject to access controls and confidentiality obligations.</li>
+        <li><strong>Legal and safety reasons:</strong> when reasonably necessary to comply with law or valid legal process, protect rights or security, investigate fraud or abuse, or address a credible threat.</li>
+        <li><strong>Business transactions:</strong> in connection with financing, due diligence, merger, acquisition, reorganization, bankruptcy, or sale of assets, subject to appropriate safeguards.</li>
+      </ul>
+      <p>Our processors are required to handle information consistently with their agreements with us and applicable law. Their independent services remain subject to their own terms and privacy notices.</p>
 
-      <h2>9. Children's Privacy</h2>
-      <p>The Service is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have collected information from a child under 13, please contact us immediately.</p>
+      <h2>7. Legal bases for processing</h2>
+      <p>Where applicable law requires a legal basis, we process information as necessary to provide the Service you request and perform our contract with you; with your consent for optional features or communications; for legitimate interests such as security, moderation, support, analytics, and improvement that are not overridden by your rights; and to comply with legal obligations. You may withdraw consent at any time, but withdrawal does not affect prior lawful processing.</p>
 
-      <h2>10. International Data Transfers</h2>
-      <p>Your information may be transferred to and processed in countries other than your country of residence. We ensure appropriate safeguards are in place to protect your information in accordance with this Privacy Policy.</p>
+      <h2>8. Retention and deletion</h2>
+      <p>We keep information only as long as reasonably necessary for the purposes described above, including these general periods and criteria:</p>
+      <ul>
+        <li><strong>Account, profile, conversations, checkpoints, cards, and cached read-aloud audio:</strong> generally while your account is active, unless you delete content or your account.</li>
+        <li><strong>LangGraph thread copies:</strong> configured to expire after up to approximately 60 days for normal continuity. Account deletion also requests deletion of account-linked threads and LangSmith traces.</li>
+        <li><strong>Support, feedback, SMS, and early-access records:</strong> for as long as needed to respond, maintain consent or suppression records, resolve disputes, prevent abuse, and meet legal obligations.</li>
+        <li><strong>Analytics and operational logs:</strong> for the period needed to operate, secure, and improve the Service. Account-linked analytics are included in the application-data deletion flow; aggregated or de-identified statistics that no longer identify you may remain.</li>
+        <li><strong>Deletion receipts:</strong> a minimal one-way account-reference hash and workflow status may remain to complete, prove, and recover the deletion process. It does not contain your conversation, email, provider token, or plaintext account identifier.</li>
+        <li><strong>Backups:</strong> deleted information may remain temporarily in protected backups until those backups rotate, unless longer retention is required by law.</li>
+      </ul>
+      <p>When you delete your account, you may choose whether already-published community Insight Cards are deleted or retained. If you choose retention, Backsie removes their account and private-source associations and keeps the published card and working public link without your account identity. Content copied by others outside Backsie cannot necessarily be recalled.</p>
 
-      <h2>11. Changes to This Privacy Policy</h2>
-      <p>We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new Privacy Policy on this page and updating the "Last updated" date. Your continued use of the Service after such changes constitutes your acceptance of the updated Privacy Policy.</p>
+      <h2>9. Security</h2>
+      <p>We use administrative, technical, and organizational safeguards designed to protect information, including encryption in transit, encryption at rest where supported, access controls, authentication, environment separation, logging controls, and deletion workflows. No method of storage or transmission is completely secure, so we cannot guarantee absolute security.</p>
 
-      <h2>12. Contact Us</h2>
-      <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us at:</p>
+      <h2>10. Your choices and privacy rights</h2>
+      <p>Depending on where you live, you may have rights to know or access information, correct it, obtain a portable copy, delete it, restrict or object to processing, withdraw consent, appeal a denied request, and opt out of certain disclosures. Backsie does not sell personal information or use it for targeted advertising.</p>
+      <ul>
+        <li>Update supported profile information in the app.</li>
+        <li>Initiate account deletion in the app's settings. The flow verifies your identity and lets you choose what happens to published Insight Cards.</li>
+        <li>Disable notifications or microphone/photo permissions in your device settings. Core chat remains available when optional permissions are declined.</li>
+        <li>Reply STOP to opt out of SMS and HELP for assistance. Use the unsubscribe option in marketing email where provided.</li>
+        <li>Email <a href="mailto:hello@backsie.co">hello@backsie.co</a> for access, correction, deletion, portability, consent withdrawal, or an appeal.</li>
+      </ul>
+      <p>We may need to verify your identity before fulfilling a request. Authorized agents may submit requests where permitted by law, subject to verification of their authority. We will not discriminate against you for exercising a privacy right.</p>
+
+      <h2>11. Cookies and similar technologies</h2>
+      <p>Our websites and web-based app may use cookies, local storage, session storage, and similar technologies for sign-in, security, preferences, attribution, anonymous identifiers, and analytics. We do not use these technologies for third-party behavioral advertising. You can control browser storage through your browser settings, though some features may stop working.</p>
+
+      <h2>12. Local notifications and communications</h2>
+      <p>Current re-engagement reminders are local notifications scheduled on your device after you grant permission. Notification copy, scheduling state, inbox state, and open attribution may be stored locally, and privacy-safe open/conversion events are sent to Backsie analytics. You can disable notifications in device settings.</p>
+      <p>If you opt in to SMS, message frequency varies and message/data rates may apply. We use your number and consent records for Backsie communications such as early-access instructions, product updates, support, feedback, and related follow-up. Reply STOP to unsubscribe or HELP for help. We do not provide phone numbers or SMS consent to third parties or affiliates for their own marketing.</p>
+
+      <h2>13. Adults only</h2>
+      <p>Backsie is intended only for adults aged 18 and older, and people under 18 are not permitted to create or use an account. If we learn that an account belongs to someone under 18, we will investigate and delete the account and associated information as appropriate. If you believe a minor has provided information, contact <a href="mailto:hello@backsie.co">hello@backsie.co</a>.</p>
+
+      <h2>14. International transfers</h2>
+      <p>Backsie is based in the United States. Information may be processed in the United States and other countries where our providers operate. Those countries may have different data-protection laws. Where required, we use recognized transfer mechanisms and contractual protections.</p>
+
+      <h2>15. Changes to this policy</h2>
+      <p>We may update this policy as the Service or law changes. We will post the updated policy, change the effective date, and provide additional notice or request consent when required. Material changes apply prospectively unless law permits otherwise.</p>
+
+      <h2>16. Contact us</h2>
+      <p>For privacy questions, requests, or complaints, contact:</p>
       <p><strong>Backsie Inc.</strong><br/>
+      <a href="mailto:hello@backsie.co">hello@backsie.co</a><br/>
       1811 Silverside Road<br/>
       Wilmington, DE 19810<br/>
-      County of New Castle</p>
+      County of New Castle, United States</p>
     </div>
   </div>
 </body>
