@@ -1,9 +1,0 @@
-# https://backsie.co/robots.txt
-User-agent: *
-Allow: /
-
-# Marketing parameters create duplicate URLs for the same page.
-Disallow: /*?utm_
-Disallow: /*?fbclid
-
-Sitemap: https://backsie.co/sitemap.xml
