@@ -3382,12 +3382,11 @@ Video Modal
                 return 'http://localhost:8100/api/v1';
             }
 
-            if (hostname.includes('dev')) {
-                return 'https://dev-api.backsie.co/api/v1';
+            // The public site feeds the production backend. Anything else
+            // (a preview host, a staging copy of this page) goes to staging.
+            if (hostname === 'backsie.co' || hostname === 'www.backsie.co') {
+                return 'https://api.backsie.co/api/v1';
             }
-
-            // Until a true production backend exists, the public landing page
-            // should feed the staging backend/database used by the current app.
             return 'https://staging-api.backsie.co/api/v1';
         }
 
