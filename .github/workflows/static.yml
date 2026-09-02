@@ -39,7 +39,7 @@ jobs:
           # Fonts, images and video are immutable by content; pages must
           # revalidate so an edit shows up immediately. Not uploaded: repo
           # files that are not part of the site.
-          EXCLUDES=(--exclude ".git/*" --exclude ".github/*" --exclude "node_modules/*" --exclude "README.md" --exclude "Dockerfile" --exclude "nginx.conf" --exclude "package.json" --exclude "package-lock.json" --exclude "CNAME" --exclude "robots.txt" --exclude "sitemap.xml")
+          EXCLUDES=(--exclude ".*" --exclude ".*/*" --exclude "node_modules/*" --exclude "README.md" --exclude "Dockerfile" --exclude "nginx.conf" --exclude "package.json" --exclude "package-lock.json" --exclude "CNAME" --exclude "robots.txt" --exclude "sitemap.xml")
           aws s3 sync . "s3://$S3_BUCKET" --delete "${EXCLUDES[@]}" \
             --exclude "*.html" \
             --cache-control "public,max-age=31536000,immutable"
