@@ -1,43 +1,54 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: Publish backsie.co
+
+# The site is static files in an S3 bucket behind the CloudFront distribution
+# that answers for backsie.co (deploy repo, environments/production/site.tf).
+# The same distribution sends the card pages, sitemap and robots to the
+# backend, so this repository owns only the marketing pages.
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
-  pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
-  group: "pages"
+  group: "site"
   cancel-in-progress: false
 
+env:
+  S3_BUCKET: backsie-prod-site
+
 jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+
+      - name: Assume publish role
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          role-to-assume: ${{ vars.AWS_SITE_PUBLISH_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - name: Upload
+        run: |
+          # Fonts, images and video are immutable by content; pages must
+          # revalidate so an edit shows up immediately. Not uploaded: repo
+          # files that are not part of the site.
+          EXCLUDES=(--exclude ".git/*" --exclude ".github/*" --exclude "node_modules/*" --exclude "README.md" --exclude "Dockerfile" --exclude "nginx.conf" --exclude "package.json" --exclude "package-lock.json" --exclude "CNAME" --exclude "robots.txt" --exclude "sitemap.xml")
+          aws s3 sync . "s3://$S3_BUCKET" --delete "${EXCLUDES[@]}" \
+            --exclude "*.html" \
+            --cache-control "public,max-age=31536000,immutable"
+          aws s3 sync . "s3://$S3_BUCKET" --delete "${EXCLUDES[@]}" \
+            --exclude "*" --include "*.html" \
+            --cache-control "public,max-age=0,must-revalidate"
+
+      - name: Invalidate CloudFront
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ vars.SITE_CLOUDFRONT_DISTRIBUTION_ID }}" \
+            --paths "/*"
