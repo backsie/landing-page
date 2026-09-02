@@ -3,8 +3,130 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Backsie — Turn lived experience into Insight Cards.</title>
-    <meta name="description" content="Backsie turns lived experiences into useful Insight Cards and helps people learn from others going through similar situations."/>
+    <title>Backsie — See What Happened in Situations Like Yours</title>
+    <meta name="description" content="Ghosted, getting mixed signals, or stuck in a situationship? Tell Backsie what happened and see real experiences that resemble yours—what people did next and how things turned out."/>
+    <link rel="canonical" href="https://backsie.co/"/>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1"/>
+    <meta name="theme-color" content="#FAF7F1"/>
+
+    <!-- Open Graph / Twitter. Without these a shared link renders as a bare URL,
+         which is most of what a launch page gets passed around as. -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="Backsie"/>
+    <meta property="og:url" content="https://backsie.co/"/>
+    <meta property="og:title" content="See what happened in situations like yours"/>
+    <meta property="og:description" content="Ghosted, getting mixed signals, or stuck in a situationship? See real experiences that resemble yours."/>
+    <meta property="og:image" content="https://backsie.co/og-image.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="og:image:alt" content="Backsie — see what happened in situations like yours"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="See what happened in situations like yours"/>
+    <meta name="twitter:description" content="Ghosted, getting mixed signals, or stuck in a situationship? See real experiences that resemble yours."/>
+    <meta name="twitter:image" content="https://backsie.co/og-image.png"/>
+
+    <!-- Structured data. The FAQ block is generated from the questions on
+         the page, so search results cannot show answers the page no longer
+         gives. -->
+    <script type="application/ld+json">
+{
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Backsie",
+        "url": "https://backsie.co/",
+        "logo": "https://backsie.co/logo.png",
+        "description": "Backsie helps people understand a confusing situation by showing lived experiences that resemble it — what people did next, and how things turned out.",
+        "email": "hello@backsie.co"
+}
+    </script>
+    <script type="application/ld+json">
+{
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Backsie",
+        "url": "https://backsie.co/",
+        "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                        "@type": "EntryPoint",
+                        "urlTemplate": "https://backsie.co/?q={search_term_string}"
+                },
+                "query-input": "required name=search_term_string"
+        }
+}
+    </script>
+    <script type="application/ld+json">
+{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+                {
+                        "@type": "Question",
+                        "name": "What happens after I tell Backsie what happened?",
+                        "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "It works out what you’re really asking. Then it finds experiences that resemble yours, so you can compare what people did and how it went."
+                        }
+                },
+                {
+                        "@type": "Question",
+                        "name": "How does Backsie decide what is similar to my situation?",
+                        "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "It reads the question you’re asking and the shape of the situation — the context, the decisions, what happened after."
+                        }
+                },
+                {
+                        "@type": "Question",
+                        "name": "Is Backsie only for dating?",
+                        "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "No. Dating is where confusing situations come up most. Friendship, family, work and school work the same way."
+                        }
+                },
+                {
+                        "@type": "Question",
+                        "name": "What is an Insight Card?",
+                        "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "A record of one experience: what happened, the decision, what you did, how it went, what you learned. Keep it private, or share it anonymously."
+                        }
+                },
+                {
+                        "@type": "Question",
+                        "name": "Are these stories from real people?",
+                        "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "They come from real people. Every one is anonymous, and only appears if the person chose to share it."
+                        }
+                },
+                {
+                        "@type": "Question",
+                        "name": "Do I have to share my experience?",
+                        "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "No. It can stay private. Share an anonymous version and it can help someone facing the same thing."
+                        }
+                },
+                {
+                        "@type": "Question",
+                        "name": "Is Backsie telling me what I should do?",
+                        "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "No. It shows you how similar situations played out. Someone else’s outcome is not yours, and the decision stays with you."
+                        }
+                },
+                {
+                        "@type": "Question",
+                        "name": "Is Backsie a clinical or mental-health treatment product?",
+                        "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "No. Backsie is not a diagnosis, treatment, crisis or medical product. It is for adults aged 18 and over."
+                        }
+                }
+        ]
+}
+    </script>
 
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="favicon.ico"/>
@@ -12,8 +134,18 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
     
-    <!-- International Phone Input -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.12/build/css/intlTelInput.css">
+    <!-- The two faces the first screen is set in, fetched alongside the HTML
+         rather than after the stylesheet has been parsed. -->
+    <link rel="preload" as="font" type="font/otf" href="fonts/PPNeueMontreal-Bold.otf" crossorigin/>
+    <link rel="preload" as="font" type="font/otf" href="fonts/PPNeueMontreal-Book.otf" crossorigin/>
+
+    <!-- International Phone Input.
+         Loaded as print and switched to all once it arrives: it styles a field
+         inside the signup modal, and as a normal stylesheet it blocked the
+         first paint of the entire page on a third-party CDN. -->
+    <link rel="stylesheet" media="print" onload="this.media='all';this.onload=null"
+          href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.12/build/css/intlTelInput.css">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.12/build/css/intlTelInput.css"></noscript>
 
     <style>
         /* Font Face Declarations */
@@ -76,8 +208,9 @@
             --brand-2: #E7F1ED;
             --accent: #F3EEDC;
             --cta: #F59E0B;
+            --cta-ink: #C2740E; /* amber that holds up as text on cream */
             --radius: 14px;
-            --max: 1120px;
+            --max: 1240px;
             --border: #E7ECE9;
             --rule: #E2E3E6;
         }
@@ -95,10 +228,38 @@
             overflow-x: hidden;
         }
 
+        /* Magnetic scrolling.
+        
+           proximity, not mandatory: mandatory snaps from wherever you stop, so a
+           section taller than the viewport -- the FAQ, on a laptop -- becomes
+           impossible to read the bottom of, because every pause is yanked back
+           to the nearest edge. proximity only takes over when you are already
+           close to one, which is the behaviour people mean by magnetic.
+
+           scroll-padding-top keeps the header from covering the top of whatever
+           it lands on, and it fixes the anchor links at the same time -- "See
+           how Backsie works" was jumping its heading underneath the header.
+
+           Only from 900px up. On a phone every section is taller than the
+           screen, so snapping fights the scroll instead of helping it. */
+        @media (prefers-reduced-motion: no-preference) {
+            html {
+                scroll-behavior: smooth;
+                scroll-padding-top: var(--header-h, 98px);
+            }
+        }
+
+        /* The snapping itself is done in script, not here: CSS can only snap to
+           the nearest edge, which commits at halfway, and the wanted behaviour
+           is a third of the way. The two would fight if both were on. */
+
         .container {
             max-width: var(--max);
             margin-inline: auto;
-            padding: 24px
+            /* 24px was the same gutter on a phone and on a 1440px display, so a
+               wide screen had the content pinched into the middle with nothing
+               either side of it. */
+            padding: 24px clamp(24px, 3.4vw, 48px);
         }
 
         /* Header */
@@ -116,11 +277,14 @@
         }
 
         .brand {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 10px;
             color: var(--brand);
-            font-weight: 700
+            font-weight: 500;
+            font-size: 19px;
+            letter-spacing: -.01em;
+            line-height: 1;
         }
 
         .logo {
@@ -130,36 +294,73 @@
             display: block
         }
 
-        .logo-hero {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            display: none
-        }
-
         .nav-actions {
             display: flex;
             gap: 8px
         }
 
+        /* One button, whether it is a <button> or an <a>.
+        
+           A <button> does not inherit font-family or font-size from the page,
+           and an <a> does -- which is why the two CTAs came out at different
+           text sizes and different heights, one of them carrying the browser's
+           default link underline. Setting font explicitly and giving both a
+           min-height makes them the same object. */
         .btn {
-            border: 0;
-            border-radius: 12px;
-            padding: 12px 16px;
-            font-weight: 600;
-            cursor: pointer
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 46px;
+            padding: 0 22px;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -.01em;
+            text-decoration: none;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease;
         }
 
+        .btn:focus-visible {
+            outline: 2px solid var(--brand);
+            outline-offset: 3px;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Flat. The amber bloom under it was doing the job the hero glow
+           already does, and at this size it read as a glow rather than a
+           shadow. */
         .btn-primary {
             background: var(--cta);
-            color: #113d2f
+            color: #3B2600;
         }
 
-        .btn-ghost {
+        .btn-primary:hover {
+            background: #E8930A;
+        }
+
+        /* The quiet one. It was a 1px #E2E3E6 hairline, which on a cream ground
+           is almost nothing -- the button read as text that happened to have a
+           box near it. Enough border to be a control, not enough to compete. */
+        .btn-ghost,
+        .btn-secondary {
             background: #fff;
             color: var(--brand);
-            border: 1px solid var(--border)
+            border-color: rgba(31, 71, 63, .14);
+        }
+
+        .btn-ghost:hover,
+        .btn-secondary:hover {
+            background: #FCFBF8;
+            border-color: rgba(31, 71, 63, .34);
         }
 
         /* Hero */
@@ -168,17 +369,89 @@
         }
 
         .hero {
+            position: relative;
+            overflow: hidden;
             display: grid;
             gap: 28px;
             align-items: center
         }
 
+        @media (min-width: 900px) {
+            .hero {
+                /* Room between the two columns rather than a 28px seam, now
+                   there is width to spend. */
+                gap: clamp(40px, 5vw, 72px);
+            }
+        }
+
+        /* The first screen fills the laptop viewport, less the header, which is
+           sticky and so still takes its space in the flow. --header-h is
+           measured rather than guessed, because the header's height moves with
+           the CTA button and the brand mark.
+        
+           min-height, not height: a viewport short enough that the content does
+           not fit should scroll, not clip. Only from 900px up -- below that the
+           columns stack and the hero is already taller than the screen, so
+           forcing the height would only add empty space under it. */
+        @media (max-width: 1024px) and (min-width: 721px) {
+            .hero-title {
+                font-size: 46px;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .hero {
+                min-height: calc(100vh - var(--header-h, 98px));
+                min-height: calc(100svh - var(--header-h, 98px));
+                align-content: center;
+            }
+        }
+
+        /* A single warm bloom behind the card, in the CTA amber. It gives the
+           right-hand column something to sit on so the panel is not a white
+           rectangle floating on flat cream. */
+        .hero-glow {
+            position: absolute;
+            top: -200px;
+            right: -140px;
+            width: 560px;
+            height: 560px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245, 158, 11, .16), rgba(245, 158, 11, 0) 68%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-grid,
+        .outcomes {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Everything in the hero arrives in reading order rather than all at
+           once. The delay is set per element in the markup. */
+        @keyframes heroRise {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .rise {
+            animation: heroRise .7s cubic-bezier(.2, .8, .2, 1) both;
+        }
+
         .hero-grid {
             display: grid;
-            gap: 28px;
+            gap: 24px;
             align-self: start;
             margin-top: 10px
         }
+
 
         .pill {
             background: #fff;
@@ -227,10 +500,6 @@
         }
 
         /* Footer */
-        .hero-meta svg {
-            flex-shrink: 0;
-            vertical-align: middle
-        }
 
         /* Footer */
         .footer-link {
@@ -247,37 +516,290 @@
         }
 
         /* Feature highlights (green section) */
-        .features-wrap {
-            background: #EEF3EF
+        /* Requests
+        
+           The doc's P0-4: the page stops explaining itself and asks the visitor
+           what they came for. Centred on a narrow stage, because a question is
+           the only thing on this screen and a two-column grid of them read as a
+           menu rather than an invitation. */
+        .requests {
+            padding-block: clamp(56px, 7vw, 96px);
         }
 
-        .features {
-            display: grid;
-            gap: 20px;
-            grid-template-columns:1fr
+        /* One screen, like the hero. The header is sticky and covers the top of
+           whatever is snapped to, so its height comes off -- otherwise the
+           section is a screen tall but only a screen-minus-header is visible. */
+        @media (min-width: 900px) {
+            .requests {
+                min-height: calc(100vh - var(--header-h, 98px));
+                min-height: calc(100svh - var(--header-h, 98px));
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
         }
 
-        .feature {
+        .requests-stage {
+            width: 100%;
+            max-width: 940px;
+            margin-inline: auto;
+            text-align: center;
+        }
+
+        .requests-eyebrow {
+            margin: 0 0 20px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            color: var(--cta-ink);
+        }
+
+        /* The word shakes when you point at it -- the headline demonstrating
+           itself. inline-block is load-bearing: transforms do not apply to an
+           inline box, so without it the animation silently does nothing. */
+        @keyframes wobble {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            15%      { transform: rotate(-9deg) scale(1.07); }
+            30%      { transform: rotate(8deg) scale(1.08); }
+            45%      { transform: rotate(-6deg) scale(1.05); }
+            60%      { transform: rotate(4deg) scale(1.02); }
+            75%      { transform: rotate(-2deg) scale(1.01); }
+            90%      { transform: rotate(1deg) scale(1); }
+        }
+
+        .requests-title-accent {
+            display: inline-block;
+            /* --cta is #F59E0B, the exact --color-amber from the design system. */
+            color: var(--cta);
+            font-weight: 500;
+            cursor: default;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .requests-title-accent:hover {
+                animation: wobble .55s ease-in-out;
+            }
+        }
+
+        .requests-title {
+            max-width: 860px;
+            margin: 0 auto 22px;
+            /* Hero scale now that this section leads the page. Matches the
+               redesign's 64/1.08/100 at -1px, stepped down on narrow windows. */
+            font-size: clamp(34px, 5vw, 60px);
+            line-height: 1.08;
+            letter-spacing: -1px;
+            font-weight: 100;
+            color: var(--brand);
+        }
+
+        .requests-lede {
+            max-width: 640px;
+            margin: 14px auto 0;
+            font-size: 15.5px;
+            line-height: 1.6;
+            color: #6B6459;
+        }
+
+        /* The ask field. The point of the screen: somewhere to put the sentence
+           already in their head, rather than only a set of ours to pick from. */
+        .ask {
             display: flex;
             align-items: center;
             gap: 14px;
-            background: transparent;
-            border: 0
+            width: min(760px, 100%);
+            margin: 32px auto 0;
+            padding: 8px 8px 8px 24px;
+            background: #fff;
+            border: 1px solid rgba(31, 71, 63, .14);
+            border-radius: 999px;
+            box-shadow: 0 14px 34px rgba(31, 71, 63, .1);
+            transition: border-color .2s ease, box-shadow .2s ease;
         }
 
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            background: var(--mast);
-            border: 1px solid var(--border)
+        .ask:focus-within {
+            border-color: var(--cta);
+            box-shadow: 0 14px 34px rgba(245, 158, 11, .22);
         }
+
+        .ask-field {
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .ask-field input {
+            width: 100%;
+            padding: 12px 0;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            font-family: inherit;
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--brand);
+        }
+
+        .ask-ghost {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            overflow: hidden;
+            pointer-events: none;
+            font-size: 17px;
+            font-weight: 500;
+            color: #9a9384;
+            white-space: nowrap;
+        }
+
+        .ask:focus-within .ask-ghost,
+        .ask.is-filled .ask-ghost {
+            display: none;
+        }
+
+        .ask-ghost-caret {
+            width: 2px;
+            height: 18px;
+            background: var(--cta);
+            animation: heroCaret 1s steps(1, end) infinite;
+        }
+
+        .ask-go {
+            flex: 0 0 auto;
+            background: var(--brand);
+            color: #FAF7F1;
+            border-radius: 999px;
+        }
+
+        .ask-go:hover {
+            background: var(--cta);
+            color: var(--brand);
+        }
+
+        .requests-or {
+            margin: 30px 0 0;
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+            font-size: 10.5px;
+            font-weight: 500;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: rgba(31, 71, 63, .42);
+        }
+
+        /* Three columns, two rows.
+        
+           Sizing each chip to its own question left every row a different width
+           and every row starting at a different place -- six questions of very
+           different lengths cannot centre tidily. A grid gives one edge down
+           each side, equal heights per row, and it is shorter: two rows of
+           three instead of three rows of two, which is what keeps the section
+           on one screen.
+           
+           Wider than the text above it on purpose: prose wants a narrow
+           measure, a set of choices does not. */
+        .requests-chips {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            width: min(940px, 100%);
+            margin: 18px auto 0;
+        }
+
+        @media (max-width: 900px) {
+            .requests-chips {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .requests-chips {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .request {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 14px 18px;
+            border: 1px solid rgba(31, 71, 63, .1);
+            border-radius: 12px;
+            background: #fff;
+            font-family: inherit;
+            text-align: left;
+            cursor: pointer;
+            transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+        }
+
+        .request:hover {
+            transform: translateY(-3px);
+            border-color: var(--cta);
+            box-shadow: 0 12px 26px rgba(31, 71, 63, .11);
+        }
+
+        .request:focus-visible {
+            outline: 2px solid var(--brand);
+            outline-offset: 3px;
+        }
+
+        .request-cluster {
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--cta-ink);
+        }
+
+        .request-question {
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.35;
+            color: var(--brand);
+        }
+
+        .requests-note {
+            margin: 28px 0 0;
+            font-size: 13px;
+            color: rgba(31, 71, 63, .45);
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        @media (max-width: 640px) {
+            .ask {
+                flex-direction: column;
+                align-items: stretch;
+                border-radius: 18px;
+                padding: 14px;
+            }
+
+            .ask-go {
+                justify-content: center;
+            }
+        }
+
 
         /* How it helps */
         .section {
-            padding-block: 32px
+            /* Matches the FAQ's 72px top padding below it, so the band under
+               the card block reads as section rhythm rather than dead space. */
+            padding-block: 72px
         }
 
         .split-3 {
@@ -318,51 +840,10 @@
         }
 
         /* FAQ */
-        .faq-surface {
-            background: #fff;
-            overflow: hidden;
-            margin-top: 18px
-        }
 
-        .faq-row {
-            position: relative;
-            padding: 24px 56px 24px 30px;
-            cursor: pointer
-        }
 
         .faq-row + .faq-row {
             border-top: 1px solid var(--rule)
-        }
-
-        .faq-q {
-            font-size: 20px;
-            line-height: 28px;
-            color: var(--brand);
-            font-weight: 500;
-            cursor: pointer;
-            user-select: none
-        }
-
-        .faq-a {
-            font-size: 16px;
-            line-height: 24px;
-            color: rgba(31, 71, 63, .80);
-            font-weight: 400;
-            margin-top: 16px;
-            max-width: 960px
-        }
-
-        .faq-toggle {
-            position: absolute;
-            right: 30px;
-            top: 24px;
-            width: 34px;
-            height: 34px;
-            display: grid;
-            place-items: center;
-            cursor: pointer;
-            border: 0;
-            background: transparent
         }
 
         .faq-plus, .faq-minus {
@@ -378,11 +859,6 @@
             display: none
         }
 
-        .faq-answer {
-            height: 0;
-            overflow: hidden;
-            transition: height .28s ease
-        }
 
         [aria-expanded="true"] .faq-answer {
             height: auto
@@ -395,21 +871,10 @@
 
         /* Responsive */
         @media (min-width: 720px) {
-            .site-header .brand .logo {
-                display: none
-            }
-
-            .logo-hero {
-                display: block
-            }
-
             .hero {
                 grid-template-columns:1.05fr .95fr
             }
 
-            .features {
-                grid-template-columns:repeat(3, 1fr)
-            }
 
             .split-3 {
                 grid-template-columns:repeat(3, 1fr)
@@ -423,8 +888,9 @@
                 justify-self: end
             }
 
-            .insight-preview {
-                justify-self: end
+            .outcomes {
+                justify-self: end;
+                width: min(460px, 100%);
             }
         }
 
@@ -451,8 +917,8 @@
             }
 
             .hero-title {
-                font-size: 44px;
-                line-height: 50px;
+                font-size: 38px;
+                max-width: none;
             }
 
             .insight-card-title {
@@ -478,8 +944,6 @@
         .video-modal.active {
             display: flex
         }
-
-
 
         .video-modal-content {
             position: relative;
@@ -548,6 +1012,86 @@
         }
 
         /* Email Modal */
+        /* Platform chooser. The download CTAs do not guess the visitor's
+           device -- they ask, so a desktop visitor who wants the iOS app is
+           not sent somewhere useless. Options are real <a href>s, so they
+           still work with JS off and can be opened in a new tab. */
+        .platform-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .platform-modal.active {
+            display: flex
+        }
+
+        .platform-modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px 32px 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .platform-modal h2 {
+            margin: 0 0 6px;
+            font-size: 24px;
+            font-weight: 100;
+            letter-spacing: -.4px;
+            color: var(--brand);
+            text-align: center;
+        }
+
+        .platform-modal p {
+            margin: 0 0 24px;
+            font-size: 15px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .platform-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .platform-option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #fff;
+            color: var(--brand);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+        }
+
+        .platform-option:hover {
+            border-color: var(--brand);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px -12px rgba(31, 71, 63, .28);
+        }
+
+        .platform-option svg {
+            flex: 0 0 22px;
+        }
+
+        .platform-option .platform-arrow {
+            margin-left: auto;
+            opacity: .4;
+        }
+
         .email-modal {
             display: none;
             position: fixed;
@@ -819,8 +1363,6 @@
             display: flex;
         }
 
-
-
         .thank-you-message {
             background: #fff;
             padding: 48px 64px;
@@ -915,48 +1457,142 @@
             letter-spacing: 0;
         }
 
-        .hero-title {
-            font-size: 64px;
-            line-height: 70px;
-            letter-spacing: -.02em;
+        /* Sets the frame before the headline speaks: what this is, and what it
+           is not. Monospaced and letterspaced so it reads as a label rather
+           than a sentence, in the system stack -- no reason to pull a second
+           family over the wire for one line. */
+        .hero-eyebrow {
+            margin: 0 0 -14px; /* pulls back the hero grid's own 24px gap */
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+            font-size: 11.5px;
             font-weight: 500;
-            margin: 0 0 12px;
-            color: #1F473F;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--cta-ink);
         }
 
+        /* The closing words of the headline carry the accent. How many is set
+           in the markup, so changing the copy does not mean changing a count
+           buried in the script. */
+        .hero-title .t-word.t-accent {
+            color: var(--cta-ink);
+        }
+
+        .hero-title {
+            /* Exactly the mockup's setting: 60/1.04/700 at -.035em.
+            
+               Fixed rather than fluid, so it is 60px on a laptop whatever the
+               window width -- the clamp before this was 5vw, which only reached
+               60px above about 1200px and quietly rendered smaller on a
+               narrower window. Two steps down below, since a fixed 60px would
+               otherwise run off the side of a phone. PPNeueMontreal-Bold is
+               already loaded at 700, so this needs no new font file. */
+            font-size: 60px;
+            line-height: 1.08;
+            letter-spacing: -1px;
+            font-weight: 100;
+            margin: 0 0 12px;
+            color: #1F473F;
+            max-width: 18ch;
+        }
+
+        /* Typing the headline without the two things that usually come with it:
+           a headline that starts empty, and a page that jumps.
+
+           Every character is in the DOM and laid out from the first frame --
+           only its opacity switches -- so the line breaks are final before the
+           animation starts and nothing reflows. It also means the H1 is real
+           text for a crawler and for LCP, rather than something JavaScript
+           types in afterwards. */
+        .hero-title .t-char {
+            position: relative;
+        }
+
+        .hero-title.is-typing .t-char {
+            opacity: 0;
+        }
+
+        /* Struck, not faded. A letter from a key is either there or it is not;
+           easing one in makes it arrive like a slide. */
+        .hero-title.is-typing .t-char.is-on {
+            opacity: 1;
+        }
+
+        .hero-title .t-word {
+            white-space: nowrap;
+        }
+
+        /* One caret, moved between the characters as they are struck. It sits
+           absolutely inside whichever character is current, so it costs no
+           layout, wraps down the lines by itself, and there is only ever one of
+           it -- no window to miss and none left behind. */
+        .hero-caret {
+            position: absolute;
+            left: 100%;
+            top: .14em;
+            width: 2px;
+            height: .78em;
+            background: currentColor;
+        }
+
+        .hero-caret.is-blinking {
+            animation: heroCaret 850ms steps(1, end) 5 forwards;
+        }
+
+        @keyframes heroCaret {
+            0%, 49% {
+                opacity: 1;
+            }
+            50%, 100% {
+                opacity: 0;
+            }
+        }
+
+        /* Anyone who has asked for less movement gets the finished headline. */
+        @media (prefers-reduced-motion: reduce) {
+            .hero-title.is-typing .t-char {
+                opacity: 1;
+            }
+
+            .hero-caret {
+                display: none;
+            }
+        }
+
+        /* The questions and the sentence explaining them are one block, so they
+           share one grid cell and set their own internal spacing. */
+
+        /* The three questions carry the whole positioning -- they are the words
+           a reader recognises themselves in -- so they take the full ink colour
+           and a step up in size, and the explanation drops back behind them.
+           
+           Each is its own nowrap item, because a measure alone will happily
+           break "Getting mixed / signals?" across two lines. Wrapping can only
+           happen between questions now, so every line ends on a question mark
+           however narrow the column gets. */
+
+
+        /* A separator between questions, not after the last one, and never left
+           stranded at the end of a wrapped line. */
+
         .hero-lede {
-            font-size: 16px;
-            color: rgba(31,71,63,.80);
+            font-size: 15.5px;
+            line-height: 1.6;
+            color: #6B6459;
             margin: 0;
+            max-width: 440px;
+            text-wrap: pretty;
         }
 
         .hero-actions {
             display: flex;
-            gap: 10px;
+            gap: 14px;
             flex-wrap: wrap;
-        }
-
-        .btn-ghost-custom {
-            background: transparent;
-            border: 1px solid #E2E3E6;
-            color: #1F473F;
-        }
-
-        .hero-meta {
-            font-size: 14px;
-            display: flex;
-            gap: 20px;
             align-items: center;
-            flex-wrap: wrap;
-            color: rgba(31,71,63,.80);
-            margin-top: 6px;
         }
 
-        .hero-meta-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+        /* Three icons at roughly a kilobyte of path data each, in the critical
+           block, to say "these are three things". A dot says it. */
 
         .hero-video {
             width: 100%;
@@ -984,349 +1620,284 @@
             opacity: 1;
         }
 
-        .insight-preview {
-            width: min(390px, 100%);
+        /* The hero's right-hand column.
+        
+           It used to be a 760px-tall panel holding two complete app screens
+           cross-fading on an eight-second loop -- taller than the fold, at a
+           text size nobody reads, and asking the visitor to parse a UI before
+           they knew what the product was. This shows the thing the product is
+           actually for instead: one question, and what happened to the people
+           who were in it. */
+        .outcomes {
+            width: min(440px, 100%);
             justify-self: center;
         }
 
-        .insight-demo {
+        /* The app's own card, ported from components/insights/
+           CommunityInsightCard.tsx so the landing page shows the thing the
+           product actually renders rather than a cousin of it.
+        
+           The five tokens below are one row of lib/community-category-style.ts
+           -- Relationships & Dating, to match the question on the card. Swapping
+           category means swapping this block and nothing else. */
+        .outcomes-card {
+            --cat-accent: #9F3A5A;
+            --cat-soft: rgba(159, 58, 90, .13);
+            --cat-wash: #FFF4F7;
+            --cat-border: rgba(159, 58, 90, .22);
+            --cat-text: #6F2940;
+
             position: relative;
-            min-height: 760px;
-            border-radius: 32px;
-            border: 1px solid #E2E9E6;
-            background: #fff;
-            box-shadow: 0 18px 50px rgba(31, 71, 63, .10);
             overflow: hidden;
-        }
-
-        .demo-screen {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            padding: 18px;
-            background: #fff;
-        }
-
-        .demo-summary-screen {
-            animation: showSummaryCard 8s ease-in-out infinite;
-        }
-
-        .demo-full-screen {
-            opacity: 0;
-            transform: translateX(18px);
-            animation: showFullCard 8s ease-in-out infinite;
-            overflow: hidden;
-        }
-
-        .demo-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 16px;
-            color: #1F473F;
-            font-size: 21px;
-            font-weight: 500;
-            line-height: 1.1;
-        }
-
-        .demo-header span:last-child {
-            font-size: 17px;
-            font-weight: 400;
-        }
-
-        .demo-card {
-            border: 1px solid #E2E9E6;
-            border-radius: 28px;
-            background: #FAF9EF;
-            padding: 18px;
-        }
-
-        .demo-pill {
-            width: fit-content;
-            max-width: 100%;
-            margin: 0 auto 14px;
-            border: 1px solid #DBE1DD;
-            border-radius: 999px;
-            background: rgba(255,255,255,.48);
-            color: #1F473F;
-            font-size: 13px;
-            font-weight: 500;
-            line-height: 1.25;
-            padding: 8px 14px;
-            text-align: center;
-        }
-
-        .demo-title {
-            margin: 0 0 14px;
-            color: #1F473F;
-            font-size: 24px;
-            line-height: 1.16;
-            font-weight: 500;
-            text-align: center;
-        }
-
-        .demo-panel {
-            border: 1px solid #E2E9E6;
+            padding: 20px;
+            border: 1px solid rgba(31, 71, 63, .16);
             border-radius: 20px;
-            background: #fff;
-            padding: 15px;
-            color: #1F473F;
+            /* The category stays a wash that fades out by 46% rather than a
+               saturated edge, and there is no cap across the top -- the app's
+               card has neither. */
+            background: linear-gradient(165deg, var(--cat-wash) 0%, #FFFFFF 46%);
+            box-shadow: 0 1px 2px rgba(31, 71, 63, .04), 0 8px 20px -12px rgba(31, 71, 63, .18);
         }
 
-        .demo-panel-title {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 0 0 12px;
-            font-size: 15px;
-            font-weight: 500;
-        }
-
-        .demo-quote {
-            margin: 0;
-            color: #1F473F;
-            font-size: 16px;
-            font-style: italic;
-            line-height: 1.42;
-            font-weight: 500;
-        }
-
-        .demo-next-step {
-            display: grid;
-            grid-template-columns: 34px 1fr;
-            gap: 12px;
-            margin-top: 12px;
-            border-radius: 20px;
-            background: #E4F2EB;
-            border: 1px solid #D1E8DE;
-            padding: 15px;
-            color: #1F473F;
-        }
-
-        .demo-circle-icon {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            background: #fff;
-            color: #1F473F;
-            font-size: 20px;
-            line-height: 1;
-        }
-
-        .demo-block-title {
-            margin: 0 0 5px;
-            font-size: 15px;
-            font-weight: 500;
-        }
-
-        .demo-block-copy {
-            margin: 0;
-            font-size: 15px;
-            line-height: 1.34;
-            font-weight: 500;
-        }
-
-        .demo-card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 14px;
-            margin-top: 14px;
-            padding-top: 12px;
-            border-top: 1px solid #E1E5DE;
-            color: #1F473F;
-            font-size: 15px;
-            font-weight: 500;
-        }
-
-        .demo-view-full {
+        /* The category pill, as the app draws it. */
+        .outcomes-pill {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            animation: viewButtonPulse 8s ease-in-out infinite;
-        }
-
-        .demo-view-icon {
-            width: 16px;
-            height: 16px;
-            display: block;
-            flex: 0 0 auto;
-        }
-
-        .demo-full-hero {
-            text-align: center;
-            padding: 2px 0 0;
-        }
-
-        .demo-spark {
-            width: 46px;
-            height: 46px;
-            margin: 0 auto 8px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            background: #1F473F;
-            color: #fff;
-            font-size: 20px;
-        }
-
-        .demo-full-title {
-            margin: 0;
-            color: #1F473F;
-            font-size: 25px;
-            line-height: 1.05;
-            font-weight: 500;
-        }
-
-        .demo-full-subtitle {
-            margin: 7px auto 0;
-            max-width: 310px;
-            color: rgba(31,71,63,.78);
-            font-size: 13px;
-            line-height: 1.35;
-        }
-
-        .demo-full-scroll {
-            display: grid;
-            gap: 10px;
-            animation: scrollFullCard 8s ease-in-out infinite;
-        }
-
-        .demo-detail-card {
-            border: 1px solid #E2E9E6;
-            border-radius: 24px;
-            background: #FBFCFB;
-            padding: 14px;
-        }
-
-        .demo-stuck {
-            display: grid;
-            grid-template-columns: 32px 1fr;
-            gap: 12px;
-            border: 1px solid #E4E1D4;
-            border-radius: 18px;
-            background: #F8F6E8;
-            padding: 12px;
-        }
-
-        .demo-feedback-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            padding-top: 10px;
-            border-top: 1px solid #E1E5DE;
-        }
-
-        .feedback-button {
-            min-height: 58px;
-            display: grid;
-            place-items: center;
-            border: 1px solid #E2E9E6;
-            border-radius: 16px;
-            background: #fff;
-            color: #1F473F;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 1.25;
-        }
-
-        .feedback-button span {
-            display: block;
-            color: rgba(31,71,63,.74);
-            font-size: 12px;
-            font-weight: 400;
-        }
-
-        .feedback-input {
-            min-height: 48px;
-            border: 1px solid #E2E9E6;
-            border-radius: 16px;
-            background: #fff;
-            padding: 12px;
-            color: rgba(31,71,63,.42);
-            font-size: 14px;
-            line-height: 1.4;
-        }
-
-        .demo-submit {
-            min-height: 38px;
+            margin: 0 0 14px;
+            padding: 5px 11px;
+            border: 1px solid var(--cat-border);
             border-radius: 999px;
-            display: grid;
-            place-items: center;
-            background: #96AAA4;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
+            background: var(--cat-soft);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: .2px;
+            color: var(--cat-text);
         }
 
-        .demo-share {
-            border: 1px solid #E2E9E6;
-            border-radius: 24px;
-            background: #EEF7F1;
-            padding: 13px;
-            color: #1F473F;
+        /* The app's small-caps label: 11px, 600, 0.6px tracking, category ink.
+           It was monospaced here, which read as a different product. */
+        .outcomes-eyebrow {
+            margin: 0 0 6px;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: .6px;
+            text-transform: uppercase;
+            color: var(--cat-text);
         }
 
-        .demo-share-title {
+        .outcomes-question {
+            margin: 0;
+            font-size: 19px;
+            line-height: 26px;
+            font-weight: 400;
+            letter-spacing: -.01em;
+            color: var(--brand);
+            text-wrap: balance;
+        }
+
+        /* A rule with the count sitting in it, so the break between the question
+           and the answers is one element rather than a heading plus a line. */
+        .outcomes-rule {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin: 0 0 6px;
-            font-size: 15px;
+            gap: 12px;
+            margin: 18px 0 4px;
+            font-size: 11px;
             font-weight: 500;
+            letter-spacing: .6px;
+            text-transform: uppercase;
+            color: rgba(31, 71, 63, .48);
         }
 
-        .demo-share p {
-            margin: 0 0 10px;
-            font-size: 13px;
-            line-height: 1.35;
-            font-weight: 500;
+        .outcomes-rule::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: rgba(31, 71, 63, .12);
         }
 
-        .demo-share-button {
-            min-height: 38px;
-            border-radius: 999px;
+        .outcomes-body {
+            position: relative;
+        }
+
+        .outcomes-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Shown while the question is still being typed. The rows below keep
+           their space whether or not they are visible -- without this the card
+           sat as a tall blank panel for over a second on every cycle. It also
+           says what is happening: the question is being matched. */
+        .outcomes-skeleton {
+            position: absolute;
+            inset: 0;
             display: grid;
-            place-items: center;
-            background: #1F473F;
-            color: #fff;
+            align-content: start;
+            gap: 26px;
+            padding-top: 18px;
+            pointer-events: none;
+            transition: opacity .35s ease;
+        }
+
+        .outcomes-card.is-ready .outcomes-skeleton {
+            opacity: 0;
+        }
+
+        .outcomes-skeleton span {
+            display: block;
+            height: 11px;
+            border-radius: 6px;
+            background: rgba(31, 71, 63, .09);
+            animation: skeletonPulse 1.6s ease-in-out infinite;
+        }
+
+        .outcomes-skeleton span:nth-child(2) {
+            width: 78%;
+            animation-delay: .18s;
+        }
+
+        .outcomes-skeleton span:nth-child(3) {
+            width: 86%;
+            animation-delay: .36s;
+        }
+
+        .outcomes-skeleton span:nth-child(4) {
+            width: 68%;
+            animation-delay: .54s;
+        }
+
+        .outcomes-skeleton span:nth-child(5) {
+            width: 82%;
+            animation-delay: .72s;
+        }
+
+        .outcomes-skeleton span:nth-child(6) {
+            width: 60%;
+            animation-delay: .9s;
+        }
+
+        @keyframes skeletonPulse {
+            0%, 100% {
+                opacity: .55;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .outcomes-skeleton {
+                display: none;
+            }
+        }
+
+        /* The rows are the answer to the question above them, so they arrive
+           after it rather than with it. The card replays on a loop, which is
+           what keeps the hero alive once the headline has finished typing. */
+        .outcome {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(31, 71, 63, .08);
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        .outcome.is-in {
+            opacity: 1;
+            transform: none;
+            transition: opacity .5s ease, transform .5s cubic-bezier(.2, .8, .2, 1);
+        }
+
+        .outcome:last-child {
+            border-bottom: 0;
+        }
+
+        .outcome-did {
+            margin: 0;
             font-size: 15px;
-            font-weight: 600;
+            line-height: 22px;
+            font-weight: 500;
+            color: var(--brand);
         }
 
-        @keyframes showSummaryCard {
-            0%, 36% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-            43%, 90% {
-                opacity: 0;
-                transform: translateX(-18px);
-            }
-            96%, 100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        /* The outcome is the payoff, so it is marked as the consequence of the
+           line above rather than set as another paragraph beside it. */
+        .outcome-next {
+            position: relative;
+            margin: 6px 0 0;
+            padding-left: 22px;
+            font-size: 15px;
+            line-height: 23px;
+            color: rgba(31, 71, 63, .78);
         }
 
-        @keyframes showFullCard {
-            0%, 38% {
-                opacity: 0;
-                transform: translateX(18px);
-            }
-            45%, 88% {
+        .outcome-next::before {
+            content: "\2192";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--cat-accent);
+        }
+
+        .outcomes-foot {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(31, 71, 63, .10);
+        }
+
+        .outcomes-cta {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--cat-accent);
+            text-decoration: none;
+        }
+
+        .outcomes-cta:hover {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .outcomes-note {
+            margin: 0;
+            font-size: 11px;
+            color: rgba(31, 71, 63, .42);
+        }
+
+        .outcomes-question .t-char {
+            position: relative;
+        }
+
+        .outcomes-question.is-typing .t-char {
+            opacity: 0;
+        }
+
+        .outcomes-question.is-typing .t-char.is-on {
+            opacity: 1;
+        }
+
+        .outcomes-question .hero-caret {
+            background: var(--cat-accent);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .outcomes-question.is-typing .t-char {
                 opacity: 1;
-                transform: translateX(0);
             }
-            96%, 100% {
-                opacity: 0;
-                transform: translateX(18px);
+
+            .outcome {
+                opacity: 1;
+                transform: none;
             }
+
+            .rise {
+                animation: none;
+            }
+
         }
 
         @keyframes viewButtonPulse {
@@ -1369,6 +1940,8 @@
             margin: 0;
             font-size: 48px;
             line-height: 1.2;
+            font-weight: 100;
+            letter-spacing: -.5px;
             color: #1F473F;
             flex: 1;
             min-width: 300px;
@@ -1382,6 +1955,351 @@
             flex: 1;
             min-width: 300px;
             max-width: 500px;
+        }
+
+        /* The question the section turns on, so it is set as the loud one and
+           the sentence above it steps back to make room. */
+
+        /* How Backsie works.
+        
+           This screen used to be two: a strip of three feature blocks and then a
+           section walking through the same three steps. They said the same thing
+           a screen apart, so the strip is gone and this carries it, with the
+           fourth step the doc asks for -- the one that closes the loop. */
+        .steps-wrap {
+            background: #EEF3EF;
+        }
+
+        .steps-inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-block: clamp(56px, 6vw, 88px);
+        }
+
+        @media (min-width: 900px) {
+            .steps-inner {
+                min-height: calc(100vh - var(--header-h, 98px));
+                min-height: calc(100svh - var(--header-h, 98px));
+            }
+        }
+
+        .steps-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .steps-head .section-title {
+            font-size: clamp(30px, 3.6vw, 46px);
+            line-height: 1.15;
+            letter-spacing: -.5px;
+            font-weight: 100;
+        }
+
+        /* A track running behind the numbers, filled in amber. It is the
+           sequence made visible: four beats on one line, in order -- and with
+           the crumbs and the note gone, the only thing under the heading, so it
+           takes the room they were using. */
+        .rail {
+            position: relative;
+            margin-top: clamp(40px, 5vw, 68px);
+        }
+
+        .rail-track,
+        .rail-fill {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 23px;
+            height: 2px;
+        }
+
+        .rail-track {
+            background: rgba(31, 71, 63, .14);
+        }
+
+        /* Width, not a scale transform, because the script advances it to the
+           measured centre of each number in turn rather than sweeping the whole
+           track in one go. */
+        .rail-fill {
+            width: 0;
+            background: var(--cta);
+            transition: width .9s cubic-bezier(.3, .7, .3, 1);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr)) 300px;
+            gap: 34px;
+            align-items: start;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        @media (max-width: 1100px) {
+            .steps {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .rail-track,
+            .rail-fill {
+                display: none;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .steps {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        /* A step is dim until the rail reaches it. Dim rather than hidden: the
+           column keeps its height, so nothing below shifts as each one lands,
+           and the reader can see there are four of them from the start. */
+        .step {
+            display: flex;
+            flex-direction: column;
+            opacity: .32;
+            transition: opacity .5s ease;
+        }
+
+        .step.is-on {
+            opacity: 1;
+        }
+
+        .step-num {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            place-items: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(31, 71, 63, .14);
+            color: var(--brand);
+            font-size: 17px;
+            font-weight: 500;
+            transition: background-color .4s ease;
+        }
+
+        .step.is-on .step-num {
+            background: var(--cta);
+        }
+
+        .step-num-loop,
+        .step.is-on .step-num-loop {
+            background: #EEF3EF;
+            border: 1.5px dashed rgba(31, 71, 63, .35);
+            font-size: 19px;
+            font-weight: 500;
+        }
+
+        .step.is-on .step-num-loop span {
+            display: block;
+            animation: railSpin 6s linear infinite;
+        }
+
+        @keyframes railSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .step-number {
+            margin: 24px 0 0;
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--cta-ink);
+        }
+
+        .step .step-title {
+            margin: 10px 0 0;
+            font-size: 19px;
+            line-height: 1.3;
+            font-weight: 400;
+            letter-spacing: -.02em;
+        }
+
+        .step .step-text {
+            margin: 11px 0 0;
+            font-size: 14.5px;
+            line-height: 1.65;
+            color: #6B6459;
+        }
+
+        /* Fragments of the product rather than pictures of it: what the step
+           actually produces, at the size it produces it. */
+        .mock {
+            position: relative;
+            min-height: 176px;
+            margin-top: 22px;
+        }
+
+        .mock-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 0;
+        }
+
+        .mock > * {
+            opacity: 0;
+        }
+
+        .step.is-on .mock > * {
+            animation: mockPop .6s cubic-bezier(.2, .8, .2, 1) both;
+            animation-delay: calc(var(--pop, 1) * .22s);
+        }
+
+        @keyframes mockPop {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(.94);
+            }
+            60% {
+                transform: translateY(0) scale(1.02);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .bubble {
+            position: absolute;
+            right: 0;
+            top: 0;
+            max-width: 196px;
+            padding: 11px 14px;
+            border-radius: 12px;
+            background: #fff;
+            font-size: 11.5px;
+            line-height: 1.4;
+            box-shadow: 0 6px 16px rgba(31, 71, 63, .09);
+        }
+
+        .bubble-reply {
+            right: auto;
+            left: 0;
+            top: 72px;
+            max-width: 212px;
+            background: rgba(255, 255, 255, .6);
+            box-shadow: none;
+            color: rgba(31, 71, 63, .72);
+            line-height: 1.5;
+        }
+
+        .typing {
+            position: absolute;
+            right: 40px;
+            bottom: 4px;
+            display: flex;
+            gap: 4px;
+            padding: 7px 10px;
+            border-radius: 999px;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(31, 71, 63, .08);
+        }
+
+        .typing i {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(31, 71, 63, .35);
+        }
+
+        .step.is-on .typing i {
+            animation: typingDots 1.2s infinite;
+        }
+
+        .step.is-on .typing i:nth-child(2) {
+            animation-delay: .2s;
+        }
+
+        .step.is-on .typing i:nth-child(3) {
+            animation-delay: .4s;
+        }
+
+        @keyframes typingDots {
+            0%, 20% {
+                opacity: .25;
+            }
+            50% {
+                opacity: 1;
+            }
+            80%, 100% {
+                opacity: .25;
+            }
+        }
+
+        .tag {
+            display: block;
+            padding: 11px 14px;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0 6px 16px rgba(31, 71, 63, .08);
+        }
+
+        .tag-soft {
+            background: #DCE7DC;
+            box-shadow: none;
+        }
+
+        .tag b {
+            display: block;
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+            font-size: 9.5px;
+            font-weight: 500;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: #6B6459;
+        }
+
+        .tag em {
+            display: block;
+            margin-top: 6px;
+            font-style: normal;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .loopcard {
+            display: block;
+            padding: 16px;
+            border: 1.5px dashed rgba(31, 71, 63, .28);
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1.5;
+            color: rgba(31, 71, 63, .72);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .steps-wrap .rail-fill {
+                width: 100%;
+                transition: none;
+            }
+
+            .steps-wrap .step {
+                opacity: 1;
+            }
+
+            .steps-wrap .step-num {
+                background: var(--cta);
+            }
+
+            .steps-wrap .mock > * {
+                opacity: 1;
+                animation: none;
+            }
         }
 
         .step-card {
@@ -1417,6 +2335,187 @@
             justify-content: center;
             padding: 60px 30px;
             text-align: center;
+        }
+
+        /* The last line is the one the whole card exists for. */
+
+
+
+
+
+
+
+        /* FAQ
+        
+           A sticky intro on the left and two columns of questions on the right,
+           grouped so someone looking for the privacy answer can find it without
+           reading the product ones first. */
+        /* Same container width as everything else. Widening this one to 1560px
+           made its left and right edges miss the header's brand and CTA, and the
+           footer's, by a couple of hundred pixels -- one section out of step
+           down the whole page. The room comes from the type scale and the
+           column split instead. */
+        .faq {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 72px;
+            align-items: start;
+            padding-block: clamp(48px, 5vw, 72px);
+        }
+
+        /* A screen of its own, like the sections above it. The questions can
+           grow past it as they are opened -- min-height, so it stretches to fill
+           an empty screen without trapping a full one. */
+        /* The last screen carries the footer with it: the questions and the
+           legal links come to one viewport between them, so reaching the footer
+           costs nothing extra. */
+        @media (min-width: 900px) {
+            .faq {
+                min-height: calc(100vh - var(--header-h, 98px) - var(--footer-h, 96px));
+                min-height: calc(100svh - var(--header-h, 98px) - var(--footer-h, 96px));
+                align-content: center;
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .faq {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 34px;
+            }
+        }
+
+        .faq-intro {
+            position: sticky;
+            top: calc(var(--header-h, 98px) + 24px);
+        }
+
+        @media (max-width: 1000px) {
+            .faq-intro {
+                position: static;
+            }
+        }
+
+        .faq-intro h2 {
+            margin: 0;
+            font-size: clamp(28px, 3.2vw, 46px);
+            line-height: 1.15;
+            letter-spacing: -.4px;
+            font-weight: 100;
+            color: var(--brand);
+            text-wrap: pretty;
+        }
+
+        .faq-intro p {
+            margin: 16px 0 0;
+            font-size: 16px;
+            line-height: 1.65;
+            color: #6B6459;
+        }
+
+        .faq-intro a {
+            color: var(--cta-ink);
+        }
+
+        .faq-bar {
+            display: block;
+            width: 56px;
+            height: 3px;
+            margin-top: 22px;
+            background: var(--cta);
+        }
+
+        .faq-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 64px;
+        }
+
+        @media (max-width: 1000px) {
+            .faq-cols {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 0;
+            }
+        }
+
+        .faq-cat {
+            margin: 0;
+            padding-bottom: 14px;
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+            font-size: 11.5px;
+            font-weight: 500;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--cta-ink);
+        }
+
+        .faq details {
+            border-top: 1px solid rgba(31, 71, 63, .12);
+        }
+
+        .faq details:last-child {
+            border-bottom: 1px solid rgba(31, 71, 63, .12);
+        }
+
+        .faq summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 20px 2px;
+            list-style: none;
+            cursor: pointer;
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--brand);
+        }
+
+        .faq summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq summary:hover {
+            color: var(--cta-ink);
+        }
+
+        /* One glyph rotated, rather than a plus and a minus swapped: nothing to
+           keep in sync, and it animates. */
+        .faq-plus {
+            flex: 0 0 auto;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 1;
+            transition: transform .28s cubic-bezier(.2, .8, .2, 1), color .2s ease;
+        }
+
+        .faq details[open] .faq-plus {
+            transform: rotate(45deg);
+            color: var(--cta);
+        }
+
+        .faq-a {
+            padding: 0 2px 20px;
+            font-size: 15px;
+            line-height: 1.65;
+            color: #6B6459;
+            animation: faqOpen .38s cubic-bezier(.2, .8, .2, 1) both;
+        }
+
+        @keyframes faqOpen {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .faq-a {
+                animation: none;
+            }
         }
 
         .card-video {
@@ -1539,10 +2638,9 @@
     </style>
 </head>
 <body>
-<div class="masthead">
     <header class="site-header">
         <div class="container nav">
-            <div class="brand"><img src="logo.png" alt="Backsie logo" class="logo"/>Backsie</div>
+            <div class="brand"><img src="logo.png" alt="" class="logo"/>Backsie</div>
             <button class="hamburger" aria-label="Open menu">
                 <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="46" height="46" rx="16" fill="#EEF3EF"/>
@@ -1550,388 +2648,503 @@
                 </svg>
             </button>
             <div class="nav-actions">
-                <button class="btn btn-primary">Get early access</button>
+                <a class="btn btn-primary" href="https://app.backsie.co/onboarding/account/">Download</a>
             </div>
             <div class="mobile-menu" role="menu" aria-hidden="true">
-                <button class="btn btn-primary cta mobile-menu-btn" role="menuitem">
-                    Get early access
-                </button>
+                <a class="btn btn-primary cta mobile-menu-btn" role="menuitem" href="https://app.backsie.co/onboarding/account/">
+                    Download
+                </a>
             </div>
         </div>
     </header>
+    <script>
+        /* Measured, not hard-coded: the header's height depends on the CTA
+           button and the brand mark, and both can change. Runs here rather than
+           at the end of the body so the hero is sized on the first paint. */
+        (function () {
+            var header = document.querySelector('.site-header');
+            if (!header) return;
+            var queued = false;
+
+            var footer = document.querySelector('footer');
+
+            function measure() {
+                queued = false;
+                var root = document.documentElement.style;
+                root.setProperty('--header-h', header.offsetHeight + 'px');
+                /* The FAQ subtracts this as well as the header, so that screen
+                   and the footer together come to exactly one viewport and the
+                   footer needs no scroll of its own to reach. */
+                if (footer) root.setProperty('--footer-h', footer.offsetHeight + 'px');
+            }
+
+            measure();
+            addEventListener('resize', function () {
+                if (queued) return;
+                queued = true;
+                requestAnimationFrame(measure);
+            });
+        })();
+    </script>
+<div class="masthead">
+
+    <!-- Requests: the question the visitor is already carrying -->
+    <section class="container requests" id="requests">
+        <div class="requests-stage">
+            <p class="requests-eyebrow">You're not overthinking it</p>
+            <h1 class="requests-title">Life gets <span class="requests-title-accent">shaky</span> &mdash;<br/>we've got your back.</h1>
+            <p class="requests-lede">Start with the question already running through your head.</p>
+
+            <form class="ask" id="askForm" autocomplete="off">
+                <label class="ask-field">
+                    <span class="visually-hidden">Your question</span>
+                    <input id="askInput" type="text" aria-label="Your question"/>
+                    <!-- The typed placeholder is decoration over a real, empty
+                         input, not a value in it: a value would submit if the
+                         person pressed the button without typing. -->
+                    <span class="ask-ghost" aria-hidden="true">
+                        <span class="ask-ghost-text"></span><span class="ask-ghost-caret"></span>
+                    </span>
+                </label>
+                <button class="btn ask-go" type="submit">See similar situations</button>
+            </form>
+
+            <p class="requests-or">Or start from one of these</p>
+            <!-- Rendered from REQUESTS below rather than written out here, so the
+                 set can come from the Request Intelligence database later without
+                 the markup changing. -->
+            <div class="requests-chips" id="requestsGrid"></div>
+
+            <p class="requests-note">Pick the one closest to yours and we will start there.</p>
+        </div>
+    </section>
+    <script>
+        /* The six launch requests.
+        
+           Hard-coded for launch, shaped like the rows they will eventually come
+           from: the doc's P0-5 asks for request_id, canonical_request, cluster,
+           priority_score, featured_on_homepage and display_order, so the
+           homepage set can later be driven by search demand, activity and
+           seasonality rather than by editing this file. Swapping this array for
+           a fetch is the whole change. */
+        (function () {
+            var REQUESTS = [
+                { request_id: 'req_ghost_going_great', cluster: 'Ghosting',        canonical_request: 'Why did he ghost me when things were going great?' },
+                { request_id: 'req_stopped_texting',   cluster: 'Stopped texting', canonical_request: 'Why did he suddenly stop texting me?' },
+                { request_id: 'req_mixed_signals',     cluster: 'Mixed signals',   canonical_request: 'He gives me mixed signals. What does it mean?' },
+                { request_id: 'req_situationship',     cluster: 'Situationships',  canonical_request: 'Will my situationship ever become a relationship?' },
+                { request_id: 'req_wont_commit',       cluster: 'Commitment',      canonical_request: "He likes me but won't commit. Should I wait?" },
+                { request_id: 'req_comparison',        cluster: 'Comparison',      canonical_request: "Why does everyone else's relationship look easier?" }
+            ];
+
+            var grid = document.getElementById('requestsGrid');
+            var form = document.getElementById('askForm');
+            var input = document.getElementById('askInput');
+            var ask = document.querySelector('.ask');
+            if (!grid || !form || !input || !ask) return;
+
+            /* The button inside is a submit, so the form would navigate. The
+               modal handler bound to .ask-go does the work. */
+            form.addEventListener('submit', function (event) { event.preventDefault(); });
+
+            REQUESTS.forEach(function (request, index) {
+                var button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'request';
+                button.dataset.requestId = request.request_id;
+                button.dataset.cluster = request.cluster;
+                button.dataset.displayOrder = index;
+
+                var cluster = document.createElement('span');
+                cluster.className = 'request-cluster';
+                cluster.textContent = request.cluster;
+
+                var question = document.createElement('span');
+                question.className = 'request-question';
+                question.textContent = request.canonical_request;
+
+                button.appendChild(cluster);
+                button.appendChild(question);
+
+                /* A chip fills the field rather than submitting. The question is
+                   then theirs to edit, which is the difference between picking
+                   from a menu and being asked. */
+                button.addEventListener('click', function () {
+                    input.value = request.canonical_request;
+                    form.dataset.requestId = request.request_id;
+                    form.dataset.cluster = request.cluster;
+                    ask.classList.add('is-filled');
+                    input.focus();
+                });
+
+                grid.appendChild(button);
+            });
+
+            /* Once they edit it, it is their question and not the chip's. */
+            input.addEventListener('input', function () {
+                ask.classList.toggle('is-filled', input.value.length > 0);
+                delete form.dataset.requestId;
+                delete form.dataset.cluster;
+            });
+
+            /* ---- the placeholder types itself, cycling the clusters ---- */
+            var ghost = document.querySelector('.ask-ghost-text');
+            if (ghost && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                var samples = REQUESTS.map(function (r) { return r.canonical_request; });
+                var at = 0;
+
+                (function cycle() {
+                    var text = samples[at % samples.length];
+                    var i = 0;
+
+                    (function typeIn() {
+                        ghost.textContent = text.slice(0, ++i);
+                        if (i < text.length) return setTimeout(typeIn, 34);
+                        setTimeout(function eraseOut() {
+                            ghost.textContent = text.slice(0, --i);
+                            if (i > 0) return setTimeout(eraseOut, 16);
+                            at++;
+                            setTimeout(cycle, 350);
+                        }, 1900);
+                    })();
+                })();
+            }
+        })();
+    </script>
 
     <!-- Hero on #FAF7F1 -->
     <section class="container hero">
+        <div class="hero-glow" aria-hidden="true"></div>
         <div class="hero-grid">
-            <img src="logo.png" alt="Backsie logo" class="logo-hero"/>
-            <h1 class="hero-title">
-                Turn real experiences into useful Insight Cards.</h1>
-            <p class="lede hero-lede">Backsie helps you make sense of what happened, save the lesson as an Insight Card, and learn from people navigating similar situations.</p>
-            <div class="hero-actions">
-                <button class="btn btn-primary">Get early access for free</button>
-                <!--
-                <button class="btn btn-ghost btn-ghost-custom">View
-                    founder’s story
-                </button>
-                -->
-            </div>
-            <div class="hero-meta">
-          <span class="hero-meta-item">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15.5005 7.74927C15.4998 7.08697 15.3116 6.43841 14.9577 5.87862C14.6037 5.31884 14.0985 4.87072 13.5005 4.58614V4.49927C13.4999 3.85503 13.2919 3.22809 12.9074 2.71121C12.5228 2.19434 11.9821 1.81498 11.3652 1.62928C10.7483 1.44358 10.088 1.46141 9.48205 1.68011C8.87607 1.89881 8.35659 2.30678 8.00047 2.84364C7.64435 2.30678 7.12487 1.89881 6.51889 1.68011C5.91291 1.46141 5.25262 1.44358 4.63573 1.62928C4.01883 1.81498 3.47811 2.19434 3.09355 2.71121C2.709 3.22809 2.50105 3.85503 2.50047 4.49927V4.58614C1.90193 4.86995 1.39622 5.31778 1.0421 5.87759C0.687981 6.43741 0.5 7.08623 0.5 7.74864C0.5 8.41106 0.687981 9.05987 1.0421 9.61969C1.39622 10.1795 1.90193 10.6273 2.50047 10.9111V10.9993C2.50105 11.6435 2.709 12.2704 3.09355 12.7873C3.47811 13.3042 4.01883 13.6836 4.63573 13.8693C5.25262 14.055 5.91291 14.0371 6.51889 13.8184C7.12487 13.5997 7.64435 13.1918 8.00047 12.6549C8.35659 13.1918 8.87607 13.5997 9.48205 13.8184C10.088 14.0371 10.7483 14.055 11.3652 13.8693C11.9821 13.6836 12.5228 13.3042 12.9074 12.7873C13.2919 12.2704 13.4999 11.6435 13.5005 10.9993V10.9111C14.0984 10.6268 14.6036 10.1789 14.9575 9.61931C15.3115 9.05975 15.4997 8.41138 15.5005 7.74927ZM5.50047 12.9993C5.00731 12.9992 4.53157 12.8169 4.16461 12.4875C3.79765 12.158 3.56536 11.7046 3.51234 11.2143C3.67403 11.2373 3.83714 11.249 4.00047 11.2493H4.50047C4.63308 11.2493 4.76025 11.1966 4.85402 11.1028C4.94779 11.0091 5.00047 10.8819 5.00047 10.7493C5.00047 10.6167 4.94779 10.4895 4.85402 10.3957C4.76025 10.3019 4.63308 10.2493 4.50047 10.2493H4.00047C3.41019 10.25 2.83871 10.0418 2.38721 9.66154C1.9357 9.28133 1.63329 8.75361 1.53352 8.17183C1.43375 7.59005 1.54305 6.99172 1.84208 6.4828C2.14111 5.97387 2.61057 5.58716 3.16734 5.39114C3.26476 5.35665 3.3491 5.29282 3.40876 5.20843C3.46841 5.12404 3.50045 5.02324 3.50047 4.91989V4.49927C3.50047 3.96883 3.71118 3.46013 4.08626 3.08505C4.46133 2.70998 4.97004 2.49927 5.50047 2.49927C6.0309 2.49927 6.53961 2.70998 6.91468 3.08505C7.28976 3.46013 7.50047 3.96883 7.50047 4.49927V8.76552C6.95142 8.2717 6.23893 7.99872 5.50047 7.99927C5.36786 7.99927 5.24068 8.05195 5.14692 8.14571C5.05315 8.23948 5.00047 8.36666 5.00047 8.49927C5.00047 8.63188 5.05315 8.75905 5.14692 8.85282C5.24068 8.94659 5.36786 8.99927 5.50047 8.99927C6.0309 8.99927 6.53961 9.20998 6.91468 9.58505C7.28976 9.96013 7.50047 10.4688 7.50047 10.9993C7.50047 11.5297 7.28976 12.0384 6.91468 12.4135C6.53961 12.7886 6.0309 12.9993 5.50047 12.9993ZM12.0005 10.2493H11.5005C11.3679 10.2493 11.2407 10.3019 11.1469 10.3957C11.0531 10.4895 11.0005 10.6167 11.0005 10.7493C11.0005 10.8819 11.0531 11.0091 11.1469 11.1028C11.2407 11.1966 11.3679 11.2493 11.5005 11.2493H12.0005C12.1638 11.249 12.3269 11.2373 12.4886 11.2143C12.4471 11.5984 12.2951 11.9623 12.0512 12.262C11.8072 12.5616 11.4817 12.7842 11.1139 12.9028C10.7461 13.0214 10.3519 13.0308 9.97884 12.9301C9.60579 12.8294 9.26991 12.6228 9.0118 12.3352C8.7537 12.0476 8.58442 11.6915 8.52443 11.3097C8.46445 10.928 8.51632 10.5371 8.67379 10.1842C8.83126 9.83137 9.08757 9.53167 9.41174 9.32138C9.73592 9.11109 10.1141 8.99921 10.5005 8.99927C10.6331 8.99927 10.7603 8.94659 10.854 8.85282C10.9478 8.75905 11.0005 8.63188 11.0005 8.49927C11.0005 8.36666 10.9478 8.23948 10.854 8.14571C10.7603 8.05195 10.6331 7.99927 10.5005 7.99927C9.76201 7.99872 9.04952 8.2717 8.50047 8.76552V4.49927C8.50047 3.96883 8.71118 3.46013 9.08626 3.08505C9.46133 2.70998 9.97004 2.49927 10.5005 2.49927C11.0309 2.49927 11.5396 2.70998 11.9147 3.08505C12.2898 3.46013 12.5005 3.96883 12.5005 4.49927V4.91989C12.5005 5.02324 12.5325 5.12404 12.5922 5.20843C12.6518 5.29282 12.7362 5.35665 12.8336 5.39114C13.3904 5.58716 13.8598 5.97387 14.1589 6.4828C14.4579 6.99172 14.5672 7.59005 14.4674 8.17183C14.3677 8.75361 14.0652 9.28133 13.6137 9.66154C13.1622 10.0418 12.5907 10.25 12.0005 10.2493ZM13.0005 6.99927C13.0005 7.13188 12.9478 7.25905 12.854 7.35282C12.7603 7.44659 12.6331 7.49927 12.5005 7.49927H12.2505C11.6537 7.49927 11.0814 7.26221 10.6595 6.84026C10.2375 6.4183 10.0005 5.846 10.0005 5.24927V4.99927C10.0005 4.86666 10.0531 4.73948 10.1469 4.64571C10.2407 4.55195 10.3679 4.49927 10.5005 4.49927C10.6331 4.49927 10.7603 4.55195 10.854 4.64571C10.9478 4.73948 11.0005 4.86666 11.0005 4.99927V5.24927C11.0005 5.58079 11.1322 5.89873 11.3666 6.13315C11.601 6.36757 11.919 6.49927 12.2505 6.49927H12.5005C12.6331 6.49927 12.7603 6.55195 12.854 6.64571C12.9478 6.73948 13.0005 6.86666 13.0005 6.99927ZM3.75047 7.49927H3.50047C3.36786 7.49927 3.24068 7.44659 3.14692 7.35282C3.05315 7.25905 3.00047 7.13188 3.00047 6.99927C3.00047 6.86666 3.05315 6.73948 3.14692 6.64571C3.24068 6.55195 3.36786 6.49927 3.50047 6.49927H3.75047C4.08199 6.49927 4.39993 6.36757 4.63435 6.13315C4.86877 5.89873 5.00047 5.58079 5.00047 5.24927V4.99927C5.00047 4.86666 5.05315 4.73948 5.14692 4.64571C5.24068 4.55195 5.36786 4.49927 5.50047 4.49927C5.63308 4.49927 5.76025 4.55195 5.85402 4.64571C5.94779 4.73948 6.00047 4.86666 6.00047 4.99927V5.24927C6.00047 5.846 5.76342 6.4183 5.34146 6.84026C4.9195 7.26221 4.34721 7.49927 3.75047 7.49927Z"
-                    fill="#1F473F" fill-opacity="0.8"/>
-            </svg>
-            Insight Cards
-          </span>
-                <span class="hero-meta-item">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M13 2.5H3C2.73478 2.5 2.48043 2.60536 2.29289 2.79289C2.10536 2.98043 2 3.23478 2 3.5V7C2 10.295 3.595 12.2919 4.93313 13.3869C6.37437 14.5656 7.80813 14.9656 7.87063 14.9825C7.95656 15.0059 8.04719 15.0059 8.13313 14.9825C8.19563 14.9656 9.6275 14.5656 11.0706 13.3869C12.405 12.2919 14 10.295 14 7V3.5C14 3.23478 13.8946 2.98043 13.7071 2.79289C13.5196 2.60536 13.2652 2.5 13 2.5ZM13 7C13 9.31687 12.1462 11.1975 10.4625 12.5887C9.72955 13.1923 8.89597 13.662 8 13.9762C7.11576 13.6675 6.29247 13.2061 5.5675 12.6131C3.86375 11.2194 3 9.33125 3 7V3.5H13V7ZM5.14625 8.85375C5.05243 8.75993 4.99972 8.63268 4.99972 8.5C4.99972 8.36732 5.05243 8.24007 5.14625 8.14625C5.24007 8.05243 5.36732 7.99972 5.5 7.99972C5.63268 7.99972 5.75993 8.05243 5.85375 8.14625L7 9.29313L10.1462 6.14625C10.1927 6.09979 10.2479 6.06294 10.3086 6.0378C10.3692 6.01266 10.4343 5.99972 10.5 5.99972C10.5657 5.99972 10.6308 6.01266 10.6914 6.0378C10.7521 6.06294 10.8073 6.09979 10.8538 6.14625C10.9002 6.1927 10.9371 6.24786 10.9622 6.30855C10.9873 6.36925 11.0003 6.4343 11.0003 6.5C11.0003 6.5657 10.9873 6.63075 10.9622 6.69145C10.9371 6.75214 10.9002 6.8073 10.8538 6.85375L7.35375 10.3538C7.30731 10.4002 7.25217 10.4371 7.19147 10.4623C7.13077 10.4874 7.06571 10.5004 7 10.5004C6.93429 10.5004 6.86923 10.4874 6.80853 10.4623C6.74783 10.4371 6.69269 10.4002 6.64625 10.3538L5.14625 8.85375Z"
-                    fill="#1F473F" fill-opacity="0.8"/>
-            </svg>
-            Share only if you choose
-          </span>
-                <span class="hero-meta-item">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 1.5C6.71442 1.5 5.45772 1.88122 4.3888 2.59545C3.31988 3.30968 2.48676 4.32484 1.99479 5.51256C1.50282 6.70028 1.37409 8.00721 1.6249 9.26809C1.8757 10.529 2.49477 11.6872 3.40381 12.5962C4.31285 13.5052 5.47104 14.1243 6.73192 14.3751C7.99279 14.6259 9.29973 14.4972 10.4874 14.0052C11.6752 13.5132 12.6903 12.6801 13.4046 11.6112C14.1188 10.5423 14.5 9.28558 14.5 8C14.4982 6.27665 13.8128 4.62441 12.5942 3.40582C11.3756 2.18722 9.72335 1.50182 8 1.5ZM13.5 8C13.5013 9.28596 13.0497 10.5313 12.2244 11.5175L4.4825 3.775C5.28563 3.10686 6.26243 2.68128 7.29861 2.54805C8.33479 2.41482 9.38749 2.57946 10.3335 3.0227C11.2795 3.46595 12.0797 4.16946 12.6405 5.05091C13.2013 5.93236 13.4994 6.95529 13.5 8ZM2.5 8C2.49872 6.71404 2.95035 5.46871 3.77563 4.4825L11.5175 12.225C10.7144 12.8931 9.73757 13.3187 8.70139 13.452C7.66521 13.5852 6.61252 13.4205 5.6665 12.9773C4.72048 12.5341 3.92026 11.8305 3.3595 10.9491C2.79873 10.0676 2.5006 9.04471 2.5 8Z"
-                    fill="#1F473F" fill-opacity="0.8"/>
-            </svg>
-            Learn from similar situations
-          </span>
+            <p class="hero-eyebrow rise">Real situations &middot; Not advice</p>
+            <h2 class="hero-title" id="heroTitle" data-accent-words="2">
+                Dating gets confusing. See what happened to people in situations like yours.</h2>
+            <script>
+                /* Runs where it sits, before the browser paints the headline, so
+                   the finished text is never shown and then re-typed. The text
+                   comes out of the element rather than being repeated here:
+                   there is one copy of each line, in the HTML, and editing the
+                   copy needs no change down here. */
+                (function () {
+                    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                    /* Every character laid out from the first frame, with only
+                       opacity switching. That is what stops the block reflowing
+                       as lines break, and keeps the text real for LCP and for a
+                       crawler. */
+                    function split(el) {
+                        var words = el.textContent.trim().split(/\s+/);
+                        var html = '';
+                        for (var w = 0; w < words.length; w++) {
+                            html += '<span class="t-word">';
+                            for (var c = 0; c < words[w].length; c++) {
+                                html += '<span class="t-char">'
+                                    + words[w][c].replace('&', '&amp;').replace('<', '&lt;')
+                                    + '</span>';
+                            }
+                            html += '</span>';
+                            if (w < words.length - 1) html += '<span class="t-char"> </span>';
+                        }
+                        el.innerHTML = html;
+                        el.classList.add('is-typing');
+                        return el.querySelectorAll('.t-char');
+                    }
+
+                    function caretFor(chars) {
+                        var caret = document.createElement('span');
+                        caret.className = 'hero-caret';
+                        chars[0].appendChild(caret);
+                        return caret;
+                    }
+
+                    /* Driven by elapsed time rather than a counter, so a dropped
+                       frame costs nothing: the count comes from the clock each
+                       frame instead of accumulating error. */
+                    function type(chars, caret, step, done) {
+                        var began = null;
+                        var shown = 0;
+                        (function tick(now) {
+                            if (began === null) began = now;
+                            var want = Math.min(chars.length, Math.floor((now - began) / step) + 1);
+                            while (shown < want) {
+                                chars[shown].classList.add('is-on');
+                                shown++;
+                            }
+                            if (shown > 0) chars[shown - 1].appendChild(caret);
+                            if (shown < chars.length) requestAnimationFrame(tick);
+                            else if (done) done();
+                        })(performance.now());
+                    }
+
+                    function untype(chars) {
+                        for (var i = 0; i < chars.length; i++) chars[i].classList.remove('is-on');
+                    }
+
+                    /* ---- the headline, typed once ---- */
+                    var title = document.getElementById('heroTitle');
+                    var TITLE_STEP = 38;
+
+                    if (title && !reduced) {
+                        var chars = split(title);
+                        var caret = caretFor(chars);
+
+                        /* The closing words take the accent colour. The count
+                           comes from the markup, so the copy and the emphasis
+                           stay in one place. */
+                        var words = title.querySelectorAll('.t-word');
+                        var accent = parseInt(title.getAttribute('data-accent-words'), 10) || 0;
+                        for (var a = Math.max(0, words.length - accent); a < words.length; a++) {
+                            words[a].classList.add('t-accent');
+                        }
+
+                        type(chars, caret, TITLE_STEP, function () {
+                            caret.classList.add('is-blinking');
+                            startCard(600);
+                        });
+                    } else {
+                        startCard(0);
+                    }
+
+                    /* ---- the card: question, then the answers, on a loop ---- */
+                    function startCard(delay) {
+                        var q = document.querySelector('.outcomes-question');
+                        var rows = document.querySelectorAll('.outcome');
+                        if (!q || !rows.length) return;
+
+                        if (reduced) {
+                            for (var i = 0; i < rows.length; i++) rows[i].classList.add('is-in');
+                            return;
+                        }
+
+                        var qChars = split(q);
+                        var qCaret = caretFor(qChars);
+                        var QUESTION_STEP = 34;
+                        var ROW_GAP = 180;   /* between one answer and the next */
+                        var HOLD = 4200;     /* how long the finished card rests */
+
+                        var card = document.querySelector('.outcomes-card');
+
+                        function showRows(i) {
+                            if (i >= rows.length) {
+                                setTimeout(reset, HOLD);
+                                return;
+                            }
+                            rows[i].classList.add('is-in');
+                            setTimeout(function () { showRows(i + 1); }, ROW_GAP);
+                        }
+
+                        function reset() {
+                            card.classList.remove('is-ready');
+                            for (var i = 0; i < rows.length; i++) rows[i].classList.remove('is-in');
+                            untype(qChars);
+                            qCaret.classList.remove('is-blinking');
+                            qChars[0].appendChild(qCaret);
+                            setTimeout(run, 700);
+                        }
+
+                        function run() {
+                            type(qChars, qCaret, QUESTION_STEP, function () {
+                                qCaret.classList.add('is-blinking');
+                                /* The placeholder clears as the first real row
+                                   arrives, so the panel is never blank. */
+                                card.classList.add('is-ready');
+                                setTimeout(function () { showRows(0); }, 180);
+                            });
+                        }
+
+                        setTimeout(run, delay);
+                    }
+                })();
+            </script>
+            <p class="lede hero-lede rise" style="animation-delay:.55s">Tell Backsie what happened. See real experiences that resemble yours. What people did next, and how it turned out.</p>
+            <div class="hero-actions rise" style="animation-delay:.7s">
+                <a class="btn btn-primary" href="https://app.backsie.co/onboarding/account/">Download</a>
+                <a class="btn btn-secondary" href="#how-backsie-works">See how Backsie works</a>
             </div>
         </div>
 
-        <aside class="insight-preview" aria-label="Insight Card preview">
-            <div class="insight-demo">
-                <div class="demo-screen demo-summary-screen">
-                    <div class="demo-header">
-                        <span>Recent Insight Cards</span>
-                        <span>View all</span>
-                    </div>
-
-                    <div class="demo-card">
-                        <div class="demo-pill">Belonging · Reading The Room</div>
-                        <h2 class="demo-title">Not Every Delay Means Rejection</h2>
-
-                        <div class="demo-panel">
-                            <p class="demo-panel-title">“ Key Reframe</p>
-                            <p class="demo-quote">“When plans change or replies slow down, your brain may fill the gap with a story. Pause before treating uncertainty like proof.”</p>
-                        </div>
-
-                        <div class="demo-next-step">
-                            <div class="demo-circle-icon">→</div>
-                            <div>
-                                <p class="demo-block-title">Next Step</p>
-                                <p class="demo-block-copy">Send one simple check-in instead of replaying the whole conversation alone.</p>
-                            </div>
-                        </div>
-
-                        <div class="demo-card-footer">
-                            <span>Jun 19</span>
-                            <span class="demo-view-full">
-                                <svg class="demo-view-icon" viewBox="0 0 18 18" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6.25 2.75H3.75C3.19772 2.75 2.75 3.19772 2.75 3.75V6.25M11.75 2.75H14.25C14.8023 2.75 15.25 3.19772 15.25 3.75V6.25M6.25 15.25H3.75C3.19772 15.25 2.75 14.8023 2.75 14.25V11.75M11.75 15.25H14.25C14.8023 15.25 15.25 14.8023 15.25 14.25V11.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                                </svg>
-                                View Full
-                            </span>
-                        </div>
-                    </div>
+        <aside class="outcomes rise" style="animation-delay:.3s" aria-label="Example: one question, several outcomes">
+            <div class="outcomes-card">
+                <div class="outcomes-head">
+                    <p class="outcomes-pill">Relationships &amp; Dating</p>
+                    <p class="outcomes-eyebrow">They asked</p>
+                    <p class="outcomes-question">Why did he suddenly stop texting me?</p>
                 </div>
 
-                <div class="demo-screen demo-full-screen">
-                    <div class="demo-full-hero">
-                        <div class="demo-spark">✦</div>
-                        <h2 class="demo-full-title">Insight Card</h2>
-                        <p class="demo-full-subtitle">Below you can see your generated card. You can also revisit it later and remind yourself.</p>
+                <div class="outcomes-rule"><span>3 similar situations</span></div>
+
+                <div class="outcomes-body">
+                    <div class="outcomes-skeleton" aria-hidden="true">
+                        <span></span><span></span><span></span><span></span><span></span><span></span>
                     </div>
+                <ol class="outcomes-list">
+                    <li class="outcome">
+                        <p class="outcome-did">They waited a week and said nothing.</p>
+                        <p class="outcome-next">He came back. Same thing a month later.</p>
+                    </li>
+                    <li class="outcome">
+                        <p class="outcome-did">They asked what had changed.</p>
+                        <p class="outcome-next">He said work had swallowed him.</p>
+                    </li>
+                    <li class="outcome">
+                        <p class="outcome-did">They stopped replying and let it go.</p>
+                        <p class="outcome-next">Hard for two weeks, then lighter.</p>
+                    </li>
+                </ol>
+                </div>
 
-                    <div class="demo-full-scroll">
-                        <div class="demo-detail-card">
-                            <div class="demo-pill">Belonging · Reading The Room</div>
-                            <h2 class="demo-title">Not Every Delay Means Rejection</h2>
-
-                            <div class="demo-panel">
-                                <p class="demo-panel-title">“ Key Reframe</p>
-                                <p class="demo-quote">“When replies slow down, your brain may fill the gap with a story. Pause before treating uncertainty like proof.”</p>
-                            </div>
-                        </div>
-
-                        <div class="demo-stuck">
-                            <div class="demo-circle-icon">!</div>
-                            <div>
-                                <p class="demo-block-title">Stuck Moment</p>
-                                <p class="demo-block-copy">“My friends changed plans and I immediately felt like I was being pushed out.”</p>
-                            </div>
-                        </div>
-
-                        <div class="demo-next-step">
-                            <div class="demo-circle-icon">→</div>
-                            <div>
-                                <p class="demo-block-title">Next Step</p>
-                                <p class="demo-block-copy">Ask one direct, low-pressure question before assuming the worst.</p>
-                            </div>
-                        </div>
-
-                        <div class="demo-feedback-grid">
-                            <div class="feedback-button">Helpful<span>This resonates with me</span></div>
-                            <div class="feedback-button">Not quite<span>Something feels off</span></div>
-                        </div>
-
-                        <div class="feedback-input">Tell us what could be improved (optional)</div>
-                        <div class="demo-submit">Submit feedback</div>
-
-                        <div class="demo-share">
-                            <p class="demo-share-title"><span class="demo-circle-icon">♥</span> Help others like you</p>
-                            <p>Share your insight anonymously to help others going through similar experiences.</p>
-                            <div class="demo-share-button">Share anonymously</div>
-                        </div>
-                    </div>
+                <div class="outcomes-foot">
+                    <a class="outcomes-cta" href="#how-backsie-works">See similar situations &rarr;</a>
+                    <!-- Stays until real anonymised experiences replace these. The
+                         difference between an example and a testimonial is whether
+                         someone reading it thinks it happened. -->
+                    <p class="outcomes-note">Illustrative example</p>
                 </div>
             </div>
         </aside>
     </section>
 
-    <!-- Features on green background -->
-    <section class="features-wrap">
-        <div class="container features">
-            <!-- Capture -->
-            <div class="feature">
-                <div class="feature-icon">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M26 3H9C7.93913 3 6.92172 3.42143 6.17157 4.17157C5.42143 4.92172 5 5.93913 5 7V28C5 28.2652 5.10536 28.5196 5.29289 28.7071C5.48043 28.8946 5.73478 29 6 29H24C24.2652 29 24.5196 28.8946 24.7071 28.7071C24.8946 28.5196 25 28.2652 25 28C25 27.7348 24.8946 27.4804 24.7071 27.2929C24.5196 27.1054 24.2652 27 24 27H7C7 26.4696 7.21071 25.9609 7.58579 25.5858C7.96086 25.2107 8.46957 25 9 25H26C26.2652 25 26.5196 24.8946 26.7071 24.7071C26.8946 24.5196 27 24.2652 27 24V4C27 3.73478 26.8946 3.48043 26.7071 3.29289C26.5196 3.10536 26.2652 3 26 3ZM15 5H21V14L18.5987 12.2C18.4257 12.0702 18.2151 12 17.9988 12C17.7824 12 17.5718 12.0702 17.3988 12.2L15 14V5ZM25 23H9C8.29768 22.999 7.60763 23.1841 7 23.5362V7C7 6.46957 7.21071 5.96086 7.58579 5.58579C7.96086 5.21071 8.46957 5 9 5H13V16C13 16.1857 13.0517 16.3678 13.1493 16.5257C13.247 16.6837 13.3867 16.8114 13.5528 16.8944C13.7189 16.9775 13.9048 17.0126 14.0898 16.996C14.2748 16.9793 14.4514 16.9114 14.6 16.8L18 14.25L21.4013 16.8C21.574 16.9296 21.7841 16.9997 22 17C22.2652 17 22.5196 16.8946 22.7071 16.7071C22.8946 16.5196 23 16.2652 23 16V5H25V23Z"
-                              fill="#1F473F"/>
-                    </svg>
-                </div>
-                <div>
-                    <h3>Capture the moment</h3>
-                    <p class="muted">Turn lived experience into something structured.</p>
-                </div>
-            </div>
-            <!-- Insight Cards -->
-            <div class="feature">
-                <div class="feature-icon">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M26 11H6C5.46957 11 4.96086 11.2107 4.58579 11.5858C4.21071 11.9609 4 12.4696 4 13V25C4 25.5304 4.21071 26.0391 4.58579 26.4142C4.96086 26.7893 5.46957 27 6 27H26C26.5304 27 27.0391 26.7893 27.4142 26.4142C27.7893 26.0391 28 25.5304 28 25V13C28 12.4696 27.7893 11.9609 27.4142 11.5858C27.0391 11.2107 26.5304 11 26 11ZM26 25H6V13H26V25ZM6 8C6 7.73478 6.10536 7.48043 6.29289 7.29289C6.48043 7.10536 6.73478 7 7 7H25C25.2652 7 25.5196 7.10536 25.7071 7.29289C25.8946 7.48043 26 7.73478 26 8C26 8.26522 25.8946 8.51957 25.7071 8.70711C25.5196 8.89464 25.2652 9 25 9H7C6.73478 9 6.48043 8.89464 6.29289 8.70711C6.10536 8.51957 6 8.26522 6 8ZM8 4C8 3.73478 8.10536 3.48043 8.29289 3.29289C8.48043 3.10536 8.73478 3 9 3H23C23.2652 3 23.5196 3.10536 23.7071 3.29289C23.8946 3.48043 24 3.73478 24 4C24 4.26522 23.8946 4.51957 23.7071 4.70711C23.5196 4.89464 23.2652 5 23 5H9C8.73478 5 8.48043 4.89464 8.29289 4.70711C8.10536 4.51957 8 4.26522 8 4Z"
-                              fill="#1F473F"/>
-                    </svg>
-                </div>
-                <div>
-                    <h3>Build Insight Cards</h3>
-                    <p class="muted">Save the summary, pattern, and next step.</p>
-                </div>
-            </div>
-            <!-- Matching -->
-            <div class="feature">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#1F473F" stroke-width="2">
-                        <path d="M3 17l6-6 4 4 8-8"/>
-                        <path d="M14 7h7v7"/>
-                    </svg>
-                </div>
-                <div>
-                    <h3>Find useful matches</h3>
-                    <p class="muted">Learn from people in similar situations.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+
 </div><!-- /masthead group (same color in footer) -->
 
 <!-- Everything after here is white background -->
 <main style="background:#fff">
-    <!-- How it helps -->
-    <section class="container section">
-        <div class="section-header">
-            <h2 class="section-title">How Backsie works</h2>
-            <p class="section-description">Backsie turns a messy real-life moment into a reusable Insight Card, then helps similar experiences become useful to more people.</p>
-        </div>
-        <div class="split-3">
-            <article class="step-card">
-                <img src="public/01_talk.png" alt="Talk - Share what's on your mind" class="step-image" />
-                <div>
-                    <h3 class="step-title">1. Capture what happened</h3>
-                    <p class="step-text">Type, speak, or paste the details of an experience you want to understand or remember.</p>
-                </div>
-            </article>
-            <article class="step-card">
-                <img src="public/02_see.png" alt="See it Clearly - Understand deeper insights" class="step-image" />
-                <div>
-                    <h3 class="step-title">2. Create an Insight Card</h3>
-                    <p class="step-text">Backsie organizes the situation into a summary, reflection, tags, and a practical takeaway.</p>
-                </div>
-            </article>
-            <article class="step-card">
-                <img src="public/03_gain.png" alt="Gain Agency - Take meaningful action" class="step-image" />
-                <div>
-                    <h3 class="step-title">3. Learn through the community</h3>
-                    <p class="step-text">Keep cards private, or share anonymously so others facing something similar can learn from it.</p>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <!-- Patterns & Reframes -->
-    <section class="container section">
-        <div class="two-col">
-            <div class="card card-centered">
-                <div class="badge">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M18.7503 4.375V9.375C18.7503 9.54076 18.6845 9.69973 18.5673 9.81694C18.4501 9.93415 18.2911 10 18.1253 10C17.9596 10 17.8006 9.93415 17.6834 9.81694C17.5662 9.69973 17.5003 9.54076 17.5003 9.375V5.88359L11.0675 12.3172C11.0095 12.3753 10.9406 12.4214 10.8647 12.4529C10.7888 12.4843 10.7075 12.5005 10.6253 12.5005C10.5432 12.5005 10.4619 12.4843 10.386 12.4529C10.3101 12.4214 10.2412 12.3753 10.1832 12.3172L7.50035 9.63359L2.31753 14.8172C2.20026 14.9345 2.0412 15.0003 1.87535 15.0003C1.7095 15.0003 1.55044 14.9345 1.43316 14.8172C1.31588 14.6999 1.25 14.5409 1.25 14.375C1.25 14.2091 1.31588 14.0501 1.43316 13.9328L7.05816 8.30781C7.1162 8.2497 7.18514 8.2036 7.26101 8.17215C7.33688 8.1407 7.41821 8.12451 7.50035 8.12451C7.58248 8.12451 7.66381 8.1407 7.73968 8.17215C7.81556 8.2036 7.88449 8.2497 7.94253 8.30781L10.6253 10.9914L16.6168 5H13.1253C12.9596 5 12.8006 4.93415 12.6834 4.81694C12.5662 4.69973 12.5003 4.54076 12.5003 4.375C12.5003 4.20924 12.5662 4.05027 12.6834 3.93306C12.8006 3.81585 12.9596 3.75 13.1253 3.75H18.1253C18.2911 3.75 18.4501 3.81585 18.5673 3.93306C18.6845 4.05027 18.7503 4.20924 18.7503 4.375Z" fill="#1F473F"/>
-                    </svg>
-                    <span class="badge-text">Insight Cards</span>
-                </div>
-                <h2 class="feature-heading">A reusable record of what you learned.</h2>
-                <p class="feature-description">Each card can hold the situation, emotional pattern, takeaway, and tags that make the experience easier to revisit, share, or match with related stories later.</p>
+    <!-- How Backsie works: the four-step loop -->
+    <section class="steps-wrap" id="stepsSection">
+        <div class="container steps-inner">
+            <div class="steps-head">
+                <h2 class="section-title" id="how-backsie-works">How Backsie works</h2>
             </div>
-            <div class="card card-video"><video autoplay loop muted playsinline ><source src="public/patterns.mp4" type="video/mp4">Your browser does not support the video tag.</video></div>
+
+
+            <div class="rail">
+                <span class="rail-track" aria-hidden="true"></span>
+                <span class="rail-fill" aria-hidden="true"></span>
+
+                <ol class="steps">
+                    <li class="step">
+                        <span class="step-num">1</span>
+                        <p class="step-number">Step 1</p>
+                        <h3 class="step-title">Tell Backsie what happened</h3>
+                        <p class="step-text">Type it, say it, or paste a screenshot.</p>
+                        <div class="mock" aria-hidden="true">
+                            <span class="bubble" style="--pop:1">She unmatched me after a great date.</span>
+                            <span class="bubble bubble-reply" style="--pop:2">That sounds like it landed hard. What happened just before?</span>
+                            <span class="typing" style="--pop:3"><i></i><i></i><i></i></span>
+                        </div>
+                    </li>
+
+                    <li class="step">
+                        <span class="step-num">2</span>
+                        <p class="step-number">Step 2</p>
+                        <h3 class="step-title">Backsie finds your real question</h3>
+                        <p class="step-text">Why they went quiet. Whether to reach out.</p>
+                        <!-- Deliberately not "Key Reframe / Stuck Moment / Next
+                             Step" here, which is what the reference showed: that
+                             is the vocabulary the whole rewrite is removing. What
+                             this step actually produces is the request. -->
+                        <div class="mock mock-stack" aria-hidden="true">
+                            <span class="tag" style="--pop:1"><b>Your question</b><em>Why did she unmatch after a good date?</em></span>
+                            <span class="tag tag-soft" style="--pop:2"><b>Cluster</b><em>Ghosting</em></span>
+                            <span class="tag tag-soft" style="--pop:3"><b>Also asking</b><em>Should I reach out again?</em></span>
+                        </div>
+                    </li>
+
+                    <li class="step">
+                        <span class="step-num">3</span>
+                        <p class="step-number">Step 3</p>
+                        <h3 class="step-title">See similar lived experiences</h3>
+                        <p class="step-text">What people in the same spot did, and how it went.</p>
+                        <div class="mock mock-stack" aria-hidden="true">
+                            <span class="tag" style="--pop:1"><b>What they did</b><em>Sent one message, then left it.</em></span>
+                            <span class="tag" style="--pop:2"><b>What happened next</b><em>No reply. Felt lighter within a fortnight.</em></span>
+                        </div>
+                    </li>
+
+                    <li class="step step-return">
+                        <span class="step-num step-num-loop"><span aria-hidden="true">&#8635;</span></span>
+                        <p class="step-number">And then</p>
+                        <h3 class="step-title">Tell Backsie what happened next</h3>
+                        <p class="step-text">Come back with your outcome. It becomes someone else&rsquo;s answer.</p>
+                        <div class="mock" aria-hidden="true">
+                            <span class="loopcard">Your outcome &rarr; someone else&rsquo;s answer</span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
         </div>
     </section>
 
     <!-- Reframes Section -->
     <section class="container section">
         <div class="two-col">
-            <div class="card card-video"><video autoplay loop muted playsinline ><source src="public/reframes.mp4" type="video/mp4">Your browser does not support the video tag.</video></div>
+            <div class="card card-video"><video autoplay loop muted playsinline preload="metadata"><source src="public/reframes.mp4" type="video/mp4">Your browser does not support the video tag.</video></div>
             <div class="card card-centered">
-                <div class="badge">
-                    <span class="badge-text">Coming soon</span>
-                </div>
-                <h2 class="feature-heading">A quieter way to learn from each other.</h2>
-                <p class="feature-description">Backsie is moving toward anonymous, moderated cards from people going through similar situations. No performative posting &mdash; just useful lived experience.</p>
+                <div class="badge"><span class="badge-text">Community</span></div>
+                <h2 class="feature-heading">Not another advice feed. Real situations you can actually compare.</h2>
+                <p class="feature-description">Anonymous experiences, filed under the problem being solved. Ghosting, mixed signals, friendship fallout, work, family.</p>
             </div>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section class="container section" aria-labelledby="faq-heading">
-        <!-- SVG Symbol Definitions -->
-        <svg style="display:none">
-            <symbol id="faq-plus-icon" viewBox="0 0 34 34">
-                <path d="M26.9163 18.4173H18.4163V26.9173H15.583V18.4173H7.08301V15.584H15.583V7.08398H18.4163V15.584H26.9163V18.4173Z" fill="#1F473F"/>
-            </symbol>
-            <symbol id="faq-minus-icon" viewBox="0 0 34 34">
-                <rect width="34" height="34" fill="white"/>
-                <path d="M26.416 16.084V17.917H7.58301V16.084H26.416Z" fill="#1F473F" stroke="#1F473F"/>
-            </symbol>
-        </svg>
+    <section class="faq container" aria-labelledby="faq-heading">
+        <div class="faq-intro">
+            <h2 id="faq-heading">Frequently asked questions</h2>
+            <p>Still unsure about something? Ask us at <a href="mailto:hello@backsie.co">hello@backsie.co</a>.</p>
+            <span class="faq-bar" aria-hidden="true"></span>
+        </div>
 
-        <h2 id="faq-heading">Frequently Asked Questions</h2>
-        <div class="faq-surface" role="region" aria-label="FAQ">
-            <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">What is an Insight Card?</div>
-                <button class="faq-toggle" type="button" aria-label="Toggle question">
-                    <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
-                    <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-a">An Insight Card is a short, structured version of a real experience. It captures
-                        what happened, what it revealed, the patterns around it, and one useful takeaway you can keep
-                        for yourself or share anonymously with others.
-                    </div>
-                </div>
+        <!-- <details>, not a div with a click handler: open and closed is what
+             the element already means, so the keyboard, find-in-page and screen
+             readers all work without being taught. -->
+        <div class="faq-cols">
+            <div>
+                <p class="faq-cat">The basics</p>
+
+                <details name="faq" open>
+                    <summary><span>What happens after I tell Backsie what happened?</span><i class="faq-plus" aria-hidden="true">+</i></summary>
+                    <div class="faq-a">It works out what you&rsquo;re really asking. Then it finds experiences that resemble yours, so you can compare what people did and how it went.</div>
+                </details>
+
+                <details name="faq">
+                    <summary><span>How does Backsie decide what is similar to my situation?</span><i class="faq-plus" aria-hidden="true">+</i></summary>
+                    <div class="faq-a">It reads the question you&rsquo;re asking and the shape of the situation &mdash; the context, the decisions, what happened after.</div>
+                </details>
+
+                <details name="faq">
+                    <summary><span>Is Backsie only for dating?</span><i class="faq-plus" aria-hidden="true">+</i></summary>
+                    <div class="faq-a">No. Dating is where confusing situations come up most. Friendship, family, work and school work the same way.</div>
+                </details>
+
+                <details name="faq">
+                    <summary><span>What is an Insight Card?</span><i class="faq-plus" aria-hidden="true">+</i></summary>
+                    <div class="faq-a">A record of one experience: what happened, the decision, what you did, how it went, what you learned. Keep it private, or share it anonymously.</div>
+                </details>
             </div>
-            <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">Do I have to share my cards?</div>
-                <button class="faq-toggle" type="button" aria-label="Toggle question">
-                    <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
-                    <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-a">No. Cards are private by default. If you choose to share a card, Backsie is being
-                        designed so you can share it anonymously and only in ways that help other people learn from a
-                        similar situation.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">How does matching work?</div>
-                <button class="faq-toggle" type="button" aria-label="Toggle question">
-                    <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
-                    <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-a">Backsie uses tags, situation types, emotional patterns, and card context to find
-                        related experiences. The goal is not to compare lives, but to make the right card useful to the
-                        right person at the right time.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">What does the community feel like?</div>
-                <button class="faq-toggle" type="button" aria-label="Toggle question">
-                    <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
-                    <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-a">Backsie is not trying to be another social feed. The community direction is
-                        quieter: anonymous shared cards, moderated contribution, and useful matches instead of likes,
-                        comments, or public performance.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">What can I use Backsie for?</div>
-                <button class="faq-toggle" type="button" aria-label="Toggle question">
-                    <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
-                    <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-a">Use Backsie for moments you want to make sense of: conflict, transitions,
-                        confusing conversations, school or work stress, family dynamics, dating, friendship, identity,
-                        or everyday situations you do not want to lose.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">Who is Backsie for?</div>
-                <button class="faq-toggle" type="button" aria-label="Toggle question">
-                    <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
-                    <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-a">Backsie is intended for adults aged 18 and older who want to learn from real
-                        experiences instead of letting them disappear. It is designed to be inclusive and
-                        judgment-free, regardless of age above 18, gender, or sexual orientation. Early users will help
-                        shape how Insight Cards, anonymous sharing, and matching should work.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">Is Backsie a clinical product?</div>
-                <button class="faq-toggle" type="button" aria-label="Toggle question">
-                    <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
-                    <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-a">No. Backsie is not a diagnosis, treatment, crisis, or medical product. It is a
-                        reflective platform for turning experiences into useful cards and learning from similar lived
-                        situations.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">Why not just use a notes app?</div>
-                <button class="faq-toggle" type="button" aria-label="Toggle question">
-                    <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
-                    <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-a">Notes preserve the raw memory. Backsie helps structure the experience so it can
-                        become searchable, matchable, and useful later: a card with context, tags, reflection, and a
-                        takeaway.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-row" data-faq-item aria-expanded="false">
-                <div class="faq-q">Will Backsie always be free?</div>
-                <button class="faq-toggle" type="button" aria-label="Toggle question">
-                    <svg class="faq-plus" width="34" height="34"><use href="#faq-plus-icon"/></svg>
-                    <svg class="faq-minus" width="34" height="34"><use href="#faq-minus-icon"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-a">Your first two weeks with Backsie include access to all features at no cost.
-                        After that, you can continue using Backsie on the free tier or choose a paid tier if you want
-                        access to additional features.
-                    </div>
-                </div>
+
+            <div>
+                <p class="faq-cat">Privacy &amp; trust</p>
+
+                <details name="faq">
+                    <summary><span>Are these stories from real people?</span><i class="faq-plus" aria-hidden="true">+</i></summary>
+                    <div class="faq-a">They come from real people. Every one is anonymous, and only appears if the person chose to share it.</div>
+                </details>
+
+                <details name="faq">
+                    <summary><span>Do I have to share my experience?</span><i class="faq-plus" aria-hidden="true">+</i></summary>
+                    <div class="faq-a">No. It can stay private. Share an anonymous version and it can help someone facing the same thing.</div>
+                </details>
+
+                <details name="faq">
+                    <summary><span>Is Backsie telling me what I should do?</span><i class="faq-plus" aria-hidden="true">+</i></summary>
+                    <div class="faq-a">No. It shows you how similar situations played out. Someone else&rsquo;s outcome is not yours, and the decision stays with you.</div>
+                </details>
+
+                <details name="faq">
+                    <summary><span>Is Backsie a clinical or mental-health treatment product?</span><i class="faq-plus" aria-hidden="true">+</i></summary>
+                    <div class="faq-a">No. Backsie is not a diagnosis, treatment, crisis or medical product. It is for adults aged 18 and over.</div>
+                </details>
             </div>
         </div>
     </section>
@@ -1939,7 +3152,7 @@
 
 <footer>
     <div class="container footer-grid">
-        <div class="brand footer-brand"><img src="logo.png" alt="Backsie logo" class="logo"/>Backsie</div>
+        <div class="brand footer-brand"><img src="logo.png" alt="" class="logo"/>Backsie</div>
         <nav class="footer-links">
             <a href="terms-of-service.html"
                class="footer-link">Terms of
@@ -1988,11 +3201,38 @@ Video Modal
 -->
 
 <!-- Email Modal -->
+<!-- Platform chooser for the Download CTAs.
+     >>> REPLACE THE THREE href="#" VALUES BELOW WITH THE REAL LINKS <<< -->
+<div class="platform-modal" id="platformModal" role="dialog" aria-modal="true" aria-labelledby="platformModalTitle">
+    <div class="platform-modal-content">
+        <button class="email-modal-close" id="closePlatformModal" aria-label="Close"></button>
+        <h2 id="platformModalTitle">Get Backsie</h2>
+        <p>Where would you like to open it?</p>
+        <div class="platform-list">
+            <a class="platform-option" id="linkIos" href="#" data-platform="ios">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.03-2.5 2.05-3.7 2.14-3.76-1.17-1.7-2.98-1.94-3.62-1.96-1.54-.16-3.01.9-3.79.9-.78 0-1.99-.88-3.27-.86-1.68.02-3.23.98-4.09 2.48-1.74 3.02-.45 7.5 1.25 9.95.83 1.2 1.82 2.55 3.12 2.5 1.25-.05 1.72-.81 3.23-.81 1.51 0 1.93.81 3.25.78 1.34-.02 2.19-1.22 3.01-2.43.95-1.39 1.34-2.74 1.36-2.81-.03-.01-2.61-1-2.64-3.98zM14.6 4.6c.69-.83 1.15-1.99 1.02-3.15-.99.04-2.19.66-2.9 1.49-.64.74-1.19 1.92-1.04 3.05 1.1.09 2.23-.56 2.92-1.39z"/></svg>
+                <span>App Store</span>
+                <svg class="platform-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+            <a class="platform-option" id="linkAndroid" href="#" data-platform="android">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 1.8a1 1 0 00-.5.9v18.6a1 1 0 00.5.9l10.1-10.2L3.6 1.8zm11.3 8.9l2.9-2.9-11-6.2c-.2-.1-.4-.1-.6 0l8.7 9.1zm0 2.6l-8.7 9.1c.2.1.4.1.6 0l11-6.2-2.9-2.9zm1.2-1.3l3.4-1.9c.6-.4.6-1.3 0-1.6l-3.4-2-3.2 2.7 3.2 2.8z"/></svg>
+                <span>Google Play</span>
+                <svg class="platform-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+            <a class="platform-option" id="linkWeb" href="https://app.backsie.co/onboarding/account/" data-platform="web">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg>
+                <span>Open in browser</span>
+                <svg class="platform-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+        </div>
+    </div>
+</div>
+
 <div class="email-modal" id="emailModal" role="dialog" aria-modal="true">
     <div class="email-modal-content">
         <button class="email-modal-close" id="closeEmailModal" aria-label="Close"></button>
-        <h2>Get early access for free</h2>
-        <p>Join the beta and help shape how Insight Cards, anonymous sharing, and matching should work.</p>
+        <h2>Something confusing happen to you?</h2>
+        <p>See what happened to people in situations like yours.</p>
         <form class="email-form" id="emailForm">
             <label class="form-field" for="nameInput">
                 <span class="field-label">Name (required)</span>
@@ -2034,7 +3274,7 @@ Video Modal
                     I agree to receive SMS updates from Backsie about early access and launch updates. Message frequency varies. Msg &amp; data rates may apply. Reply HELP for help or STOP to unsubscribe. View our <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="terms-of-service.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>.
                 </span>
             </label>
-            <p class="form-helper">We'll email you to confirm we received your info, and again as soon as Backsie launches on the App Store. Phone number is optional and only used if you'd like SMS updates.</p>
+            <p class="form-helper">Early access is free. We&rsquo;ll email you when Backsie launches. Phone is optional, for SMS updates only.</p>
             <div class="error-message" id="errorMessage">Please enter your name and a valid email address</div>
             <button type="submit" class="email-submit">Join Early Access</button>
         </form>
@@ -2048,46 +3288,6 @@ Video Modal
     </div>
 </div>
 
-<script>
-    // FAQ toggle animation with accordion behavior
-    document.querySelectorAll('[data-faq-item]').forEach(item => {
-        const answer = item.querySelector('.faq-answer');
-
-        const toggleFaq = () => {
-            const isOpen = item.getAttribute('aria-expanded') === 'true';
-
-            // Close all other FAQ items
-            document.querySelectorAll('[data-faq-item]').forEach(otherItem => {
-                if (otherItem !== item && otherItem.getAttribute('aria-expanded') === 'true') {
-                    const otherAnswer = otherItem.querySelector('.faq-answer');
-                    otherItem.setAttribute('aria-expanded', 'false');
-                    otherAnswer.style.height = otherAnswer.scrollHeight + 'px';
-                    requestAnimationFrame(() => otherAnswer.style.height = '0px');
-                }
-            });
-
-            // Toggle current item
-            item.setAttribute('aria-expanded', !isOpen);
-            if (isOpen) {
-                answer.style.height = answer.scrollHeight + 'px';
-                requestAnimationFrame(() => answer.style.height = '0px');
-            } else {
-                answer.style.height = '0px';
-                requestAnimationFrame(() => answer.style.height = answer.scrollHeight + 'px');
-            }
-        };
-
-        // Make entire row clickable
-        item.addEventListener('click', toggleFaq);
-
-        // Handle transition end
-        answer.addEventListener('transitionend', () => {
-            if (item.getAttribute('aria-expanded') === 'true') {
-                answer.style.height = 'auto';
-            }
-        });
-    });
-</script>
 <script>
     // Mobile nav toggle
     (function () {
@@ -2114,7 +3314,7 @@ Video Modal
         const modal = document.getElementById('videoModal');
         const video = document.getElementById('founderVideo');
         const closeBtn = document.getElementById('closeModal');
-        const openBtn = document.querySelector('.btn-ghost');
+        const openBtn = document.querySelector('[data-opens-founder-video]');
 
         if (openBtn && modal && video) {
             // Open modal
@@ -2162,7 +3362,18 @@ Video Modal
         const errorMessage = document.getElementById('errorMessage');
         const closeEmailBtn = document.getElementById('closeEmailModal');
         const thankYouOverlay = document.getElementById('thankYouOverlay');
-        const openBtns = document.querySelectorAll('.btn-primary');
+        // The CTAs, and the ask field's own button. The request chips do not
+        // open the modal -- they fill the field, so the question stays editable.
+        /* Nothing opens the email capture any more: the Download CTAs open the
+           platform chooser, and the search box sends the question to the app.
+           The modal and its handler are left intact below so the waitlist flow
+           can be switched back on by pointing this selector at something. */
+        const openBtns = document.querySelectorAll('.js-email-modal');
+
+        // Which question brought them here. Recorded on the metric now; once the
+        // product is live this is what should be carried into Backsie so the
+        // person does not start from zero.
+        let selectedRequest = null;
 
         function getApiBaseUrl() {
             const hostname = window.location.hostname;
@@ -2336,6 +3547,86 @@ Video Modal
             });
         }
 
+        /* The search box hands the visitor's question to the app rather than
+           stopping at a signup wall: whatever they typed (or picked from a
+           chip) travels with them as ?q=, so onboarding can open on the thing
+           they actually came to ask about. */
+        (function () {
+            var APP_URL = 'https://app.backsie.co/onboarding/account/';
+            var askForm = document.getElementById('askForm');
+            var askInput = document.getElementById('askInput');
+            var askGo = document.querySelector('.ask-go');
+            if (!askForm || !askInput) return;
+
+            function goToApp(e) {
+                if (e) e.preventDefault();
+                var asked = (askInput.value || '').trim();
+                if (typeof trackLaunchMetric === 'function') {
+                    trackLaunchMetric('search_to_app', {
+                        request_id: askForm.dataset.requestId || null,
+                        cluster: askForm.dataset.cluster || null,
+                        request_text: asked || null,
+                    });
+                }
+                window.location.href = asked
+                    ? APP_URL + '?q=' + encodeURIComponent(asked)
+                    : APP_URL;
+            }
+
+            if (askGo) askGo.addEventListener('click', goToApp);
+            /* Enter in the field is the same intent as clicking the button. */
+            askForm.addEventListener('submit', goToApp);
+        })();
+
+        /* Platform chooser wiring. Same open/close contract as the other two
+           modals on this page: X, backdrop click, and Escape. */
+        (function () {
+            var pModal = document.getElementById('platformModal');
+            var pClose = document.getElementById('closePlatformModal');
+            if (!pModal || !pClose) return;
+
+            var lastFocus = null;
+
+            function openPlatform(e) {
+                if (e) e.preventDefault();
+                lastFocus = document.activeElement;
+                pModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                var first = pModal.querySelector('.platform-option');
+                if (first) first.focus();
+                if (typeof trackLaunchMetric === 'function') trackLaunchMetric('download_chooser_opened');
+            }
+
+            function closePlatform() {
+                pModal.classList.remove('active');
+                document.body.style.overflow = '';
+                if (lastFocus && lastFocus.focus) lastFocus.focus();
+            }
+
+            /* Re-enable the chooser by changing this back to '.btn-primary'
+               once the App Store / Play Store links exist (see #linkIos,
+               #linkAndroid). Until then Download links straight to the app. */
+            document.querySelectorAll('.js-platform-chooser').forEach(function (btn) {
+                btn.addEventListener('click', openPlatform);
+            });
+
+            pClose.addEventListener('click', closePlatform);
+            pModal.addEventListener('click', function (e) { if (e.target === pModal) closePlatform(); });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && pModal.classList.contains('active')) closePlatform();
+            });
+
+            /* Which store the visitor picked is the one signal this chooser
+               produces that platform sniffing would have thrown away. */
+            pModal.querySelectorAll('.platform-option').forEach(function (opt) {
+                opt.addEventListener('click', function () {
+                    if (typeof trackLaunchMetric === 'function') {
+                        trackLaunchMetric('download_platform_selected', { platform: opt.dataset.platform });
+                    }
+                });
+            });
+        })();
+
         trackLaunchMetric('landing_page_viewed');
 
         if (emailModal && emailForm && nameInput && emailInput && phoneInput && smsConsentInput) {
@@ -2343,8 +3634,25 @@ Video Modal
             openBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
+                    // What they were asking when they asked for access. A
+                    // typed question is worth more than a picked one -- it is a
+                    // request in the visitor's own words, which is exactly what
+                    // the Request Intelligence set is built from.
+                    const askForm = document.getElementById('askForm');
+                    const askInput = document.getElementById('askInput');
+                    const asked = askInput ? askInput.value.trim() : '';
+                    selectedRequest = (asked || (askForm && askForm.dataset.requestId))
+                        ? {
+                            request_id: (askForm && askForm.dataset.requestId) || null,
+                            cluster: (askForm && askForm.dataset.cluster) || null,
+                            request_text: asked || null,
+                        }
+                        : null;
                     trackLaunchMetric('early_access_modal_opened', {
                         button_text: (btn.textContent || '').trim(),
+                        request_id: selectedRequest ? selectedRequest.request_id : null,
+                        cluster: selectedRequest ? selectedRequest.cluster : null,
+                        request_text: selectedRequest ? selectedRequest.request_text : null,
                     });
                     emailModal.classList.add('active');
                     document.body.style.overflow = 'hidden';
@@ -2593,6 +3901,206 @@ Video Modal
             });
         }, 100);
     });
+</script>
+<script>
+    /* Magnetic scrolling with a 30% commit.
+    
+       CSS scroll-snap can only snap to whichever edge is nearest, so it changes
+       its mind at halfway. Past a third of the way to the next section, this
+       commits to it; short of that, it settles back. Which is why the CSS
+       scroll-snap-type is off -- the two would pull against each other.
+    
+       Rules it obeys, because a page that grabs the scrollbar is worse than one
+       that does not snap at all:
+       - Only between sections that fit on screen. A section taller than the
+         viewport has content below the fold, and snapping away from it would
+         make that content unreachable.
+       - Never while the page is scrolling itself, or the smooth scroll it starts
+         would be read as a new gesture and re-trigger.
+       - Not below 900px, and not for anyone who has asked for reduced motion. */
+    (function () {
+        var wide = window.matchMedia('(min-width: 900px)');
+        var still = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (!wide.matches || still.matches) return;
+
+        /* Going forward asks for a third of a screen; going back asks for a
+           tenth. Scrolling up is usually a correction -- you have gone past
+           something, or want to re-read it -- and making that cost the same
+           deliberate push as moving on means the page keeps dragging you back
+           down while you are trying to leave. */
+        var COMMIT_DOWN = 0.3;
+        var COMMIT_UP = 0.1;
+        var SETTLE = 140;      /* ms of quiet that counts as "stopped" */
+        var targets = Array.prototype.slice.call(
+            document.querySelectorAll('.hero, .requests, .steps-inner, main > .section, .faq')
+        );
+        if (targets.length < 2) return;
+
+        var timer = null;
+        var moving = false;
+
+        function headerOffset() {
+            var raw = getComputedStyle(document.documentElement).getPropertyValue('--header-h');
+            return parseFloat(raw) || 0;
+        }
+
+        function topOf(el) {
+            return el.getBoundingClientRect().top + window.scrollY - headerOffset();
+        }
+
+        function goTo(el) {
+            moving = true;
+            window.scrollTo({ top: Math.max(0, topOf(el)), behavior: 'smooth' });
+            /* Released on a timer rather than on scrollend: a scroll that is
+               already at its destination fires no event, which would leave this
+               stuck and snapping disabled for good. */
+            setTimeout(function () { moving = false; }, 700);
+        }
+
+        function settle() {
+            if (moving) return;
+
+            var y = window.scrollY;
+            var viewport = window.innerHeight - headerOffset();
+
+            /* At the very bottom there is nothing to commit to, and pulling
+               back up from the footer would trap the page. */
+            if (y + window.innerHeight >= document.body.scrollHeight - 2) return;
+
+            for (var i = 0; i < targets.length - 1; i++) {
+                var from = topOf(targets[i]);
+                var to = topOf(targets[i + 1]);
+                if (y < from - 1 || y >= to) continue;
+
+                /* Only when the section being left fits on screen. */
+                if (to - from > viewport + 8) return;
+
+                var progress = (y - from) / (to - from);
+                if (progress < 0.02) return;              /* already settled */
+
+                if (goingUp) {
+                    /* Measured from the section being left, which when moving
+                       up is the one below: a tenth of the way off its top is
+                       enough to mean it. */
+                    goTo(progress < 1 - COMMIT_UP ? targets[i] : targets[i + 1]);
+                } else {
+                    goTo(progress > COMMIT_DOWN ? targets[i + 1] : targets[i]);
+                }
+                return;
+            }
+        }
+
+        var lastY = window.scrollY;
+        var goingUp = false;
+
+        addEventListener('scroll', function () {
+            var y = window.scrollY;
+            /* Direction is only read from the reader's own scrolling. Taking it
+               from a scroll this script started would have every snap look like
+               a gesture in whichever way it just moved the page. */
+            if (!moving) goingUp = y < lastY;
+            lastY = y;
+
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(settle, SETTLE);
+        }, { passive: true });
+    })();
+</script>
+<script>
+    /* The rail advances one step at a time: it travels to a number, and only
+       then does that step's content arrive. A single sweep across the whole
+       track said "this is a sequence"; this one walks it.
+    
+       Started when the section is reached rather than on page load -- it sits
+       three screens down, and an animation nobody is present for has not
+       happened. Once only: a loop would pull the eye back every time they
+       scrolled past. */
+    (function () {
+        var section = document.getElementById('stepsSection');
+        if (!section) return;
+
+        var rail = section.querySelector('.rail');
+        var fill = section.querySelector('.rail-fill');
+        var steps = Array.prototype.slice.call(section.querySelectorAll('.step'));
+        if (!rail || !fill || !steps.length) return;
+
+        var TRAVEL = 900;  /* must match the CSS transition on .rail-fill */
+        var REST = 850;    /* how long a step is left to be read */
+
+        var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function reveal() {
+            steps.forEach(function (step) { step.classList.add('is-on'); });
+            fill.style.width = '100%';
+        }
+
+        /* Where the rail should stop for this step: the centre of its number,
+           measured rather than assumed, since the columns are a grid and the
+           last one is a different width. */
+        function stopFor(step) {
+            var num = step.querySelector('.step-num');
+            if (!num) return 0;
+            var mark = num.getBoundingClientRect();
+            return Math.max(0, mark.left + mark.width / 2 - rail.getBoundingClientRect().left);
+        }
+
+        function walk(index) {
+            if (index >= steps.length) {
+                /* Settled: hand the width back to the layout so a resize does
+                   not leave the fill stranded at a stale pixel value. */
+                fill.style.width = '100%';
+                return;
+            }
+
+            fill.style.width = stopFor(steps[index]) + 'px';
+
+            /* The first number sits at the start of the track, so there is no
+               distance to cover before it. */
+            var travel = index === 0 ? 60 : TRAVEL;
+
+            setTimeout(function () {
+                steps[index].classList.add('is-on');
+                setTimeout(function () { walk(index + 1); }, REST);
+            }, travel);
+        }
+
+        function start() {
+            if (still) return reveal();
+            walk(0);
+        }
+
+        if (!('IntersectionObserver' in window)) return start();
+
+        var seen = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                seen.unobserve(entry.target);
+                start();
+            });
+        }, { threshold: 0.25 });
+
+        seen.observe(section);
+    })();
+</script>
+<script>
+    /* One answer open at a time.
+    
+       name="faq" on the <details> does this natively; this covers the browsers
+       that ignore it. Where the browser has already closed the sibling, the
+       loop finds nothing to do. */
+    (function () {
+        var items = Array.prototype.slice.call(document.querySelectorAll('.faq details'));
+        if (!items.length) return;
+
+        items.forEach(function (item) {
+            item.addEventListener('toggle', function () {
+                if (!item.open) return;
+                items.forEach(function (other) {
+                    if (other !== item && other.open) other.open = false;
+                });
+            });
+        });
+    })();
 </script>
 </body>
 </html>
