@@ -2564,6 +2564,78 @@
             max-width: 639px;
         }
 
+        /* Browse by topic.
+
+           The same object as the request chips in the hero -- white card,
+           hairline border, amber and a lift on hover -- because it is the
+           same kind of thing: a way in, picked from a few. It gets its own
+           grid rather than reusing .requests-chips, which is sized and
+           centred for the narrow hero column. */
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        @media (max-width: 900px) {
+            .topic-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .topic-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .topic {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            height: 100%;
+            padding: 18px;
+            border: 1px solid rgba(31, 71, 63, .1);
+            border-radius: 12px;
+            background: #fff;
+            text-decoration: none;
+            transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+        }
+
+        .topic:hover {
+            transform: translateY(-3px);
+            border-color: var(--cta);
+            box-shadow: 0 12px 26px rgba(31, 71, 63, .11);
+        }
+
+        .topic:focus-visible {
+            outline: 2px solid var(--brand);
+            outline-offset: 3px;
+        }
+
+        .topic-name {
+            font-size: 17px;
+            font-weight: 500;
+            line-height: 1.3;
+            color: var(--brand);
+        }
+
+        .topic-blurb {
+            font-size: 14px;
+            line-height: 1.45;
+            color: rgba(31, 71, 63, .62);
+        }
+
+        /* The way through to the full list is the last cell of the grid
+           rather than a link trailing underneath it, so a row of five closes
+           instead of leaving a hole. */
+        .topic-all .topic-name {
+            color: var(--cta-ink);
+        }
+
         .footer-grid {
             display: grid;
             grid-template-columns: auto 1fr auto;
@@ -3085,6 +3157,66 @@
                 <p class="feature-description">Anonymous experiences, filed under the problem being solved. Ghosting, mixed signals, friendship fallout, work, family.</p>
             </div>
         </div>
+    </section>
+
+    <!-- Browse by topic.
+
+         The card and topic pages are on backsie.co as well -- the same
+         distribution sends /topics and /cards to the backend -- and until now
+         nothing on this page linked to a single one of them. 89 of those card
+         pages were sitting in Search Console as "Discovered, currently not
+         indexed", which is what a crawler does with pages nothing links to.
+
+         Only topics that have experiences on them are listed. An empty topic
+         says noindex and stays out of the sitemap (backend:
+         services/public_cards.categories_with_cards), so linking one from here
+         would point at a page we are asking not to be indexed. This list is
+         written out by hand because this page is static; when an empty topic
+         fills up, add it here. /topics is always the full, live list. -->
+    <section class="container section" aria-labelledby="topics-heading">
+        <div class="section-header">
+            <h2 class="section-title" id="topics-heading">Browse by what happened</h2>
+            <p class="section-description">Every experience here was written by the person who lived it, filed under the
+                problem they were solving. Open one to see what they did next, and how it turned out.</p>
+        </div>
+        <ul class="topic-grid">
+            <li>
+                <a class="topic" href="/topics/relationships-dating">
+                    <span class="topic-name">Relationships &amp; Dating</span>
+                    <span class="topic-blurb">Ghosting, mixed signals, and whether to walk away.</span>
+                </a>
+            </li>
+            <li>
+                <a class="topic" href="/topics/friends-social-life">
+                    <span class="topic-name">Friends &amp; Social Life</span>
+                    <span class="topic-blurb">Fallouts, drifting apart, the group that went quiet.</span>
+                </a>
+            </li>
+            <li>
+                <a class="topic" href="/topics/family-home">
+                    <span class="topic-name">Family &amp; Home</span>
+                    <span class="topic-blurb">Boundaries, living at home, the conversation you keep putting off.</span>
+                </a>
+            </li>
+            <li>
+                <a class="topic" href="/topics/grief-loss">
+                    <span class="topic-name">Grief &amp; Loss</span>
+                    <span class="topic-blurb">Losing someone, and the long stretch afterwards.</span>
+                </a>
+            </li>
+            <li>
+                <a class="topic" href="/topics/everyday-stress">
+                    <span class="topic-name">Everyday Stress</span>
+                    <span class="topic-blurb">The weeks where everything lands at once.</span>
+                </a>
+            </li>
+            <li>
+                <a class="topic topic-all" href="/topics">
+                    <span class="topic-name">All topics &rarr;</span>
+                    <span class="topic-blurb">Everything people have written down, by subject.</span>
+                </a>
+            </li>
+        </ul>
     </section>
 
     <!-- FAQ -->
