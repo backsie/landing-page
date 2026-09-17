@@ -3167,12 +3167,15 @@
          pages were sitting in Search Console as "Discovered, currently not
          indexed", which is what a crawler does with pages nothing links to.
 
-         Only topics that have experiences on them are listed. An empty topic
-         says noindex and stays out of the sitemap (backend:
-         services/public_cards.categories_with_cards), so linking one from here
-         would point at a page we are asking not to be indexed. This list is
-         written out by hand because this page is static; when an empty topic
-         fills up, add it here. /topics is always the full, live list. -->
+         Only topics carrying enough experiences to be worth indexing are
+         listed. A topic below that line says noindex and stays out of the
+         sitemap (backend: services/public_cards.MIN_CARDS_FOR_INDEX), so
+         linking one from here would point at a page we are asking not to be
+         indexed. The line is three cards: a hub holding one experience reads
+         to a crawler like an empty one and competes with the card it holds
+         for the same query. This list is written out by hand because this
+         page is static; when a topic crosses the line, add it here. /topics
+         is always the full, live list. -->
     <section class="container section" aria-labelledby="topics-heading">
         <div class="section-header">
             <h2 class="section-title" id="topics-heading">Browse by what happened</h2>
@@ -3193,21 +3196,9 @@
                 </a>
             </li>
             <li>
-                <a class="topic" href="/topics/family-home">
-                    <span class="topic-name">Family &amp; Home</span>
-                    <span class="topic-blurb">Boundaries, living at home, the conversation you keep putting off.</span>
-                </a>
-            </li>
-            <li>
                 <a class="topic" href="/topics/grief-loss">
                     <span class="topic-name">Grief &amp; Loss</span>
                     <span class="topic-blurb">Losing someone, and the long stretch afterwards.</span>
-                </a>
-            </li>
-            <li>
-                <a class="topic" href="/topics/everyday-stress">
-                    <span class="topic-name">Everyday Stress</span>
-                    <span class="topic-blurb">The weeks where everything lands at once.</span>
                 </a>
             </li>
             <li>
