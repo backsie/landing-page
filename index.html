@@ -357,6 +357,49 @@
             border-color: rgba(31, 71, 63, .14);
         }
 
+        /* Store buttons. Both apps are live, so the page names both
+           destinations instead of one button that has to ask first: someone on
+           a phone taps the store they are already signed into, and someone on a
+           desktop can at least see the app exists on their phone's platform.
+           The chooser modal stays for the header CTA, where there is room for
+           one button and not two. */
+        .store-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn-store {
+            gap: 10px;
+        }
+
+        /* Without this the glyph is the first thing flexbox gives up when the
+           row runs out of room, and the button loses the only part of it that
+           says which store it goes to. */
+        .btn-store svg {
+            flex: none;
+        }
+
+        /* Demoted from a button. Two store buttons and a third outline button
+           read as three equal choices, and the tour is not one. */
+        .hero-more {
+            margin: 16px 0 0;
+            font-size: 14px;
+        }
+
+        .hero-more a {
+            color: var(--brand);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(31, 71, 63, .28);
+            padding-bottom: 1px;
+            transition: border-color .2s ease;
+        }
+
+        .hero-more a:hover {
+            border-bottom-color: var(--brand);
+        }
+
         .btn-ghost:hover,
         .btn-secondary:hover {
             background: #FCFBF8;
@@ -2720,10 +2763,10 @@
                 </svg>
             </button>
             <div class="nav-actions">
-                <a class="btn btn-primary" href="https://app.backsie.co/onboarding/account/">Download</a>
+                <a class="btn btn-primary js-platform-chooser" href="https://app.backsie.co/onboarding/account/">Download</a>
             </div>
             <div class="mobile-menu" role="menu" aria-hidden="true">
-                <a class="btn btn-primary cta mobile-menu-btn" role="menuitem" href="https://app.backsie.co/onboarding/account/">
+                <a class="btn btn-primary cta mobile-menu-btn js-platform-chooser" role="menuitem" href="https://app.backsie.co/onboarding/account/">
                     Download
                 </a>
             </div>
@@ -3029,10 +3072,11 @@
                 })();
             </script>
             <p class="lede hero-lede rise" style="animation-delay:.55s">Tell Backsie what happened. See real experiences that resemble yours. What people did next, and how it turned out.</p>
-            <div class="hero-actions rise" style="animation-delay:.7s">
-                <a class="btn btn-primary" href="https://app.backsie.co/onboarding/account/">Download</a>
-                <a class="btn btn-secondary" href="#how-backsie-works">See how Backsie works</a>
+            <div class="hero-actions store-actions rise" style="animation-delay:.7s">
+                <a class="btn btn-primary btn-store" href="https://apps.apple.com/us/app/backsie/id6754548944" data-platform="ios"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.03-2.5 2.05-3.7 2.14-3.76-1.17-1.7-2.98-1.94-3.62-1.96-1.54-.16-3.01.9-3.79.9-.78 0-1.99-.88-3.27-.86-1.68.02-3.23.98-4.09 2.48-1.74 3.02-.45 7.5 1.25 9.95.83 1.2 1.82 2.55 3.12 2.5 1.25-.05 1.72-.81 3.23-.81 1.51 0 1.93.81 3.25.78 1.34-.02 2.19-1.22 3.01-2.43.95-1.39 1.34-2.74 1.36-2.81-.03-.01-2.61-1-2.64-3.98zM14.6 4.6c.69-.83 1.15-1.99 1.02-3.15-.99.04-2.19.66-2.9 1.49-.64.74-1.19 1.92-1.04 3.05 1.1.09 2.23-.56 2.92-1.39z"/></svg>Download on iOS</a>
+                <a class="btn btn-secondary btn-store" href="https://play.google.com/store/apps/details?id=co.backsie.app" data-platform="android"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 1.8a1 1 0 00-.5.9v18.6a1 1 0 00.5.9l10.1-10.2L3.6 1.8zm11.3 8.9l2.9-2.9-11-6.2c-.2-.1-.4-.1-.6 0l8.7 9.1zm0 2.6l-8.7 9.1c.2.1.4.1.6 0l11-6.2-2.9-2.9zm1.2-1.3l3.4-1.9c.6-.4.6-1.3 0-1.6l-3.4-2-3.2 2.7 3.2 2.8z"/></svg>Get it on Android</a>
             </div>
+            <p class="hero-more rise" style="animation-delay:.8s"><a href="#how-backsie-works">See how Backsie works</a></p>
         </div>
 
         <aside class="outcomes rise" style="animation-delay:.3s" aria-label="Example: one question, several outcomes">
@@ -3324,20 +3368,21 @@ Video Modal
 -->
 
 <!-- Email Modal -->
-<!-- Platform chooser for the Download CTAs.
-     >>> REPLACE THE THREE href="#" VALUES BELOW WITH THE REAL LINKS <<< -->
+<!-- Platform chooser, opened by the header and mobile-menu Download CTAs.
+     The hero and the closing section link to the two stores directly; this is
+     for the one place on the page that has room for a single button. -->
 <div class="platform-modal" id="platformModal" role="dialog" aria-modal="true" aria-labelledby="platformModalTitle">
     <div class="platform-modal-content">
         <button class="email-modal-close" id="closePlatformModal" aria-label="Close"></button>
         <h2 id="platformModalTitle">Get Backsie</h2>
         <p>Where would you like to open it?</p>
         <div class="platform-list">
-            <a class="platform-option" id="linkIos" href="#" data-platform="ios">
+            <a class="platform-option" id="linkIos" href="https://apps.apple.com/us/app/backsie/id6754548944" data-platform="ios">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.03-2.5 2.05-3.7 2.14-3.76-1.17-1.7-2.98-1.94-3.62-1.96-1.54-.16-3.01.9-3.79.9-.78 0-1.99-.88-3.27-.86-1.68.02-3.23.98-4.09 2.48-1.74 3.02-.45 7.5 1.25 9.95.83 1.2 1.82 2.55 3.12 2.5 1.25-.05 1.72-.81 3.23-.81 1.51 0 1.93.81 3.25.78 1.34-.02 2.19-1.22 3.01-2.43.95-1.39 1.34-2.74 1.36-2.81-.03-.01-2.61-1-2.64-3.98zM14.6 4.6c.69-.83 1.15-1.99 1.02-3.15-.99.04-2.19.66-2.9 1.49-.64.74-1.19 1.92-1.04 3.05 1.1.09 2.23-.56 2.92-1.39z"/></svg>
                 <span>App Store</span>
                 <svg class="platform-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
             </a>
-            <a class="platform-option" id="linkAndroid" href="#" data-platform="android">
+            <a class="platform-option" id="linkAndroid" href="https://play.google.com/store/apps/details?id=co.backsie.app" data-platform="android">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 1.8a1 1 0 00-.5.9v18.6a1 1 0 00.5.9l10.1-10.2L3.6 1.8zm11.3 8.9l2.9-2.9-11-6.2c-.2-.1-.4-.1-.6 0l8.7 9.1zm0 2.6l-8.7 9.1c.2.1.4.1.6 0l11-6.2-2.9-2.9zm1.2-1.3l3.4-1.9c.6-.4.6-1.3 0-1.6l-3.4-2-3.2 2.7 3.2 2.8z"/></svg>
                 <span>Google Play</span>
                 <svg class="platform-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
@@ -3725,9 +3770,11 @@ Video Modal
                 if (lastFocus && lastFocus.focus) lastFocus.focus();
             }
 
-            /* Re-enable the chooser by changing this back to '.btn-primary'
-               once the App Store / Play Store links exist (see #linkIos,
-               #linkAndroid). Until then Download links straight to the app. */
+            /* Only the header and mobile-menu CTAs ask. The store buttons in
+               the hero are already a destination, and sending those through a
+               chooser would put a question between the visitor and the store
+               they just chose. Both keep a working href, so a visitor without
+               JS lands in the web app rather than nowhere. */
             document.querySelectorAll('.js-platform-chooser').forEach(function (btn) {
                 btn.addEventListener('click', openPlatform);
             });
