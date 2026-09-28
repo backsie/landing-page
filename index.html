@@ -371,13 +371,122 @@
         }
 
         .btn-store {
-            gap: 10px;
+            gap: 11px;
+            min-height: 54px;
+            padding: 0 26px;
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* The hero's single button. One destination for both stores, because
+           asking a visitor to know which store they are in before they have
+           decided to install anything is a question in the wrong order -- the
+           chooser answers it after the decision, and the header carries the
+           direct links for anyone who already knows. */
+        .btn-store-lead {
+            min-height: 58px;
+            padding: 0 34px;
+            font-size: 18px;
+        }
+
+        /* The same two stores as a pair of marks in the header, where there is
+           room for a glyph but not for two sentences. */
+        .icon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+            height: 44px;
+            padding: 0 20px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(31, 71, 63, .14);
+            background: #fff;
+            color: var(--brand);
+            text-decoration: none;
+            transition: border-color .2s ease, background-color .2s ease;
+        }
+
+        .icon-btn:hover {
+            border-color: rgba(31, 71, 63, .4);
+        }
+
+        .icon-btn:focus-visible {
+            outline: 2px solid var(--brand);
+            outline-offset: 3px;
+        }
+
+        /* Hover roll. The label climbs out through the top of a window exactly
+           one line tall while an identical copy climbs in behind it, so it
+           lands on itself and reads as one strip ticking upward rather than
+           text that blinks away. Each letter is its own window with its own
+           delay, which is what turns a single slide into a wave across the
+           word. The leading glyph stays put: it is the part that says which
+           store this is, and a mark that jumps is just noise. Markup is built
+           by JS, so the button is a plain link until then. */
+        .roll-label {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .roll {
+            display: block;
+            overflow: hidden;
+            height: 1em;
+            line-height: 1em;
+            flex: none;
+        }
+
+        .roll-inner {
+            display: flex;
+            flex-direction: column;
+            flex: none;
+            transition: transform .42s cubic-bezier(.34, .85, .36, 1);
+            transition-delay: calc(var(--i, 0) * 32ms);
+        }
+
+        .roll-item {
+            display: block;
+            height: 1em;
+            line-height: 1em;
+            white-space: nowrap;
+        }
+
+        .roll-space {
+            display: inline-block;
+            height: 1em;
+        }
+
+        /* The glyph's window is the glyph, not a line of text. */
+        .roll-icon,
+        .roll-icon .roll-item {
+            height: 19px;
+            line-height: 19px;
+        }
+
+        .js-roll:hover .roll-inner,
+        .js-roll:focus-visible .roll-inner {
+            transform: translateY(-50%);
+        }
+
+        /* Someone who asked for less motion gets a button that sits still, not
+           one stuck half a line up. */
+        @media (prefers-reduced-motion: reduce) {
+            .roll-inner {
+                transition: none;
+            }
+
+            .js-roll:hover .roll-inner,
+            .js-roll:focus-visible .roll-inner {
+                transform: none;
+            }
         }
 
         /* Without this the glyph is the first thing flexbox gives up when the
            row runs out of room, and the button loses the only part of it that
            says which store it goes to. */
-        .btn-store svg {
+        .btn-store svg,
+        .icon-btn svg {
             flex: none;
         }
 
@@ -1055,86 +1164,6 @@
         }
 
         /* Email Modal */
-        /* Platform chooser. The download CTAs do not guess the visitor's
-           device -- they ask, so a desktop visitor who wants the iOS app is
-           not sent somewhere useless. Options are real <a href>s, so they
-           still work with JS off and can be opened in a new tab. */
-        .platform-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 9998;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .platform-modal.active {
-            display: flex
-        }
-
-        .platform-modal-content {
-            position: relative;
-            width: 100%;
-            max-width: 420px;
-            background: #fff;
-            border-radius: 20px;
-            padding: 40px 32px 32px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .platform-modal h2 {
-            margin: 0 0 6px;
-            font-size: 24px;
-            font-weight: 100;
-            letter-spacing: -.4px;
-            color: var(--brand);
-            text-align: center;
-        }
-
-        .platform-modal p {
-            margin: 0 0 24px;
-            font-size: 15px;
-            color: var(--muted);
-            text-align: center;
-        }
-
-        .platform-list {
-            display: grid;
-            gap: 10px;
-        }
-
-        .platform-option {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 16px 18px;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            background: #fff;
-            color: var(--brand);
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 500;
-            transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
-        }
-
-        .platform-option:hover {
-            border-color: var(--brand);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 22px -12px rgba(31, 71, 63, .28);
-        }
-
-        .platform-option svg {
-            flex: 0 0 22px;
-        }
-
-        .platform-option .platform-arrow {
-            margin-left: auto;
-            opacity: .4;
-        }
-
         .email-modal {
             display: none;
             position: fixed;
@@ -2763,10 +2792,11 @@
                 </svg>
             </button>
             <div class="nav-actions">
-                <a class="btn btn-primary js-platform-chooser" href="https://app.backsie.co/onboarding/account/">Download</a>
+                <a class="icon-btn js-roll" href="https://apps.apple.com/us/app/backsie/id6754548944" data-platform="ios" aria-label="Download Backsie on the App Store"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.03-2.5 2.05-3.7 2.14-3.76-1.17-1.7-2.98-1.94-3.62-1.96-1.54-.16-3.01.9-3.79.9-.78 0-1.99-.88-3.27-.86-1.68.02-3.23.98-4.09 2.48-1.74 3.02-.45 7.5 1.25 9.95.83 1.2 1.82 2.55 3.12 2.5 1.25-.05 1.72-.81 3.23-.81 1.51 0 1.93.81 3.25.78 1.34-.02 2.19-1.22 3.01-2.43.95-1.39 1.34-2.74 1.36-2.81-.03-.01-2.61-1-2.64-3.98zM14.6 4.6c.69-.83 1.15-1.99 1.02-3.15-.99.04-2.19.66-2.9 1.49-.64.74-1.19 1.92-1.04 3.05 1.1.09 2.23-.56 2.92-1.39z"/></svg></a>
+                <a class="icon-btn js-roll" href="https://play.google.com/store/apps/details?id=co.backsie.app" data-platform="android" aria-label="Get Backsie on Google Play"><svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path fill="#00D3FF" d="M3.27 1.94A1.4 1.4 0 0 0 3 2.8v18.4c0 .34.1.63.27.86l.07.07 10.3-10.06v-.24L3.34 1.87l-.07.07z"/><path fill="#FFCE00" d="M17.07 15.5l-3.43-3.36v-.24l3.44-3.37.08.05 4.07 2.29c1.16.65 1.16 1.72 0 2.37l-4.07 2.29-.09.06z"/><path fill="#FF3A44" d="M17.16 15.44l-3.52-3.44L3.27 22.06c.38.4 1.02.44 1.73.05l12.16-6.67z"/><path fill="#00F076" d="M17.16 8.56L5 1.89c-.71-.39-1.35-.34-1.73.05L13.64 12l3.52-3.44z"/></svg></a>
             </div>
             <div class="mobile-menu" role="menu" aria-hidden="true">
-                <a class="btn btn-primary cta mobile-menu-btn js-platform-chooser" role="menuitem" href="https://app.backsie.co/onboarding/account/">
+                <a class="btn btn-primary cta mobile-menu-btn js-get-app" role="menuitem" href="https://apps.apple.com/us/app/backsie/id6754548944" data-ios="https://apps.apple.com/us/app/backsie/id6754548944" data-android="https://play.google.com/store/apps/details?id=co.backsie.app">
                     Download
                 </a>
             </div>
@@ -3073,8 +3103,7 @@
             </script>
             <p class="lede hero-lede rise" style="animation-delay:.55s">Tell Backsie what happened. See real experiences that resemble yours. What people did next, and how it turned out.</p>
             <div class="hero-actions store-actions rise" style="animation-delay:.7s">
-                <a class="btn btn-primary btn-store" href="https://apps.apple.com/us/app/backsie/id6754548944" data-platform="ios"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.03-2.5 2.05-3.7 2.14-3.76-1.17-1.7-2.98-1.94-3.62-1.96-1.54-.16-3.01.9-3.79.9-.78 0-1.99-.88-3.27-.86-1.68.02-3.23.98-4.09 2.48-1.74 3.02-.45 7.5 1.25 9.95.83 1.2 1.82 2.55 3.12 2.5 1.25-.05 1.72-.81 3.23-.81 1.51 0 1.93.81 3.25.78 1.34-.02 2.19-1.22 3.01-2.43.95-1.39 1.34-2.74 1.36-2.81-.03-.01-2.61-1-2.64-3.98zM14.6 4.6c.69-.83 1.15-1.99 1.02-3.15-.99.04-2.19.66-2.9 1.49-.64.74-1.19 1.92-1.04 3.05 1.1.09 2.23-.56 2.92-1.39z"/></svg>Download on iOS</a>
-                <a class="btn btn-secondary btn-store" href="https://play.google.com/store/apps/details?id=co.backsie.app" data-platform="android"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 1.8a1 1 0 00-.5.9v18.6a1 1 0 00.5.9l10.1-10.2L3.6 1.8zm11.3 8.9l2.9-2.9-11-6.2c-.2-.1-.4-.1-.6 0l8.7 9.1zm0 2.6l-8.7 9.1c.2.1.4.1.6 0l11-6.2-2.9-2.9zm1.2-1.3l3.4-1.9c.6-.4.6-1.3 0-1.6l-3.4-2-3.2 2.7 3.2 2.8z"/></svg>Get it on Android</a>
+                <a class="btn btn-primary btn-store btn-store-lead js-roll js-get-app" href="https://apps.apple.com/us/app/backsie/id6754548944" data-ios="https://apps.apple.com/us/app/backsie/id6754548944" data-android="https://play.google.com/store/apps/details?id=co.backsie.app"><span class="roll-label">Get the App</span></a>
             </div>
             <p class="hero-more rise" style="animation-delay:.8s"><a href="#how-backsie-works">See how Backsie works</a></p>
         </div>
@@ -3368,34 +3397,6 @@ Video Modal
 -->
 
 <!-- Email Modal -->
-<!-- Platform chooser, opened by the header and mobile-menu Download CTAs.
-     The hero and the closing section link to the two stores directly; this is
-     for the one place on the page that has room for a single button. -->
-<div class="platform-modal" id="platformModal" role="dialog" aria-modal="true" aria-labelledby="platformModalTitle">
-    <div class="platform-modal-content">
-        <button class="email-modal-close" id="closePlatformModal" aria-label="Close"></button>
-        <h2 id="platformModalTitle">Get Backsie</h2>
-        <p>Where would you like to open it?</p>
-        <div class="platform-list">
-            <a class="platform-option" id="linkIos" href="https://apps.apple.com/us/app/backsie/id6754548944" data-platform="ios">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.03-2.5 2.05-3.7 2.14-3.76-1.17-1.7-2.98-1.94-3.62-1.96-1.54-.16-3.01.9-3.79.9-.78 0-1.99-.88-3.27-.86-1.68.02-3.23.98-4.09 2.48-1.74 3.02-.45 7.5 1.25 9.95.83 1.2 1.82 2.55 3.12 2.5 1.25-.05 1.72-.81 3.23-.81 1.51 0 1.93.81 3.25.78 1.34-.02 2.19-1.22 3.01-2.43.95-1.39 1.34-2.74 1.36-2.81-.03-.01-2.61-1-2.64-3.98zM14.6 4.6c.69-.83 1.15-1.99 1.02-3.15-.99.04-2.19.66-2.9 1.49-.64.74-1.19 1.92-1.04 3.05 1.1.09 2.23-.56 2.92-1.39z"/></svg>
-                <span>App Store</span>
-                <svg class="platform-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-            </a>
-            <a class="platform-option" id="linkAndroid" href="https://play.google.com/store/apps/details?id=co.backsie.app" data-platform="android">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 1.8a1 1 0 00-.5.9v18.6a1 1 0 00.5.9l10.1-10.2L3.6 1.8zm11.3 8.9l2.9-2.9-11-6.2c-.2-.1-.4-.1-.6 0l8.7 9.1zm0 2.6l-8.7 9.1c.2.1.4.1.6 0l11-6.2-2.9-2.9zm1.2-1.3l3.4-1.9c.6-.4.6-1.3 0-1.6l-3.4-2-3.2 2.7 3.2 2.8z"/></svg>
-                <span>Google Play</span>
-                <svg class="platform-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-            </a>
-            <a class="platform-option" id="linkWeb" href="https://app.backsie.co/onboarding/account/" data-platform="web">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg>
-                <span>Open in browser</span>
-                <svg class="platform-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-            </a>
-        </div>
-    </div>
-</div>
-
 <div class="email-modal" id="emailModal" role="dialog" aria-modal="true">
     <div class="email-modal-content">
         <button class="email-modal-close" id="closeEmailModal" aria-label="Close"></button>
@@ -3745,52 +3746,89 @@ Video Modal
             askForm.addEventListener('submit', goToApp);
         })();
 
-        /* Platform chooser wiring. Same open/close contract as the other two
-           modals on this page: X, backdrop click, and Escape. */
+        /* Splits each rolling label into per-letter windows, two identical
+           copies deep, and hands each letter the index the CSS turns into a
+           delay. Built here rather than written into the markup because the
+           alternative is a dozen spans per word in the HTML, and because a
+           label chopped into letters is noise to a screen reader -- the
+           accessible name comes from the button's aria-label and the pieces
+           are hidden from it. */
         (function () {
-            var pModal = document.getElementById('platformModal');
-            var pClose = document.getElementById('closePlatformModal');
-            if (!pModal || !pClose) return;
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-            var lastFocus = null;
-
-            function openPlatform(e) {
-                if (e) e.preventDefault();
-                lastFocus = document.activeElement;
-                pModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                var first = pModal.querySelector('.platform-option');
-                if (first) first.focus();
-                if (typeof trackLaunchMetric === 'function') trackLaunchMetric('download_chooser_opened');
-            }
-
-            function closePlatform() {
-                pModal.classList.remove('active');
-                document.body.style.overflow = '';
-                if (lastFocus && lastFocus.focus) lastFocus.focus();
-            }
-
-            /* Only the header and mobile-menu CTAs ask. The store buttons in
-               the hero are already a destination, and sending those through a
-               chooser would put a question between the visitor and the store
-               they just chose. Both keep a working href, so a visitor without
-               JS lands in the web app rather than nowhere. */
-            document.querySelectorAll('.js-platform-chooser').forEach(function (btn) {
-                btn.addEventListener('click', openPlatform);
+            /* An icon button has no label to split, so its mark is what
+               rolls: one window the height of the glyph, the same glyph twice
+               inside it. */
+            document.querySelectorAll('.js-roll > svg').forEach(function (svg) {
+                var roll = document.createElement('span');
+                roll.className = 'roll roll-icon';
+                var inner = document.createElement('span');
+                inner.className = 'roll-inner';
+                for (var copy = 0; copy < 2; copy++) {
+                    var item = document.createElement('span');
+                    item.className = 'roll-item';
+                    item.appendChild(svg.cloneNode(true));
+                    inner.appendChild(item);
+                }
+                roll.appendChild(inner);
+                svg.parentNode.replaceChild(roll, svg);
             });
 
-            pClose.addEventListener('click', closePlatform);
-            pModal.addEventListener('click', function (e) { if (e.target === pModal) closePlatform(); });
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape' && pModal.classList.contains('active')) closePlatform();
+            document.querySelectorAll('.js-roll .roll-label').forEach(function (label) {
+                var text = label.textContent;
+                label.textContent = '';
+                label.setAttribute('aria-hidden', 'true');
+                var index = 0;
+                text.split('').forEach(function (ch) {
+                    if (ch === ' ') {
+                        var space = document.createElement('span');
+                        space.className = 'roll-space';
+                        space.innerHTML = '&nbsp;';
+                        label.appendChild(space);
+                        return;
+                    }
+                    var roll = document.createElement('span');
+                    roll.className = 'roll';
+                    roll.style.setProperty('--i', index++);
+                    var inner = document.createElement('span');
+                    inner.className = 'roll-inner';
+                    /* Two copies, so travelling exactly one of them lands on a
+                       glyph identical to the one that just left. */
+                    for (var copy = 0; copy < 2; copy++) {
+                        var item = document.createElement('span');
+                        item.className = 'roll-item';
+                        item.textContent = ch;
+                        inner.appendChild(item);
+                    }
+                    roll.appendChild(inner);
+                    label.appendChild(roll);
+                });
             });
+        })();
 
-            /* Which store the visitor picked is the one signal this chooser
-               produces that platform sniffing would have thrown away. */
-            pModal.querySelectorAll('.platform-option').forEach(function (opt) {
-                opt.addEventListener('click', function () {
+        /* Send Get the App to the store the visitor can actually install
+           from. Guessing was deliberately avoided here once, behind a chooser
+           that asked -- but the question only ever had one right answer on a
+           phone, and asking it put a dialog between someone and the store they
+           were already signed into. So it is answered from the user agent, and
+           the header keeps both stores named for anyone the guess does not fit.
+           The HTML ships the App Store as the href, so a visitor without JS
+           still lands on a real store page rather than nowhere. */
+        (function () {
+            var ua = navigator.userAgent || '';
+            var isAndroid = /Android/i.test(ua);
+            /* iPadOS reports itself as a Mac, and the only thing that separates
+               it from a real one is a touchscreen. */
+            var isIOS = /iPad|iPhone|iPod/.test(ua) ||
+                (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+            var platform = isAndroid ? 'android' : (isIOS ? 'ios' : 'desktop');
+
+            document.querySelectorAll('.js-get-app').forEach(function (btn) {
+                var href = isAndroid ? btn.dataset.android : btn.dataset.ios;
+                if (href) btn.setAttribute('href', href);
+                btn.addEventListener('click', function () {
                     if (typeof trackLaunchMetric === 'function') {
-                        trackLaunchMetric('download_platform_selected', { platform: opt.dataset.platform });
+                        trackLaunchMetric('download_platform_selected', { platform: platform });
                     }
                 });
             });
