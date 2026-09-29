@@ -492,9 +492,22 @@
 
         /* Demoted from a button. Two store buttons and a third outline button
            read as three equal choices, and the tour is not one. */
+        /* Get the App now sends everyone to a store, which is the right
+           answer on a phone and a dead end on a desktop. This is the way
+           through for anyone who cannot install one, and the line the old
+           chooser's "Open in browser" row used to be. */
         .hero-more {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
             margin: 16px 0 0;
             font-size: 14px;
+        }
+
+        .hero-more-sep {
+            color: var(--muted);
+            opacity: .6;
         }
 
         .hero-more a {
@@ -3105,7 +3118,7 @@
             <div class="hero-actions store-actions rise" style="animation-delay:.7s">
                 <a class="btn btn-primary btn-store btn-store-lead js-roll js-get-app" href="https://apps.apple.com/us/app/backsie/id6754548944" data-ios="https://apps.apple.com/us/app/backsie/id6754548944" data-android="https://play.google.com/store/apps/details?id=co.backsie.app"><span class="roll-label">Get the App</span></a>
             </div>
-            <p class="hero-more rise" style="animation-delay:.8s"><a href="#how-backsie-works">See how Backsie works</a></p>
+            <p class="hero-more rise" style="animation-delay:.8s"><a href="https://app.backsie.co/onboarding/account/">Continue in your browser</a><span class="hero-more-sep" aria-hidden="true">&middot;</span><a href="#how-backsie-works">See how Backsie works</a></p>
         </div>
 
         <aside class="outcomes rise" style="animation-delay:.3s" aria-label="Example: one question, several outcomes">
