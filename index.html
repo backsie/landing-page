@@ -1062,25 +1062,25 @@
         }
 
         /* nav responsive */
-        .hamburger {
-            display: none
-        }
-
         @media (max-width: 720px) {
             .nav {
                 position: relative
             }
 
-            .nav-actions {
-                display: none
+            /* The stores stay in the header on a phone. They used to be behind
+               a hamburger, which existed for nothing else: one menu holding one
+               button, two taps deep, on the screen where installing the app is
+               the likeliest thing anyone wants. The marks are small enough to
+               sit next to the logo, so they do. */
+            .icon-btn {
+                height: 40px;
+                padding: 0 14px;
             }
 
-            .hamburger {
-                display: inline-grid
-            }
-
-            .mobile-menu {
-                display: none
+            /* One button, the width of the column. A store link that stops
+               halfway across a phone reads as an afterthought. */
+            .btn-store {
+                width: 100%;
             }
 
             .hero-title {
@@ -1504,38 +1504,6 @@
         }
 
         /* Utility Classes */
-        .hamburger {
-            background: transparent;
-            border: 0;
-            padding: 0;
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mobile-menu {
-            display: none;
-            position: absolute;
-            right: 24px;
-            top: 64px;
-            background: #fff;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 8px;
-            min-width: 220px;
-        }
-
-        .mobile-menu-btn {
-            display: block;
-            width: 100%;
-            text-align: left;
-            padding: 10px 12px;
-            border: 0;
-            border-radius: 10px;
-            background: var(--cta);
-            color: #113d2f;
-        }
-
         .hero-pill {
             background: #FFFFFF;
             border: 1px solid #E2E3E6;
@@ -2800,20 +2768,9 @@
     <header class="site-header">
         <div class="container nav">
             <div class="brand"><img src="logo.png" alt="" class="logo"/>Backsie</div>
-            <button class="hamburger" aria-label="Open menu">
-                <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="46" height="46" rx="16" fill="#EEF3EF"/>
-                    <path d="M33.5 23C33.5 23.2321 33.4078 23.4546 33.2437 23.6187C33.0796 23.7828 32.8571 23.875 32.625 23.875H13.375C13.1429 23.875 12.9204 23.7828 12.7563 23.6187C12.5922 23.4546 12.5 23.2321 12.5 23C12.5 22.7679 12.5922 22.5454 12.7563 22.3813C12.9204 22.2172 13.1429 22.125 13.375 22.125H32.625C32.8571 22.125 33.0796 22.2172 33.2437 22.3813C33.4078 22.5454 33.5 22.7679 33.5 23ZM13.375 16.875H32.625C32.8571 16.875 33.0796 16.7828 33.2437 16.6187C33.4078 16.4546 33.5 16.2321 33.5 16C33.5 15.7679 33.4078 15.5454 33.2437 15.3813C33.0796 15.2172 32.8571 15.125 32.625 15.125H13.375C13.1429 15.125 12.9204 15.2172 12.7563 15.3813C12.5922 15.5454 12.5 15.7679 12.5 16C12.5 16.2321 12.5922 16.4546 12.7563 16.6187C12.9204 16.7828 13.1429 16.875 13.375 16.875ZM32.625 29.125H13.375C13.1429 29.125 12.9204 29.2172 12.7563 29.3813C12.5922 29.5454 12.5 29.7679 12.5 30C12.5 30.2321 12.5922 30.4546 12.7563 30.6187C12.9204 30.7828 13.1429 30.875 13.375 30.875H32.625C32.8571 30.875 33.0796 30.7828 33.2437 30.6187C33.4078 30.4546 33.5 30.2321 33.5 30C33.5 29.7679 33.4078 29.5454 33.2437 29.3813C33.0796 29.2172 32.8571 29.125 32.625 29.125Z" fill="#1F473F"/>
-                </svg>
-            </button>
             <div class="nav-actions">
                 <a class="icon-btn js-roll" href="https://apps.apple.com/us/app/backsie/id6754548944" data-platform="ios" aria-label="Download Backsie on the App Store"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.03-2.5 2.05-3.7 2.14-3.76-1.17-1.7-2.98-1.94-3.62-1.96-1.54-.16-3.01.9-3.79.9-.78 0-1.99-.88-3.27-.86-1.68.02-3.23.98-4.09 2.48-1.74 3.02-.45 7.5 1.25 9.95.83 1.2 1.82 2.55 3.12 2.5 1.25-.05 1.72-.81 3.23-.81 1.51 0 1.93.81 3.25.78 1.34-.02 2.19-1.22 3.01-2.43.95-1.39 1.34-2.74 1.36-2.81-.03-.01-2.61-1-2.64-3.98zM14.6 4.6c.69-.83 1.15-1.99 1.02-3.15-.99.04-2.19.66-2.9 1.49-.64.74-1.19 1.92-1.04 3.05 1.1.09 2.23-.56 2.92-1.39z"/></svg></a>
                 <a class="icon-btn js-roll" href="https://play.google.com/store/apps/details?id=co.backsie.app" data-platform="android" aria-label="Get Backsie on Google Play"><svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path fill="#00D3FF" d="M3.27 1.94A1.4 1.4 0 0 0 3 2.8v18.4c0 .34.1.63.27.86l.07.07 10.3-10.06v-.24L3.34 1.87l-.07.07z"/><path fill="#FFCE00" d="M17.07 15.5l-3.43-3.36v-.24l3.44-3.37.08.05 4.07 2.29c1.16.65 1.16 1.72 0 2.37l-4.07 2.29-.09.06z"/><path fill="#FF3A44" d="M17.16 15.44l-3.52-3.44L3.27 22.06c.38.4 1.02.44 1.73.05l12.16-6.67z"/><path fill="#00F076" d="M17.16 8.56L5 1.89c-.71-.39-1.35-.34-1.73.05L13.64 12l3.52-3.44z"/></svg></a>
-            </div>
-            <div class="mobile-menu" role="menu" aria-hidden="true">
-                <a class="btn btn-primary cta mobile-menu-btn js-get-app" role="menuitem" href="https://apps.apple.com/us/app/backsie/id6754548944" data-ios="https://apps.apple.com/us/app/backsie/id6754548944" data-android="https://play.google.com/store/apps/details?id=co.backsie.app">
-                    Download
-                </a>
             </div>
         </div>
     </header>
@@ -3472,26 +3429,6 @@ Video Modal
     </div>
 </div>
 
-<script>
-    // Mobile nav toggle
-    (function () {
-        const ham = document.querySelector('.hamburger');
-        const menu = document.querySelector('.mobile-menu');
-        if (ham && menu) {
-            ham.addEventListener('click', () => {
-                const open = menu.style.display === 'block';
-                menu.style.display = open ? 'none' : 'block';
-                menu.setAttribute('aria-hidden', open ? 'true' : 'false');
-            });
-            window.addEventListener('resize', () => {
-                if (window.innerWidth > 720) {
-                    menu.style.display = 'none';
-                    menu.setAttribute('aria-hidden', 'true');
-                }
-            });
-        }
-    })();
-</script>
 <script>
     // Video Modal
     (function () {
